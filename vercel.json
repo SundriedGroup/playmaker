@@ -1,7 +1,11 @@
 {
   "functions": {
-    "api/dashboard.js": { "maxDuration": 30 }
+    "api/dashboard.js": { "maxDuration": 30 },
+    "api/snapshot.js": { "maxDuration": 60 }
   },
+  "crons": [
+    { "path": "/api/snapshot", "schedule": "0 4 * * *" }
+  ],
   "headers": [
     {
       "source": "/(.*)",

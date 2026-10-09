@@ -24,7 +24,15 @@ No build step and no dependencies: one HTML page (`index.html`) and one Vercel f
 | `DASHBOARD_PASSWORD` | Any password. You'll type it once per device. |
 | `MOCK` | `0` for live data. Set `1` to see sample data. |
 
-Optional: `META_GRAPH_VERSION` (default `v23.0`), `POST_LIMIT` (default `15`, max `50`).
+For daily history in Supabase (the "Road to 10k" chart):
+
+| Name | Value |
+|---|---|
+| `SUPABASE_URL` | `https://dxhqiwgbzvujirgvuzrt.supabase.co` (the Playmaker project) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase → Project Settings → API Keys → the **secret / service_role** key. Server only; never put it in the page. |
+| `CRON_SECRET` | Any long random string. Vercel sends it with the daily snapshot call so no one else can trigger it. |
+
+Optional: `META_GRAPH_VERSION` (default `v23.0`), `POST_LIMIT` (default `15`, max `50`), `FOLLOWER_GOAL` (default `10000`).
 
 3. Deploy, open the URL, enter the password.
 
@@ -43,6 +51,14 @@ To find `IG_USER_ID` with a Facebook-login token, open the Graph API Explorer an
 - **"Your Meta access token has expired"**: make a new token and update `META_ACCESS_TOKEN` in Vercel, then redeploy. Long-lived user tokens last about 60 days; system user tokens don't expire.
 - **A metric shows "—"**: Meta doesn't provide it for that post type (for example, follows on reels), or the post is too new.
 - **No follower chart**: Meta needs 100+ followers and the insights permission.
+
+## Daily snapshots (Supabase)
+
+- Vercel Cron calls `/api/snapshot` every day at 06:00 SAST (`vercel.json`). It saves your follower count and each recent post's numbers.
+- Tables: `account_snapshots` (one row a day) and `post_snapshots` (one row per post per day). The SQL is in `supabase/schema.sql` and has already been applied to the Playmaker project.
+- Row-level security is on with no policies, so the public key can't read or write either table. Only the server, with the service role key, can.
+- Supabase's security advisor will show an info notice, "RLS enabled, no policy". That's expected for this setup.
+- To trigger a snapshot by hand: `curl -H "Authorization: Bearer $CRON_SECRET" https://<your-app>.vercel.app/api/snapshot`
 
 ## Changing the series tags
 

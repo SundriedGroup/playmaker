@@ -3,6 +3,7 @@
 const crypto = require('crypto');
 const { getDashboard } = require('../lib/instagram');
 const { getMockDashboard } = require('../lib/mock');
+const { followerHistory } = require('../lib/store');
 
 function safeEqual(a, b) {
   const ha = crypto.createHash('sha256').update(String(a)).digest();
@@ -27,7 +28,12 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const data = mock ? getMockDashboard() : await getDashboard();
+    const [data, history] = await Promise.all([
+      mock ? getMockDashboard() : getDashboard(),
+      mock ? Promise.resolve(null) : followerHistory(),
+    ]);
+    if (history) data.followerHistory = history;
+    data.followerGoal = parseInt(process.env.FOLLOWER_GOAL || '10000', 10) || 10000;
     // Behind a password, so never cache it on the CDN; always fetch fresh on Refresh.
     res.setHeader('Cache-Control', 'no-store');
     res.statusCode = 200;

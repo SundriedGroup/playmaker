@@ -90,6 +90,14 @@
   .gate p { color: var(--muted); margin: 0 0 14px; font-size: 14px; }
   .gate input { width: 100%; font: inherit; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); margin-bottom: 10px; }
   .gate .err { color: var(--bad); font-size: 13px; min-height: 18px; }
+  .goal { display: grid; grid-template-columns: 1fr 1.3fr; gap: 16px; align-items: center; }
+  @media (max-width: 760px) { .goal { grid-template-columns: 1fr; } }
+  .goal .big { font-size: 13px; color: var(--muted); }
+  .goal .big b { color: var(--ink); font-size: 22px; letter-spacing: -.01em; }
+  .progress { height: 12px; border-radius: 8px; background: var(--teal-soft); overflow: hidden; margin: 10px 0 8px; }
+  .progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--teal), var(--orange)); }
+  .goal .note { font-size: 13px; color: var(--muted); }
+  .goal svg { width: 100%; height: 90px; display: block; }
   .hidden { display: none !important; }
   footer { margin-top: 28px; font-size: 12px; color: var(--muted); }
 </style>
@@ -120,6 +128,8 @@
     </header>
 
     <div id="banner"></div>
+
+    <div class="panel goal" id="goal"></div>
 
     <h2>This week vs last week</h2>
     <div class="tiles" id="tiles"></div>
@@ -243,11 +253,42 @@
     }).join('');
   }
 
+  function renderGoal(d) {
+    var goal = d.followerGoal || 10000, now = d.profile.followers || 0;
+    var pct = Math.min(100, (now / goal) * 100);
+    var h = (d.followerHistory || []).slice();
+    var note = 'Daily snapshots start once Supabase is connected.', chart = '';
+    if (h.length >= 2) {
+      var first = h[0], last = h[h.length - 1];
+      var weeks = Math.max(1, (new Date(last.date) - new Date(first.date)) / (7 * 864e5));
+      var perWeek = (last.followers - first.followers) / weeks;
+      var left = goal - now;
+      note = '+' + fmt(last.followers - first.followers) + ' since ' + new Date(first.date).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' }) +
+        ' · about ' + perWeek.toFixed(1) + ' a week. ' +
+        (perWeek > 0 ? 'At this pace: ' + fmt(Math.ceil(left / perWeek)) + ' weeks to ' + fmt(goal) + '.' : 'Flat so far.');
+      var w = 300, ht = 90, min = Math.min.apply(null, h.map(function (p) { return p.followers; })), max = Math.max.apply(null, h.map(function (p) { return p.followers; }));
+      var span = Math.max(1, max - min), t0 = new Date(first.date).getTime(), t1 = Math.max(t0 + 1, new Date(last.date).getTime());
+      var pts = h.map(function (p) {
+        var x = ((new Date(p.date).getTime() - t0) / (t1 - t0)) * (w - 8) + 4;
+        var y = ht - 8 - ((p.followers - min) / span) * (ht - 16);
+        return x.toFixed(1) + ',' + y.toFixed(1);
+      });
+      chart = '<svg viewBox="0 0 ' + w + ' ' + ht + '" preserveAspectRatio="none" role="img" aria-label="Follower history">' +
+        '<polyline points="' + pts.join(' ') + '" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>' +
+        '<circle cx="' + pts[pts.length - 1].split(',')[0] + '" cy="' + pts[pts.length - 1].split(',')[1] + '" r="4" fill="var(--orange)"/></svg>';
+    }
+    $('goal').innerHTML = '<div><div class="big">Road to <b>' + fmt(goal) + '</b></div>' +
+      '<div class="progress"><span style="width:' + pct.toFixed(1) + '%"></span></div>' +
+      '<div class="note"><b style="color:var(--ink)">' + fmt(now) + '</b> now · ' + pct.toFixed(1) + '% · ' + fmt(goal - now) + ' to go<br>' + note + '</div></div>' +
+      '<div>' + chart + '</div>';
+  }
+
   function render(d) {
     $('handle').textContent = '@' + (d.profile.username || '');
     $('followers').textContent = fmt(d.profile.followers);
     $('updated').textContent = 'Updated ' + new Date(d.generatedAt).toLocaleString('en-ZA', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
     $('banner').innerHTML = d.mock ? '<div class="banner info">Sample data. Set MOCK to 0 and add your Meta token in Vercel to see live numbers.</div>' : '';
+    renderGoal(d);
     renderTiles(d);
     renderTrend(d.followerTrend);
     renderSeries(d.series);
