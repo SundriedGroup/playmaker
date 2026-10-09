@@ -20,7 +20,7 @@ No build step and no dependencies: one HTML page (`index.html`) and one Vercel f
 | Name | Value |
 |---|---|
 | `META_ACCESS_TOKEN` | Your Meta token. A system user token from Business Manager is best because it doesn't expire. |
-| `IG_USER_ID` | Your Instagram professional account ID (the long number, not the handle). Not needed if your token starts with `IG`. |
+| `IG_USER_ID` | Optional. Your Instagram account ID (the long number, not the handle). If it is missing, or is your Facebook Page ID by mistake, Playmaker finds the linked Instagram account itself. |
 | `DASHBOARD_PASSWORD` | Any password. You'll type it once per device. |
 | `MOCK` | `0` for live data. Set `1` to see sample data. |
 
