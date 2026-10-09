@@ -98,6 +98,51 @@
   .progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--teal), var(--orange)); }
   .goal .note { font-size: 13px; color: var(--muted); }
   .goal svg { width: 100%; height: 90px; display: block; }
+  .tabs { display: flex; gap: 4px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px; width: max-content; margin: 4px 0 16px; }
+  .tab { background: transparent; color: var(--muted); padding: 7px 16px; }
+  .tab.active { background: var(--teal); color: #fff; }
+  @media (prefers-color-scheme: dark) { .tab.active { color: #0e1615; } }
+  button.sm { padding: 6px 12px; font-size: 13px; }
+  .weekbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .weeklabel { display: flex; flex-direction: column; min-width: 150px; flex: 1; line-height: 1.2; }
+  .weeklabel b { font-size: 18px; }
+  .weeklabel span { font-size: 12px; color: var(--muted); }
+  .idea-form { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .idea-form #ideaHook { grid-column: 1 / -1; }
+  .idea-form input, .item textarea, .item input, .item select {
+    font: inherit; font-size: 14px; width: 100%; padding: 8px 10px; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  }
+  .row-actions { display: flex; gap: 8px; justify-content: flex-end; grid-column: 1 / -1; }
+  .day { margin-bottom: 14px; }
+  .day h3 { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; font-weight: 700; }
+  .day.today h3 { color: var(--orange); }
+  .day .empty { font-size: 13px; color: var(--muted); padding: 2px 0 6px; }
+  .item { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; margin-bottom: 8px; }
+  .item.posted { border-color: var(--teal); }
+  .item .head { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; }
+  .item .meta { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--muted); text-align: left; }
+  .item .title { font-weight: 700; margin: 4px 0 2px; }
+  .item .hook { font-size: 14px; color: var(--ink); opacity: .85; }
+  .item select.stage { width: auto; padding: 5px 8px; font-size: 12px; font-weight: 700; border-radius: 999px; }
+  .stage-Idea { color: var(--muted); } .stage-Scripted { color: #b7791f; } .stage-Filmed, .stage-Edited { color: #2b6cb0; }
+  .stage-Scheduled { color: #805ad5; } .stage-Posted { color: var(--teal); } .stage-Parked { color: var(--muted); }
+  .live { margin-top: 8px; font-size: 13px; background: var(--teal-soft); border-radius: 10px; padding: 7px 10px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .live a { color: var(--teal); font-weight: 700; text-decoration: none; }
+  .item .toggle { background: transparent; color: var(--teal); padding: 6px 0 0; font-size: 13px; }
+  .body { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 10px; }
+  .body h4 { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 12px 0 6px; }
+  .md { font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
+  .md h5 { font-size: 13px; margin: 12px 0 4px; }
+  .md p { margin: 0 0 8px; }
+  .md ul, .md ol { margin: 0 0 8px; padding-left: 20px; }
+  .caption { white-space: pre-wrap; font-size: 14px; background: var(--bg); border-radius: 10px; padding: 10px; overflow-wrap: anywhere; }
+  .item textarea { min-height: 120px; resize: vertical; line-height: 1.45; }
+  .item label { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 10px 0 4px; font-weight: 700; }
+  .btnrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .parked { margin-top: 18px; }
+  .parked summary { cursor: pointer; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
+  .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 999px; font-size: 13px; z-index: 10; }
   .hidden { display: none !important; }
   footer { margin-top: 28px; font-size: 12px; color: var(--muted); }
 </style>
@@ -129,6 +174,34 @@
 
     <div id="banner"></div>
 
+    <nav class="tabs" role="tablist">
+      <button type="button" class="tab active" data-tab="score" role="tab">Scorecard</button>
+      <button type="button" class="tab" data-tab="plan" role="tab">Plan</button>
+    </nav>
+
+    <section id="viewPlan" class="hidden">
+      <div class="weekbar">
+        <button type="button" class="ghost sm" id="prevWeek" aria-label="Previous week">‹</button>
+        <div class="weeklabel"><b id="weekLabel">This week</b><span id="weekSub"></span></div>
+        <button type="button" class="ghost sm" id="nextWeek" aria-label="Next week">›</button>
+        <button type="button" class="ghost sm" id="thisWeek">Today</button>
+        <button type="button" class="sm" id="addIdea">+ Idea</button>
+      </div>
+      <form id="ideaForm" class="panel idea-form hidden">
+        <input id="ideaTitle" placeholder="Idea or post title" maxlength="200" required>
+        <input id="ideaDate" type="date" aria-label="Date (optional)">
+        <input id="ideaHook" placeholder="Opening line (optional)" maxlength="500">
+        <div class="row-actions"><button type="button" class="ghost sm" id="ideaCancel">Cancel</button><button type="submit" class="sm">Add</button></div>
+      </form>
+      <div id="planMsg"></div>
+      <div id="planDays"></div>
+      <details class="parked" id="parkedWrap">
+        <summary>Parked &amp; undated <span id="parkedCount"></span></summary>
+        <div id="parkedList"></div>
+      </details>
+    </section>
+
+    <section id="viewScore">
     <div class="panel goal" id="goal"></div>
 
     <h2>This week vs last week</h2>
@@ -149,6 +222,7 @@
     <div class="posts" id="posts"></div>
 
     <footer>Orange border = 1,000+ reach. Data from the Meta Graph API; Meta's own figures can lag by a few hours.</footer>
+    </section>
   </main>
 </div>
 
@@ -162,6 +236,9 @@
     clear: function () { memKey = ''; try { localStorage.removeItem(KEY); } catch (e) {} }
   };
   var memKey = '';
+  window.__pm = window.__pm || {};
+  window.__pm.getKey = function () { return store.get(); };
+  window.__pm.onLocked = function () { store.clear(); showGate('Wrong password.'); };
 
   function fmt(n) {
     if (n === null || n === undefined) return '—';
@@ -293,6 +370,9 @@
     renderTrend(d.followerTrend);
     renderSeries(d.series);
     renderPosts(d.posts || []);
+    window.__pm = window.__pm || {};
+    window.__pm.dashboard = d;
+    if (window.__pm.onDashboard) window.__pm.onDashboard();
   }
 
   function load() {
@@ -325,6 +405,214 @@
   $('refresh').addEventListener('click', load);
   $('logout').addEventListener('click', function () { store.clear(); showGate(''); });
   load();
+})();
+</script>
+<script>
+// ---------------------------------------------------------------- Plan tab
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var pm = window.__pm;
+  var state = { items: [], stages: [], weekStart: mondayOf(todaySAST()), open: {}, editing: null, loaded: false };
+  var TAB_KEY = 'playmaker-tab';
+
+  function todaySAST() { return new Date(Date.now() + 2 * 3600e3).toISOString().slice(0, 10); }
+  function addDays(iso, n) { var d = new Date(iso + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
+  function mondayOf(iso) { var d = new Date(iso + 'T00:00:00Z'); var wd = (d.getUTCDay() + 6) % 7; return addDays(iso, -wd); }
+  function dayName(iso, opts) { return new Date(iso + 'T12:00:00Z').toLocaleDateString('en-ZA', Object.assign({ timeZone: 'UTC' }, opts)); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+  function fmt(n) { return n == null ? '—' : Number(n).toLocaleString('en-ZA'); }
+  function toast(msg) { var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(function () { t.remove(); }, 1800); }
+
+  // Tiny, safe markdown: headings, bold, lists, checkboxes, paragraphs. Escapes everything first.
+  function md(src) {
+    if (!src) return '';
+    var lines = esc(src).split('\n'), out = [], list = null;
+    function close() { if (list) { out.push('</' + list + '>'); list = null; } }
+    lines.forEach(function (l) {
+      var t = l.trim();
+      var inline = function (s) { return s.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/- \[ \] /, '☐ ').replace(/- \[x\] /i, '☑ '); };
+      if (!t) { close(); return; }
+      var h = t.match(/^#{1,4}\s+(.*)$/);
+      if (h) { close(); out.push('<h5>' + inline(h[1]) + '</h5>'); return; }
+      var ul = t.match(/^[-•]\s+(.*)$/), ol = t.match(/^\d+\.\s+(.*)$/);
+      if (ul || ol) {
+        var kind = ul ? 'ul' : 'ol';
+        if (list !== kind) { close(); out.push('<' + kind + '>'); list = kind; }
+        out.push('<li>' + inline((ul || ol)[1].replace(/^\[ \] /, '☐ ').replace(/^\[x\] /i, '☑ ')) + '</li>');
+        return;
+      }
+      close(); out.push('<p>' + inline(t) + '</p>');
+    });
+    close();
+    return out.join('');
+  }
+
+  function api(method, path, body) {
+    return fetch(path, {
+      method: method,
+      headers: { 'x-dashboard-key': pm.getKey(), 'Content-Type': 'application/json' },
+      body: body ? JSON.stringify(body) : undefined
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (b) {
+        if (r.status === 401) { pm.onLocked(); throw new Error('Locked'); }
+        if (!r.ok) throw new Error(b.error || ('Error ' + r.status));
+        return b;
+      });
+    });
+  }
+
+  // Match a planned item to a live Instagram post: same SAST date, then the
+  // best overlap between the opening line and the caption's first line.
+  function words(s) { return (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function (w) { return w.length > 3; }); }
+  function liveFor(item) {
+    var d = pm.dashboard; if (!d || !d.posts || !item.post_date) return null;
+    if (item.media_id) { var exact = d.posts.filter(function (p) { return p.id === item.media_id; })[0]; if (exact) return exact; }
+    if (item.format === 'Story') return null;
+    var same = d.posts.filter(function (p) { return new Date(new Date(p.timestamp).getTime() + 2 * 3600e3).toISOString().slice(0, 10) === item.post_date; });
+    if (!same.length) return null;
+    var want = words(item.hook || item.title);
+    var scored = same.map(function (p) { var w = words(p.firstLine); return { p: p, s: want.filter(function (x) { return w.indexOf(x) >= 0; }).length }; })
+      .sort(function (a, b) { return b.s - a.s; });
+    if (scored[0].s > 0) return scored[0].p;
+    var sameDayPlanned = state.items.filter(function (i) { return i.post_date === item.post_date && i.format !== 'Story'; }).length;
+    return same.length === 1 && sameDayPlanned === 1 ? same[0] : null;
+  }
+
+  function stageSelect(item) {
+    return '<select class="stage stage-' + esc(item.stage) + '" data-id="' + item.id + '" aria-label="Stage">' +
+      state.stages.map(function (s) { return '<option' + (s === item.stage ? ' selected' : '') + '>' + s + '</option>'; }).join('') + '</select>';
+  }
+
+  function itemHTML(item) {
+    var live = liveFor(item), open = !!state.open[item.id], editing = state.editing === item.id;
+    var h = '<div class="item' + (item.stage === 'Posted' || live ? ' posted' : '') + '" data-id="' + item.id + '">' +
+      '<div class="head"><div>' +
+      '<div class="meta">' + (item.slot ? '<span>' + esc(item.slot) + '</span>' : '') +
+      (item.series ? '<span class="chip">' + esc(item.series) + '</span>' : '') +
+      (item.format ? '<span>' + esc(item.format) + '</span>' : '') + '</div>' +
+      '<div class="title">' + esc(item.title) + '</div>' +
+      (item.hook ? '<div class="hook">“' + esc(item.hook) + '”</div>' : '') +
+      '</div>' + stageSelect(item) + '</div>';
+    if (live) {
+      h += '<div class="live"><a href="' + esc(live.permalink) + '" target="_blank" rel="noopener">Live ↗</a>' +
+        '<span>Reach <b>' + fmt(live.reach) + '</b></span><span>Views <b>' + fmt(live.views) + '</b></span>' +
+        '<span>Shares <b>' + fmt(live.shares) + '</b></span><span>Saves <b>' + fmt(live.saved) + '</b></span>' +
+        '<span>Follows <b>' + fmt(live.follows) + '</b></span></div>';
+    }
+    var has = item.script || item.caption || item.notes;
+    if (!editing) h += '<button type="button" class="toggle" data-act="toggle">' + (open ? 'Hide' : (has ? 'Open script & caption' : 'Add script & caption')) + '</button>';
+    if (editing) {
+      h += '<div class="body">' +
+        '<label>Title</label><input data-f="title" value="' + esc(item.title) + '" maxlength="200">' +
+        '<label>Date</label><input data-f="post_date" type="date" value="' + esc(item.post_date || '') + '">' +
+        '<label>Opening line</label><input data-f="hook" value="' + esc(item.hook || '') + '" maxlength="500">' +
+        '<label>Script</label><textarea data-f="script">' + esc(item.script || '') + '</textarea>' +
+        '<label>Caption</label><textarea data-f="caption">' + esc(item.caption || '') + '</textarea>' +
+        '<label>Notes</label><textarea data-f="notes" style="min-height:60px">' + esc(item.notes || '') + '</textarea>' +
+        '<div class="btnrow"><button type="button" class="ghost sm" data-act="cancel">Cancel</button><button type="button" class="sm" data-act="save">Save</button></div></div>';
+    } else if (open) {
+      h += '<div class="body">' +
+        (item.script ? '<h4>Script</h4><div class="md">' + md(item.script) + '</div>' : '') +
+        (item.caption ? '<h4>Caption</h4><div class="caption">' + esc(item.caption) + '</div>' : '') +
+        (item.notes ? '<h4>Notes</h4><div class="md">' + md(item.notes) + '</div>' : '') +
+        '<div class="btnrow">' + (item.caption ? '<button type="button" class="sm" data-act="copy">Copy caption</button>' : '') +
+        '<button type="button" class="ghost sm" data-act="edit">Edit</button></div></div>';
+    }
+    return h + '</div>';
+  }
+
+  function render() {
+    var ws = state.weekStart, we = addDays(ws, 6), today = todaySAST();
+    var isThis = ws === mondayOf(today);
+    $('weekLabel').textContent = isThis ? 'This week' : (ws === addDays(mondayOf(today), 7) ? 'Next week' : (ws === addDays(mondayOf(today), -7) ? 'Last week' : 'Week of ' + dayName(ws, { day: 'numeric', month: 'short' })));
+    $('weekSub').textContent = dayName(ws, { day: 'numeric', month: 'short' }) + ' – ' + dayName(we, { day: 'numeric', month: 'short' });
+    var html = '';
+    for (var i = 0; i < 7; i++) {
+      var day = addDays(ws, i);
+      var items = state.items.filter(function (it) { return it.post_date === day && it.stage !== 'Parked'; });
+      html += '<div class="day' + (day === today ? ' today' : '') + '"><h3>' + dayName(day, { weekday: 'long', day: 'numeric', month: 'short' }) + (day === today ? ' · today' : '') + '</h3>' +
+        (items.length ? items.map(itemHTML).join('') : '<div class="empty">Nothing planned.</div>') + '</div>';
+    }
+    $('planDays').innerHTML = html;
+    var parked = state.items.filter(function (it) { return it.stage === 'Parked' || !it.post_date; });
+    $('parkedCount').textContent = '(' + parked.length + ')';
+    $('parkedList').innerHTML = parked.map(itemHTML).join('') || '<div class="empty">Nothing parked.</div>';
+  }
+
+  function load() {
+    $('planMsg').innerHTML = state.loaded ? '' : '<div class="banner info">Loading your plan…</div>';
+    return api('GET', '/api/content').then(function (b) {
+      state.items = b.items || []; state.stages = b.stages || []; state.loaded = true;
+      $('planMsg').innerHTML = ''; render();
+    }).catch(function (e) {
+      if (e.message !== 'Locked') $('planMsg').innerHTML = '<div class="banner warn"><b>Couldn\'t load the plan.</b> ' + esc(e.message) + '</div>';
+    });
+  }
+
+  function find(id) { return state.items.filter(function (i) { return i.id === id; })[0]; }
+  function replace(item) { state.items = state.items.map(function (i) { return i.id === item.id ? item : i; }); }
+
+  function patch(id, fields, msg) {
+    return api('PATCH', '/api/content?id=' + encodeURIComponent(id), fields).then(function (b) {
+      replace(b.item); render(); if (msg) toast(msg);
+    }).catch(function (e) { if (e.message !== 'Locked') { toast('Not saved: ' + e.message); render(); } });
+  }
+
+  document.addEventListener('change', function (e) {
+    var sel = e.target.closest('select.stage'); if (!sel) return;
+    patch(sel.getAttribute('data-id'), { stage: sel.value }, 'Stage: ' + sel.value);
+  });
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-act]'); if (!btn) return;
+    var card = btn.closest('.item'); if (!card) return;
+    var id = card.getAttribute('data-id'), item = find(id), act = btn.getAttribute('data-act');
+    if (act === 'toggle') { state.open[id] = !state.open[id]; if (!item.script && !item.caption && !item.notes) state.editing = id; render(); }
+    if (act === 'edit') { state.editing = id; render(); }
+    if (act === 'cancel') { state.editing = null; render(); }
+    if (act === 'copy') {
+      var done = function () { toast('Caption copied'); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(item.caption).then(done, function () { toast('Copy failed'); });
+    }
+    if (act === 'save') {
+      var fields = {};
+      card.querySelectorAll('[data-f]').forEach(function (el) { fields[el.getAttribute('data-f')] = el.value; });
+      if (!fields.title.trim()) { toast('Title can\'t be empty'); return; }
+      state.editing = null; state.open[id] = true;
+      patch(id, fields, 'Saved');
+    }
+  });
+
+  $('prevWeek').addEventListener('click', function () { state.weekStart = addDays(state.weekStart, -7); render(); });
+  $('nextWeek').addEventListener('click', function () { state.weekStart = addDays(state.weekStart, 7); render(); });
+  $('thisWeek').addEventListener('click', function () { state.weekStart = mondayOf(todaySAST()); render(); });
+  $('addIdea').addEventListener('click', function () { $('ideaForm').classList.toggle('hidden'); $('ideaTitle').focus(); });
+  $('ideaCancel').addEventListener('click', function () { $('ideaForm').classList.add('hidden'); });
+  $('ideaForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var body = { title: $('ideaTitle').value.trim(), post_date: $('ideaDate').value || null, hook: $('ideaHook').value.trim() || null, stage: 'Idea' };
+    api('POST', '/api/content', body).then(function (b) {
+      state.items.push(b.item);
+      state.items.sort(function (a, c) { return (a.post_date || '9999') < (c.post_date || '9999') ? -1 : 1; });
+      $('ideaForm').reset(); $('ideaForm').classList.add('hidden');
+      if (b.item.post_date) state.weekStart = mondayOf(b.item.post_date); else $('parkedWrap').open = true;
+      render(); toast('Idea added');
+    }).catch(function (err) { if (err.message !== 'Locked') toast('Not added: ' + err.message); });
+  });
+
+  function show(tab) {
+    document.querySelectorAll('.tab').forEach(function (t) { t.classList.toggle('active', t.getAttribute('data-tab') === tab); });
+    $('viewPlan').classList.toggle('hidden', tab !== 'plan');
+    $('viewScore').classList.toggle('hidden', tab !== 'score');
+    try { localStorage.setItem(TAB_KEY, tab); } catch (e) {}
+    if (tab === 'plan' && !state.loaded) load();
+  }
+  document.querySelectorAll('.tab').forEach(function (t) { t.addEventListener('click', function () { show(t.getAttribute('data-tab')); }); });
+  pm.onDashboard = function () {
+    if (state.loaded) render();
+    else { var saved = 'score'; try { saved = localStorage.getItem(TAB_KEY) || 'score'; } catch (e) {} if (saved === 'plan') show('plan'); }
+  };
+  $('refresh').addEventListener('click', function () { if (state.loaded) load(); });
 })();
 </script>
 </body>

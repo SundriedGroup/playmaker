@@ -52,6 +52,17 @@ To find `IG_USER_ID` with a Facebook-login token, open the Graph API Explorer an
 - **A metric shows "—"**: Meta doesn't provide it for that post type (for example, follows on reels), or the post is too new.
 - **No follower chart**: Meta needs 100+ followers and the insights permission.
 
+## Plan tab (content calendar)
+
+The **Plan** tab is the content calendar, stored in Supabase (`public.content`, copied from the Notion Content Calendar on 9 Oct 2026).
+
+- One week at a time, Monday to Sunday, with today highlighted. Parked and undated items sit at the bottom.
+- Change a post's stage from the dropdown (Idea → Scripted → Filmed → Edited → Scheduled → Posted, or Parked).
+- Open a post to read the script and caption, **Copy caption**, or **Edit** the title, date, opening line, script, caption and notes.
+- **+ Idea** adds a new row from anywhere, including your phone.
+- When a planned post goes live, Playmaker matches it to the Instagram post (same day, similar opening line) and shows its reach, views, shares, saves and follows on the card.
+- API: `GET /api/content`, `POST /api/content`, `PATCH /api/content?id=…`, all behind the same password.
+
 ## Daily snapshots (Supabase)
 
 - Vercel Cron calls `/api/snapshot` every day at 06:00 SAST (`vercel.json`). It saves your follower count and each recent post's numbers.
