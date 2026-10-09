@@ -18,7 +18,7 @@
   :root {
     --bg: #eef2f1; --surface: #ffffff; --raised: #f6f9f8; --side: #e3eae8;
     --ink: #0e2a2b; --muted: #5b6f6e; --line: #d4dedc;
-    --teal: #1e6a6c; --teal-ink: #ffffff; --lane: #d9e7e4;
+    --teal: #1e6a6c; --teal-ink: #ffffff; --teal-2: #8cc9bc; --lane: #d9e7e4;
     --bib: #ee5a1c; --good: #1e6a6c; --bad: #b8432a;
     --scrim: rgba(14, 42, 43, .35);
     --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
@@ -29,7 +29,7 @@
     :root {
       --bg: #0b1f20; --surface: #112b2c; --raised: #153334; --side: #08191a;
       --ink: #e7f1ef; --muted: #8ea7a4; --line: #21403f;
-      --teal: #5fbfae; --teal-ink: #062021; --lane: #1b3a3a;
+      --teal: #5fbfae; --teal-ink: #062021; --teal-2: #2f7a70; --lane: #1b3a3a;
       --bib: #ff6a2c; --good: #6fd0bd; --bad: #ff8a6b;
       --scrim: rgba(0, 0, 0, .5);
     }
@@ -139,6 +139,28 @@
   .meter span { display: block; height: 100%; background: var(--teal); border-radius: 4px; }
   .series-row .v { text-align: right; font: 800 20px/1 var(--display); font-variant-numeric: tabular-nums; }
 
+  /* Audience */
+  .aud-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .aud-head h2 { margin: 0; }
+  .seg { display: inline-flex; padding: 3px; border-radius: 10px; background: var(--raised); border: 1px solid var(--line); }
+  .seg button { background: none; color: var(--muted); padding: 8px 12px; font-size: 13px; border-radius: 8px; }
+  .seg button[aria-checked="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 0 var(--line); }
+  .aud-sub { font-size: 13px; color: var(--muted); margin: 8px 0 14px; }
+  .gender { margin-bottom: 8px; }
+  .gender .bar { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: var(--lane); }
+  .gender .bar span { display: block; height: 100%; }
+  .gender .bar .F { background: var(--teal); } .gender .bar .M { background: var(--teal-2); } .gender .bar .U { background: var(--line); }
+  .gender .legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 10px; font-size: 14px; }
+  .gender .legend b { font: 800 22px/1 var(--display); margin-right: 4px; font-variant-numeric: tabular-nums; }
+  .gender .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: 1px; }
+  .aud-grid { display: grid; gap: 0; }
+  .aud-grid h3 { font: 700 20px/1.1 var(--display); letter-spacing: .02em; margin: 22px 0 6px; }
+  @media (min-width: 1024px) { .aud-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; } }
+  .aud-row { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr) 44px; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; }
+  .aud-row:first-of-type { border-top: 0; }
+  .aud-row .lbl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .aud-row .v { text-align: right; font: 800 18px/1 var(--display); font-variant-numeric: tabular-nums; }
+  .aud-row.top .meter span { background: var(--teal); }
   .posts { display: grid; gap: 2px; }
   @media (min-width: 1024px) { .posts { grid-template-columns: 1fr 1fr; gap: 8px 24px; } }
   .post { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px; border-radius: 12px; text-decoration: none; color: inherit; }
@@ -326,6 +348,15 @@
         </div>
       </div>
 
+      <div class="aud-head">
+        <h2>Audience</h2>
+        <div class="seg" role="radiogroup" aria-label="Which audience">
+          <button type="button" role="radio" data-aud="followers" aria-checked="true">Followers</button>
+          <button type="button" role="radio" data-aud="engaged" aria-checked="false">Engaged this month</button>
+        </div>
+      </div>
+      <div id="audience"></div>
+
       <h2>Latest posts</h2>
       <div class="posts" id="posts"></div>
       <p class="footnote">Orange reach means 1,000 or more. Figures come from Meta and can lag the Instagram app by a few hours.</p>
@@ -482,6 +513,67 @@
     }).join('');
   }
 
+  // Audience: followers or engaged this month
+  var AUD_KEY = 'playmaker-aud';
+  var audMode = 'followers';
+  try { audMode = localStorage.getItem(AUD_KEY) === 'engaged' ? 'engaged' : 'followers'; } catch (e) {}
+  var countryName = function (code) {
+    try { return new Intl.DisplayNames(['en'], { type: 'region' }).of(code) || code; } catch (e) { return code; }
+  };
+  function pct(v, total) { return total ? Math.round((v / total) * 100) : 0; }
+  function audRows(list, total, label, n) {
+    if (!list || !list.length) return '<p class="rest">No data from Meta yet.</p>';
+    var max = list[0].value || 1;
+    return list.slice(0, n).map(function (x, i) {
+      return '<div class="aud-row' + (i === 0 ? ' top' : '') + '"><span class="lbl" title="' + esc(label(x.key)) + '">' + esc(label(x.key)) + '</span>' +
+        '<div class="meter"><span style="width:' + Math.round((x.value / max) * 100) + '%"></span></div>' +
+        '<span class="v">' + pct(x.value, total) + '%</span></div>';
+    }).join('');
+  }
+  function renderAudience(d) {
+    all('.seg button').forEach(function (b) { b.setAttribute('aria-checked', String(b.getAttribute('data-aud') === audMode)); });
+    var a = (d.audience || {})[audMode];
+    if (!a || (!a.breakdowns || !Object.keys(a.breakdowns).length)) {
+      $('audience').innerHTML = '<p class="pace">Meta didn\'t return audience data' + (a && a.error ? ': ' + esc(a.error) : '') + '. It needs 100+ followers and the insights permission on your token' + (audMode === 'engaged' ? ', and someone has to have engaged this month' : '') + '.</p>';
+      return;
+    }
+    var b = a.breakdowns, total = a.total || 0;
+    var g = {}; (b.gender || []).forEach(function (x) { g[x.key] = x.value; });
+    var gTotal = (g.F || 0) + (g.M || 0) + (g.U || 0);
+    var names = { F: 'Women', M: 'Men', U: 'Not specified' };
+    var html = '<p class="aud-sub">' + (audMode === 'followers'
+      ? 'Who follows you. Based on ' + fmt(total) + ' followers Meta can classify.'
+      : 'Who liked, commented, saved, shared or replied this month: ' + fmt(total) + ' accounts.') + '</p>';
+    if (gTotal) {
+      html += '<div class="gender"><div class="bar" role="img" aria-label="Gender split">' +
+        ['F', 'M', 'U'].map(function (k) { return g[k] ? '<span class="' + k + '" style="width:' + (g[k] / gTotal * 100).toFixed(1) + '%"></span>' : ''; }).join('') + '</div>' +
+        '<div class="legend">' + ['F', 'M', 'U'].filter(function (k) { return g[k]; }).map(function (k) {
+          return '<span><i class="dot" style="background:var(' + (k === 'F' ? '--teal' : k === 'M' ? '--teal-2' : '--line') + ')"></i><b>' + pct(g[k], gTotal) + '%</b>' + names[k] + '</span>';
+        }).join('') + '</div></div>';
+    }
+    var ageOrder = ['13-17', '18-24', '25-34', '35-44', '45-54', '55-64', '65+'];
+    var ages = (b.age || []).slice().sort(function (x, y) { return ageOrder.indexOf(x.key) - ageOrder.indexOf(y.key); });
+    var topAge = (b.age || [])[0];
+    var ageMax = Math.max.apply(null, ages.map(function (x) { return x.value; }).concat([1]));
+    var ageTotal = ages.reduce(function (s, x) { return s + x.value; }, 0) || total;
+    html += '<div class="aud-grid">' +
+      '<div><h3>Age</h3>' + (ages.length ? ages.map(function (x) {
+        return '<div class="aud-row' + (topAge && x.key === topAge.key ? ' top' : '') + '"><span class="lbl">' + esc(x.key) + '</span>' +
+          '<div class="meter"><span style="width:' + Math.round((x.value / ageMax) * 100) + '%"></span></div><span class="v">' + pct(x.value, ageTotal) + '%</span></div>';
+      }).join('') : '<p class="rest">No data from Meta yet.</p>') + '</div>' +
+      '<div><h3>Countries</h3>' + audRows(b.country, (b.country || []).reduce(function (s, x) { return s + x.value; }, 0) || total, countryName, 6) + '</div>' +
+      '<div><h3>Cities</h3>' + audRows(b.city, total, function (c) { return String(c).split(',')[0]; }, 6) + '</div>' +
+      '</div>';
+    $('audience').innerHTML = html;
+  }
+  all('.seg button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      audMode = btn.getAttribute('data-aud');
+      try { localStorage.setItem(AUD_KEY, audMode); } catch (e) {}
+      if (window.__pm.dashboard) renderAudience(window.__pm.dashboard);
+    });
+  });
+
   function render(d) {
     all('.handle').forEach(function (el) { el.textContent = '@' + (d.profile.username || ''); });
     setStamp('Updated ' + new Date(d.generatedAt).toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' }));
@@ -490,8 +582,9 @@
     renderSplits(d);
     renderTrend(d.followerTrend);
     renderSeries(d.series);
-    renderPosts(d.posts || []);
     window.__pm.dashboard = d;
+    renderAudience(d);
+    renderPosts(d.posts || []);
     if (window.__pm.onDashboard) window.__pm.onDashboard();
   }
 

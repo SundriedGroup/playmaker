@@ -8,6 +8,7 @@ One password-protected page with live numbers from the Meta Graph API:
 - This week vs last week: posts, reach, shares, saves, follows
 - The target: one post over 1,000 reach a week
 - Average reach by series (Business Athlete, Road to 21km, More Life, Coastal)
+- Audience: age, gender, top countries and top cities, for your followers or for the people who engaged this month
 - The latest 15 posts with reach, views, shares, saves, follows, comments, likes and average watch time for reels
 
 No build step and no dependencies: one HTML page (`index.html`) and one Vercel function (`api/dashboard.js`). Your Meta token stays on the server and never reaches the browser.
@@ -74,6 +75,10 @@ The **Plan** tab is the content calendar, stored in Supabase (`public.content`, 
 ## Changing the series tags
 
 Posts are tagged by words in the caption. Edit `SERIES_RULES` in `lib/instagram.js`. "More life. Less excuses." is in every caption, so it isn't used as a rule.
+
+## Audience data
+
+Uses Meta's `follower_demographics` and `engaged_audience_demographics` (this month). Meta needs at least 100 followers, returns the top 45 values per breakdown, and needs the insights permission on your token (`instagram_manage_insights`, or `instagram_business_manage_insights` with Instagram Login). If a breakdown isn't available the page says so instead of failing.
 
 ## Not available from Meta's API
 
