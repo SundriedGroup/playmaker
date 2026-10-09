@@ -2,226 +2,305 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b1f20" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
 <title>Playmaker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Tokens. Light is "chalk", dark is "night pool". Orange is the race bib:
+     used only for today, targets hit and where you are on the road to 10k. */
   :root {
-    --bg: #f4f1ec;
-    --panel: #ffffff;
-    --ink: #171310;
-    --muted: #6b6560;
-    --line: #e4ded6;
+    --bg: #eef2f1;
+    --surface: #ffffff;
+    --raised: #f6f9f8;
+    --ink: #0e2a2b;
+    --muted: #5b6f6e;
+    --line: #d4dedc;
     --teal: #1e6a6c;
-    --teal-soft: #d6ebe7;
-    --orange: #e85d2f;
-    --orange-soft: #fbe3d9;
+    --teal-ink: #ffffff;
+    --mint: #7fc7b6;
+    --lane: #d9e7e4;
+    --bib: #ee5a1c;
     --good: #1e6a6c;
-    --bad: #b5402a;
-    --radius: 14px;
+    --bad: #b8432a;
+    --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
+    --text: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0e1615;
-      --panel: #152120;
-      --ink: #eef2f0;
-      --muted: #9aa7a4;
-      --line: #263735;
-      --teal: #6fc0b2;
-      --teal-soft: #1d3633;
-      --orange: #f0794f;
-      --orange-soft: #3a241c;
-      --good: #6fc0b2;
-      --bad: #f08a6e;
+      --bg: #0b1f20;
+      --surface: #112b2c;
+      --raised: #153334;
+      --ink: #e7f1ef;
+      --muted: #8ea7a4;
+      --line: #21403f;
+      --teal: #5fbfae;
+      --teal-ink: #062021;
+      --mint: #5fbfae;
+      --lane: #1b3a3a;
+      --bib: #ff6a2c;
+      --good: #6fd0bd;
+      --bad: #ff8a6b;
     }
   }
   * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0; background: var(--bg); color: var(--ink);
-    font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
+    font: 15px/1.5 var(--text); -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 48px; }
-  header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
-  .handle { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-  .followers { font-size: 40px; font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
-  .followers small { font-size: 15px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
-  .meta { color: var(--muted); font-size: 13px; text-align: right; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px 56px; padding-top: max(14px, env(safe-area-inset-top)); }
+  .num { font-family: var(--display); font-variant-numeric: tabular-nums; letter-spacing: .01em; }
   button {
-    font: inherit; font-weight: 600; border: 0; border-radius: 999px; padding: 9px 16px;
-    background: var(--teal); color: #fff; cursor: pointer;
+    font: 600 14px/1 var(--text); border: 0; border-radius: 10px; padding: 10px 14px;
+    background: var(--teal); color: var(--teal-ink); cursor: pointer;
   }
-  @media (prefers-color-scheme: dark) { button { color: #0e1615; } }
-  button.ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); }
-  .banner { border-radius: var(--radius); padding: 12px 14px; margin-bottom: 16px; font-size: 14px; }
-  .banner.warn { background: var(--orange-soft); }
-  .banner.info { background: var(--teal-soft); }
-  h2 { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 28px 0 10px; font-weight: 700; }
-  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-  .tile { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
-  .tile .label { font-size: 12px; color: var(--muted); font-weight: 600; }
-  .tile .value { font-size: 28px; font-weight: 800; letter-spacing: -.02em; margin-top: 2px; font-variant-numeric: tabular-nums; }
-  .tile .delta { font-size: 12px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  button.quiet { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+  button.icon { width: 38px; height: 38px; padding: 0; display: inline-grid; place-items: center; font-size: 18px; }
+  button.sm { padding: 8px 12px; font-size: 13px; }
+  :focus-visible { outline: 2px solid var(--bib); outline-offset: 2px; }
+  .hidden { display: none !important; }
+
+  /* App bar */
+  .appbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 0 14px; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: .02em; line-height: 1; }
+  .brand small { display: block; font-family: var(--text); font-weight: 500; font-size: 12px; letter-spacing: 0; color: var(--muted); margin-top: 4px; }
+  .appbar .actions { display: flex; gap: 8px; align-items: center; }
+  .stamp { font-size: 12px; color: var(--muted); margin-right: 4px; }
+  @media (max-width: 520px) { .stamp { display: none; } }
+
+  /* Hero: followers and the road to 10k */
+  .hero { padding: 6px 0 22px; border-bottom: 1px solid var(--line); }
+  .count { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .count .big { font-family: var(--display); font-weight: 800; font-size: clamp(72px, 16vw, 132px); line-height: .82; letter-spacing: -.01em; }
+  .count .of { font-size: 15px; color: var(--muted); }
+  .count .of b { color: var(--ink); font-weight: 600; }
+  .track { position: relative; margin: 26px 0 8px; height: 44px; }
+  .track .lane { position: absolute; left: 0; right: 0; top: 14px; height: 16px; border-radius: 8px; background: var(--lane); overflow: hidden; }
+  .track .run { height: 100%; background: var(--teal); border-radius: 8px; }
+  .track .tick { position: absolute; top: 34px; transform: translateX(-50%); font: 600 11px/1 var(--display); color: var(--muted); letter-spacing: .04em; }
+  .track .tick::before { content: ""; position: absolute; left: 50%; top: -22px; width: 1px; height: 8px; background: var(--bg); opacity: .9; }
+  .track .runner { position: absolute; top: 8px; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; background: var(--bib); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--bib); }
+  .pace { font-size: 14px; color: var(--muted); max-width: 62ch; margin-top: 14px; }
+  .pace b { color: var(--ink); font-weight: 600; }
+
+  /* Tabs */
+  .tabs { position: sticky; top: 0; z-index: 5; display: flex; gap: 22px; background: var(--bg); padding: 14px 0 0; margin-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .tab { background: none; color: var(--muted); border-radius: 0; padding: 6px 0 12px; font: 700 22px/1 var(--display); letter-spacing: .02em; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+  .tab.active { color: var(--ink); border-bottom-color: var(--bib); }
+
+  /* Notices */
+  .notice { border-radius: 12px; padding: 12px 14px; margin: 0 0 16px; font-size: 14px; background: var(--raised); border: 1px solid var(--line); }
+  .notice.warn { border-color: var(--bib); }
+
+  /* Section headings */
+  h2 { font: 700 26px/1.1 var(--display); letter-spacing: .01em; margin: 34px 0 12px; }
+  h2:first-child { margin-top: 6px; }
+  h2 .sub { font: 500 13px/1.4 var(--text); color: var(--muted); letter-spacing: 0; margin-left: 8px; }
+
+  /* Splits: this week vs last week */
+  .splits { width: 100%; border-collapse: collapse; }
+  .splits th { font: 500 12px/1 var(--text); color: var(--muted); text-align: right; padding: 0 0 8px; }
+  .splits th:first-child { text-align: left; }
+  .splits td { border-top: 1px solid var(--line); padding: 10px 0; text-align: right; }
+  .splits td:first-child { text-align: left; font-weight: 600; }
+  .splits td.now { font: 800 28px/1 var(--display); font-variant-numeric: tabular-nums; }
+  .splits td.prev { font: 600 20px/1 var(--display); color: var(--muted); font-variant-numeric: tabular-nums; width: 22%; }
+  .splits td.chg { font: 700 15px/1 var(--display); width: 20%; font-variant-numeric: tabular-nums; }
   .up { color: var(--good); } .down { color: var(--bad); } .flat { color: var(--muted); }
-  .tile.target { border-color: var(--orange); }
-  .grid2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 10px; }
-  @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
-  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
-  .panel h3 { margin: 0 0 10px; font-size: 14px; }
-  .chart svg { width: 100%; height: 120px; display: block; }
-  .chart .axis { font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; margin-top: 4px; }
-  .series-row { display: grid; grid-template-columns: 120px 1fr 64px; align-items: center; gap: 8px; margin: 8px 0; font-size: 13px; }
-  .bar { height: 10px; border-radius: 6px; background: var(--teal-soft); overflow: hidden; }
-  .bar span { display: block; height: 100%; background: var(--teal); border-radius: 6px; }
-  .series-row .num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
-  .posts { display: grid; gap: 10px; }
-  .post { display: grid; grid-template-columns: 72px 1fr; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; text-decoration: none; color: inherit; }
-  .post.hit { border-color: var(--orange); }
-  .thumb { width: 72px; height: 90px; border-radius: 10px; background: var(--teal-soft) center/cover no-repeat; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--teal); font-weight: 700; }
-  .post .top { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
-  .chip { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--teal-soft); color: var(--teal); }
-  .chip.other { background: var(--line); color: var(--muted); }
-  .post .line { font-weight: 650; margin: 4px 0 8px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-  .stats { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; font-variant-numeric: tabular-nums; }
-  .stats b { font-weight: 800; }
-  .stats .k { color: var(--muted); }
-  .gate { max-width: 360px; margin: 18vh auto 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-  .gate h1 { font-size: 20px; margin: 0 0 6px; }
-  .gate p { color: var(--muted); margin: 0 0 14px; font-size: 14px; }
-  .gate input { width: 100%; font: inherit; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); margin-bottom: 10px; }
-  .gate .err { color: var(--bad); font-size: 13px; min-height: 18px; }
-  .goal { display: grid; grid-template-columns: 1fr 1.3fr; gap: 16px; align-items: center; }
-  @media (max-width: 760px) { .goal { grid-template-columns: 1fr; } }
-  .goal .big { font-size: 13px; color: var(--muted); }
-  .goal .big b { color: var(--ink); font-size: 22px; letter-spacing: -.01em; }
-  .progress { height: 12px; border-radius: 8px; background: var(--teal-soft); overflow: hidden; margin: 10px 0 8px; }
-  .progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--teal), var(--orange)); }
-  .goal .note { font-size: 13px; color: var(--muted); }
-  .goal svg { width: 100%; height: 90px; display: block; }
-  .tabs { display: flex; gap: 4px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px; width: max-content; margin: 4px 0 16px; }
-  .tab { background: transparent; color: var(--muted); padding: 7px 16px; }
-  .tab.active { background: var(--teal); color: #fff; }
-  @media (prefers-color-scheme: dark) { .tab.active { color: #0e1615; } }
-  button.sm { padding: 6px 12px; font-size: 13px; }
-  .weekbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-  .weeklabel { display: flex; flex-direction: column; min-width: 150px; flex: 1; line-height: 1.2; }
-  .weeklabel b { font-size: 18px; }
-  .weeklabel span { font-size: 12px; color: var(--muted); }
-  .idea-form { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-bottom: 12px; }
-  .idea-form #ideaHook { grid-column: 1 / -1; }
-  .idea-form input, .item textarea, .item input, .item select {
-    font: inherit; font-size: 14px; width: 100%; padding: 8px 10px; border-radius: 10px;
-    border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  .target { display: flex; gap: 12px; align-items: center; margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: var(--raised); font-size: 14px; }
+  .target .flag { font: 800 30px/1 var(--display); color: var(--muted); min-width: 38px; text-align: center; }
+  .target.hit .flag { color: var(--bib); }
+
+  /* Two charts side by side */
+  .pair { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; }
+  @media (max-width: 760px) { .pair { grid-template-columns: 1fr; gap: 0; } }
+  .bars svg { width: 100%; height: 120px; display: block; }
+  .bars .axis { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .bars .axis b { color: var(--ink); }
+  .series-row { display: grid; grid-template-columns: minmax(96px, 1.1fr) 2fr 56px; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 14px; }
+  .series-row:first-child { border-top: 0; }
+  .series-row .n { color: var(--muted); font-size: 12px; }
+  .meter { height: 8px; border-radius: 4px; background: var(--lane); overflow: hidden; }
+  .meter span { display: block; height: 100%; background: var(--teal); border-radius: 4px; }
+  .series-row .v { text-align: right; font: 800 20px/1 var(--display); font-variant-numeric: tabular-nums; }
+
+  /* Posts */
+  .posts { display: grid; gap: 2px; }
+  .post { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center; padding: 12px; border-radius: 12px; text-decoration: none; color: inherit; }
+  .post:hover { background: var(--surface); }
+  .thumb { width: 64px; height: 80px; border-radius: 8px; background: var(--lane) center/cover no-repeat; display: grid; place-items: center; font-size: 11px; font-weight: 600; color: var(--muted); }
+  .post .line { font-weight: 600; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .post .when { font-size: 12px; color: var(--muted); margin-bottom: 2px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .post .stats { display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .post .stats b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .post .reach { text-align: right; }
+  .post .reach .v { font: 800 30px/1 var(--display); font-variant-numeric: tabular-nums; }
+  .post .reach .k { font-size: 11px; color: var(--muted); }
+  .post.hit .reach .v { color: var(--bib); }
+  @media (max-width: 520px) {
+    .post { grid-template-columns: 52px 1fr; }
+    .thumb { width: 52px; height: 66px; }
+    .post .reach { grid-column: 2; text-align: left; display: flex; gap: 6px; align-items: baseline; }
+    .post .reach .v { font-size: 24px; }
   }
-  .row-actions { display: flex; gap: 8px; justify-content: flex-end; grid-column: 1 / -1; }
-  .day { margin-bottom: 14px; }
-  .day h3 { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; font-weight: 700; }
-  .day.today h3 { color: var(--orange); }
-  .day .empty { font-size: 13px; color: var(--muted); padding: 2px 0 6px; }
-  .item { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; margin-bottom: 8px; }
+  .tag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px; background: var(--lane); color: var(--ink); }
+  .tag.other { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+  .footnote { margin-top: 26px; font-size: 12px; color: var(--muted); }
+
+  /* Gate */
+  .gate { max-width: 360px; margin: 16vh auto 0; }
+  .gate .brand { font-size: 44px; }
+  .gate p { color: var(--muted); margin: 10px 0 18px; }
+  .gate input, .field {
+    width: 100%; font: 15px/1.4 var(--text); padding: 12px 14px; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  }
+  .gate input { margin-bottom: 10px; }
+  .gate .err { color: var(--bad); font-size: 13px; min-height: 20px; }
+  .gate button { width: 100%; padding: 13px; }
+
+  /* Plan: fixture list */
+  .weekbar { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+  .weekbar .label { flex: 1; min-width: 160px; }
+  .weekbar .label b { display: block; font: 800 30px/1 var(--display); letter-spacing: .01em; }
+  .weekbar .label span { font-size: 13px; color: var(--muted); }
+  .idea-form { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; padding: 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); margin-bottom: 18px; }
+  .idea-form .wide, .idea-form .row-actions { grid-column: 1 / -1; }
+  .row-actions { display: flex; gap: 8px; justify-content: flex-end; }
+  .day { display: grid; grid-template-columns: 64px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .day .date { text-align: left; }
+  .day .date .d { font: 800 40px/.9 var(--display); }
+  .day .date .w { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .day.today .date .d, .day.today .date .w { color: var(--bib); }
+  .day .rest { color: var(--muted); font-size: 14px; padding-top: 6px; }
+  .items { display: grid; gap: 8px; min-width: 0; }
+  .item { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; min-width: 0; }
   .item.posted { border-color: var(--teal); }
-  .item .head { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; }
-  .item .meta { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--muted); text-align: left; }
-  .item .title { font-weight: 700; margin: 4px 0 2px; }
-  .item .hook { font-size: 14px; color: var(--ink); opacity: .85; }
-  .item select.stage { width: auto; padding: 5px 8px; font-size: 12px; font-weight: 700; border-radius: 999px; }
-  .stage-Idea { color: var(--muted); } .stage-Scripted { color: #b7791f; } .stage-Filmed, .stage-Edited { color: #2b6cb0; }
-  .stage-Scheduled { color: #805ad5; } .stage-Posted { color: var(--teal); } .stage-Parked { color: var(--muted); }
-  .live { margin-top: 8px; font-size: 13px; background: var(--teal-soft); border-radius: 10px; padding: 7px 10px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .item .head { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; }
+  .item .meta { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+  .item .title { font-weight: 700; margin: 6px 0 2px; }
+  .item .hook { font-size: 14px; color: var(--muted); }
+  .stage { font: 700 12px/1 var(--text); padding: 7px 26px 7px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--raised); color: var(--ink);
+    appearance: none; -webkit-appearance: none; cursor: pointer;
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: right 12px top 50%, right 8px top 50%; background-size: 4px 4px; background-repeat: no-repeat; }
+  .stage[data-s="Scripted"] { border-color: #c8952e; }
+  .stage[data-s="Filmed"], .stage[data-s="Edited"] { border-color: #4f86c6; }
+  .stage[data-s="Scheduled"] { border-color: #8b6cd1; }
+  .stage[data-s="Posted"] { background-color: var(--teal); color: var(--teal-ink); border-color: var(--teal); }
+  .stage[data-s="Parked"] { color: var(--muted); }
+  .live { margin-top: 10px; display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline; font-size: 13px; color: var(--muted); }
   .live a { color: var(--teal); font-weight: 700; text-decoration: none; }
-  .item .toggle { background: transparent; color: var(--teal); padding: 6px 0 0; font-size: 13px; }
-  .body { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 10px; }
-  .body h4 { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 12px 0 6px; }
-  .md { font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
-  .md h5 { font-size: 13px; margin: 12px 0 4px; }
+  .live b { font: 800 18px/1 var(--display); color: var(--ink); font-variant-numeric: tabular-nums; }
+  .toggle { background: none; color: var(--teal); padding: 10px 0 0; font-size: 13px; }
+  .body { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 4px; }
+  .body h4 { font: 700 18px/1.2 var(--display); letter-spacing: .02em; margin: 14px 0 6px; }
+  .md { font-size: 14px; line-height: 1.6; max-width: 70ch; overflow-wrap: anywhere; }
+  .md h5 { font-size: 13px; margin: 14px 0 4px; }
   .md p { margin: 0 0 8px; }
   .md ul, .md ol { margin: 0 0 8px; padding-left: 20px; }
-  .caption { white-space: pre-wrap; font-size: 14px; background: var(--bg); border-radius: 10px; padding: 10px; overflow-wrap: anywhere; }
-  .item textarea { min-height: 120px; resize: vertical; line-height: 1.45; }
-  .item label { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 10px 0 4px; font-weight: 700; }
-  .btnrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-  .parked { margin-top: 18px; }
-  .parked summary { cursor: pointer; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
-  .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 999px; font-size: 13px; z-index: 10; }
-  .hidden { display: none !important; }
-  footer { margin-top: 28px; font-size: 12px; color: var(--muted); }
+  .caption { white-space: pre-wrap; font-size: 14px; line-height: 1.55; background: var(--raised); border-radius: 10px; padding: 12px; max-width: 70ch; overflow-wrap: anywhere; }
+  .item label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin: 12px 0 4px; }
+  .item textarea.field { min-height: 130px; resize: vertical; line-height: 1.5; font-size: 14px; }
+  .item input.field { font-size: 14px; padding: 9px 12px; }
+  .btnrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .parked { margin-top: 22px; border-top: 1px solid var(--line); padding-top: 14px; }
+  .parked summary { cursor: pointer; font: 700 22px/1 var(--display); letter-spacing: .01em; }
+  .parked summary .n { color: var(--muted); }
+  .parked .items { margin-top: 12px; }
+  .toast { position: fixed; left: 50%; bottom: max(20px, env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: 14px; font-weight: 600; z-index: 10; }
+  @media (max-width: 520px) {
+    .day { grid-template-columns: 46px 1fr; gap: 10px; }
+    .day .date .d { font-size: 32px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .track .run { transition: width .9s cubic-bezier(.2,.7,.2,1); }
+    .track .runner { transition: left .9s cubic-bezier(.2,.7,.2,1); }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
   <form id="gate" class="gate hidden" autocomplete="on">
-    <h1>Playmaker</h1>
-    <p>Enter the dashboard password.</p>
+    <div class="brand">Playmaker</div>
+    <p>Enter your password to open your scorecard and plan.</p>
     <input id="pw" type="password" autocomplete="current-password" placeholder="Password" required>
     <div class="err" id="gateErr"></div>
-    <button type="submit">Open</button>
+    <button type="submit">Open Playmaker</button>
   </form>
 
   <main id="app" class="hidden">
-    <header>
-      <div>
-        <div class="handle" id="handle">@—</div>
-        <div class="followers"><span id="followers">—</span> <small>followers</small></div>
+    <div class="appbar">
+      <div class="brand">Playmaker<small id="handle">@</small></div>
+      <div class="actions">
+        <span class="stamp" id="updated">Loading…</span>
+        <button class="quiet icon" id="refresh" type="button" title="Refresh" aria-label="Refresh">↻</button>
+        <button class="quiet sm" id="logout" type="button">Lock</button>
       </div>
-      <div class="meta">
-        <div id="updated">Loading…</div>
-        <div style="margin-top:8px; display:flex; gap:8px; justify-content:flex-end;">
-          <button class="ghost" id="logout" type="button">Lock</button>
-          <button id="refresh" type="button">Refresh</button>
-        </div>
-      </div>
-    </header>
+    </div>
 
-    <div id="banner"></div>
+    <section class="hero" aria-label="Followers and the road to your goal">
+      <div class="count">
+        <span class="big" id="followers">—</span>
+        <span class="of">followers on the road to <b id="goalNum">10,000</b></span>
+      </div>
+      <div class="track" id="track" aria-hidden="true"></div>
+      <div class="pace" id="pace"></div>
+    </section>
 
     <nav class="tabs" role="tablist">
       <button type="button" class="tab active" data-tab="score" role="tab">Scorecard</button>
       <button type="button" class="tab" data-tab="plan" role="tab">Plan</button>
     </nav>
 
+    <div id="banner"></div>
+
     <section id="viewPlan" class="hidden">
       <div class="weekbar">
-        <button type="button" class="ghost sm" id="prevWeek" aria-label="Previous week">‹</button>
-        <div class="weeklabel"><b id="weekLabel">This week</b><span id="weekSub"></span></div>
-        <button type="button" class="ghost sm" id="nextWeek" aria-label="Next week">›</button>
-        <button type="button" class="ghost sm" id="thisWeek">Today</button>
-        <button type="button" class="sm" id="addIdea">+ Idea</button>
+        <div class="label"><b id="weekLabel">This week</b><span id="weekSub"></span></div>
+        <button type="button" class="quiet icon" id="prevWeek" aria-label="Previous week">‹</button>
+        <button type="button" class="quiet icon" id="nextWeek" aria-label="Next week">›</button>
+        <button type="button" class="quiet sm" id="thisWeek">Today</button>
+        <button type="button" class="sm" id="addIdea">Add idea</button>
       </div>
-      <form id="ideaForm" class="panel idea-form hidden">
-        <input id="ideaTitle" placeholder="Idea or post title" maxlength="200" required>
-        <input id="ideaDate" type="date" aria-label="Date (optional)">
-        <input id="ideaHook" placeholder="Opening line (optional)" maxlength="500">
-        <div class="row-actions"><button type="button" class="ghost sm" id="ideaCancel">Cancel</button><button type="submit" class="sm">Add</button></div>
+      <form id="ideaForm" class="idea-form hidden">
+        <input class="field" id="ideaTitle" placeholder="Idea or post title" maxlength="200" required>
+        <input class="field" id="ideaDate" type="date" aria-label="Date (optional)">
+        <input class="field wide" id="ideaHook" placeholder="Opening line (optional)" maxlength="500">
+        <div class="row-actions"><button type="button" class="quiet sm" id="ideaCancel">Cancel</button><button type="submit" class="sm">Add idea</button></div>
       </form>
       <div id="planMsg"></div>
       <div id="planDays"></div>
       <details class="parked" id="parkedWrap">
-        <summary>Parked &amp; undated <span id="parkedCount"></span></summary>
-        <div id="parkedList"></div>
+        <summary>Parked and undated <span class="n" id="parkedCount"></span></summary>
+        <div class="items" id="parkedList"></div>
       </details>
     </section>
 
     <section id="viewScore">
-    <div class="panel goal" id="goal"></div>
+      <h2>This week vs last week</h2>
+      <table class="splits" id="splits"></table>
+      <div class="target" id="target"></div>
 
-    <h2>This week vs last week</h2>
-    <div class="tiles" id="tiles"></div>
-
-    <div class="grid2" style="margin-top:10px;">
-      <div class="panel chart">
-        <h3>New followers per day, last 30 days</h3>
-        <div id="trend"></div>
+      <div class="pair">
+        <div class="bars">
+          <h2>New followers <span class="sub">per day, last 30 days</span></h2>
+          <div id="trend"></div>
+        </div>
+        <div>
+          <h2>Reach by series <span class="sub">average per post</span></h2>
+          <div id="series"></div>
+        </div>
       </div>
-      <div class="panel">
-        <h3>Average reach by series</h3>
-        <div id="series"></div>
-      </div>
-    </div>
 
-    <h2>Latest posts</h2>
-    <div class="posts" id="posts"></div>
-
-    <footer>Orange border = 1,000+ reach. Data from the Meta Graph API; Meta's own figures can lag by a few hours.</footer>
+      <h2>Latest posts</h2>
+      <div class="posts" id="posts"></div>
+      <p class="footnote">Orange reach means 1,000 or more. Figures come from Meta and can lag the Instagram app by a few hours.</p>
     </section>
   </main>
 </div>
@@ -230,31 +309,20 @@
 (function () {
   var KEY = 'ig-dashboard-key';
   var $ = function (id) { return document.getElementById(id); };
+  var memKey = '';
   var store = {
-    get: function () { try { return localStorage.getItem(KEY) || ''; } catch (e) { return memKey; } },
+    get: function () { try { return localStorage.getItem(KEY) || memKey; } catch (e) { return memKey; } },
     set: function (v) { memKey = v; try { localStorage.setItem(KEY, v); } catch (e) {} },
     clear: function () { memKey = ''; try { localStorage.removeItem(KEY); } catch (e) {} }
   };
-  var memKey = '';
   window.__pm = window.__pm || {};
   window.__pm.getKey = function () { return store.get(); };
   window.__pm.onLocked = function () { store.clear(); showGate('Wrong password.'); };
 
-  function fmt(n) {
-    if (n === null || n === undefined) return '—';
-    return Number(n).toLocaleString('en-ZA');
-  }
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; });
-  }
-  function delta(now, prev) {
-    if (!prev && !now) return '<div class="delta flat">no posts either week</div>';
-    if (!prev) return '<div class="delta up">new this week</div>';
-    var pct = Math.round(((now - prev) / prev) * 100);
-    var cls = pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat';
-    var sign = pct > 0 ? '+' : '';
-    return '<div class="delta ' + cls + '">' + sign + pct + '% vs last week (' + fmt(prev) + ')</div>';
-  }
+  function fmt(n) { return n === null || n === undefined ? '—' : Number(n).toLocaleString('en-ZA'); }
+  function short(n) { return n >= 1000 ? (n / 1000).toLocaleString('en-ZA', { maximumFractionDigits: 1 }) + 'k' : String(n); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+  function day(d) { return new Date(d).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' }); }
   function showGate(msg) {
     $('app').classList.add('hidden');
     $('gate').classList.remove('hidden');
@@ -262,52 +330,83 @@
     $('pw').focus();
   }
 
-  function renderTiles(d) {
+  function renderHero(d) {
+    var goal = d.followerGoal || 10000, now = d.profile.followers || 0;
+    var pct = Math.max(0, Math.min(100, (now / goal) * 100));
+    $('followers').textContent = fmt(now);
+    $('goalNum').textContent = fmt(goal);
+    var ticks = '';
+    var step = goal / 4;
+    for (var i = 0; i <= 4; i++) {
+      var v = step * i, left = (v / goal) * 100;
+      ticks += '<span class="tick" style="left:' + Math.min(98, Math.max(2, left)) + '%">' + short(v) + '</span>';
+    }
+    $('track').innerHTML = '<div class="lane"><div class="run" style="width:0%"></div></div>' + ticks + '<span class="runner" style="left:0%"></span>';
+    requestAnimationFrame(function () {
+      $('track').querySelector('.run').style.width = pct.toFixed(2) + '%';
+      $('track').querySelector('.runner').style.left = Math.max(1.5, pct).toFixed(2) + '%';
+    });
+    var h = d.followerHistory || [];
+    var left = Math.max(0, goal - now);
+    var pace = '<b>' + fmt(left) + ' to go.</b> ';
+    if (h.length >= 2) {
+      var first = h[0], last = h[h.length - 1];
+      var weeks = Math.max(1, (new Date(last.date) - new Date(first.date)) / (7 * 864e5));
+      var perWeek = (last.followers - first.followers) / weeks;
+      pace += 'Up ' + fmt(last.followers - first.followers) + ' since ' + day(first.date) + ', about ' + perWeek.toFixed(1) + ' a week. ' +
+        (perWeek > 0 ? 'At that pace you reach ' + fmt(goal) + ' in ' + fmt(Math.ceil(left / perWeek)) + ' weeks.' : 'No growth yet in this period.');
+    } else {
+      pace += 'Your pace appears here once daily snapshots have built up.';
+    }
+    $('pace').innerHTML = pace;
+  }
+
+  function change(now, prev) {
+    if (!prev && !now) return '<span class="flat">—</span>';
+    if (!prev) return '<span class="up">New</span>';
+    var pct = Math.round(((now - prev) / prev) * 100);
+    var cls = pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat';
+    return '<span class="' + cls + '">' + (pct > 0 ? '+' : '') + pct + '%</span>';
+  }
+
+  function renderSplits(d) {
     var t = d.thisWeek, l = d.lastWeek;
-    var tiles = [
-      ['Posts', t.posts, l.posts],
-      ['Reach', t.reach, l.reach],
-      ['Shares', t.shares, l.shares],
-      ['Saves', t.saves, l.saves],
-      ['Follows from posts', t.follows, l.follows]
-    ];
-    var html = tiles.map(function (x) {
-      return '<div class="tile"><div class="label">' + x[0] + '</div><div class="value">' + fmt(x[1]) + '</div>' + delta(x[1], x[2]) + '</div>';
-    }).join('');
+    var rows = [['Reach', t.reach, l.reach], ['Shares', t.shares, l.shares], ['Saves', t.saves, l.saves], ['Follows from posts', t.follows, l.follows], ['Posts', t.posts, l.posts]];
+    $('splits').innerHTML = '<thead><tr><th scope="col">Measure</th><th scope="col">This week</th><th scope="col">Last week</th><th scope="col">Change</th></tr></thead><tbody>' +
+      rows.map(function (r) {
+        return '<tr><td>' + r[0] + '</td><td class="now">' + fmt(r[1]) + '</td><td class="prev">' + fmt(r[2]) + '</td><td class="chg">' + change(r[1], r[2]) + '</td></tr>';
+      }).join('') + '</tbody>';
     var hit = t.over1000 > 0;
-    html += '<div class="tile target"><div class="label">Target: one post over 1,000 reach</div><div class="value">' +
-      (hit ? '✓ ' + t.over1000 : '0') + '</div><div class="delta ' + (hit ? 'up' : 'flat') + '">' +
-      (t.best ? 'Best: ' + esc(t.best.caption).slice(0, 40) + ' (' + fmt(t.best.reach) + ')' : 'No posts yet this week') + '</div></div>';
-    $('tiles').innerHTML = html;
+    $('target').className = 'target' + (hit ? ' hit' : '');
+    $('target').innerHTML = '<span class="flag">' + (hit ? t.over1000 : '0') + '</span><span>' +
+      (hit ? '<b>Weekly target hit.</b> ' : '<b>Weekly target: one post over 1,000 reach.</b> ') +
+      (t.best ? 'Best this week: “' + esc(t.best.caption.replace(/[.!?…]+$/, '')).slice(0, 60) + '”, ' + fmt(t.best.reach) + ' reach.' : 'Nothing posted yet this week.') + '</span>';
   }
 
   function renderTrend(points) {
     if (!points || !points.length) {
-      $('trend').innerHTML = '<p style="color:var(--muted);font-size:13px;margin:0">Meta didn\'t return follower data. It needs 100+ followers and the insights permission.</p>';
+      $('trend').innerHTML = '<p class="pace">Meta didn\'t return follower data. It needs 100+ followers and the insights permission on your token.</p>';
       return;
     }
     var w = 300, h = 110, n = points.length, gap = 2;
     var max = Math.max.apply(null, points.map(function (p) { return p.value || 0; })) || 1;
     var bw = (w - gap * (n - 1)) / n;
     var bars = points.map(function (p, i) {
-      var v = p.value || 0, bh = Math.max(v ? 3 : 1, (v / max) * (h - 14));
-      var x = i * (bw + gap), y = h - bh;
-      return '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="2" fill="' + (v === max ? 'var(--orange)' : 'var(--teal)') + '" opacity="' + (v ? 1 : .25) + '"><title>' + new Date(p.date).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' }) + ': ' + v + '</title></rect>';
+      var v = p.value || 0, bh = Math.max(v ? 3 : 1.5, (v / max) * (h - 6));
+      return '<rect x="' + (i * (bw + gap)).toFixed(1) + '" y="' + (h - bh).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="1.5" fill="' + (v === max && v > 0 ? 'var(--bib)' : 'var(--teal)') + '" opacity="' + (v ? 1 : .3) + '"><title>' + day(p.date) + ': ' + v + '</title></rect>';
     }).join('');
     var total = points.reduce(function (s, p) { return s + (p.value || 0); }, 0);
-    var first = new Date(points[0].date).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' });
-    var last = new Date(points[n - 1].date).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' });
     $('trend').innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none" role="img" aria-label="New followers per day">' + bars + '</svg>' +
-      '<div class="axis"><span>' + first + '</span><span><b style="color:var(--ink)">' + fmt(total) + '</b> in 30 days · best day ' + max + '</span><span>' + last + '</span></div>';
+      '<div class="axis"><span>' + day(points[0].date) + '</span><span><b>' + fmt(total) + '</b> in 30 days, best day ' + max + '</span><span>' + day(points[n - 1].date) + '</span></div>';
   }
 
   function renderSeries(series) {
     if (!series || !series.length) { $('series').innerHTML = ''; return; }
     var max = Math.max.apply(null, series.map(function (s) { return s.avgReach; })) || 1;
     $('series').innerHTML = series.map(function (s) {
-      return '<div class="series-row"><span>' + esc(s.series) + ' <span style="color:var(--muted)">(' + s.posts + ')</span></span>' +
-        '<div class="bar"><span style="width:' + Math.round((s.avgReach / max) * 100) + '%"></span></div>' +
-        '<span class="num">' + fmt(s.avgReach) + '</span></div>';
+      return '<div class="series-row"><span>' + esc(s.series) + ' <span class="n">' + s.posts + (s.posts === 1 ? ' post' : ' posts') + '</span></span>' +
+        '<div class="meter"><span style="width:' + Math.round((s.avgReach / max) * 100) + '%"></span></div>' +
+        '<span class="v">' + fmt(s.avgReach) + '</span></div>';
     }).join('');
   }
 
@@ -315,62 +414,26 @@
     $('posts').innerHTML = posts.map(function (p) {
       var date = new Date(p.timestamp).toLocaleString('en-ZA', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
       var thumb = p.thumbnail ? 'style="background-image:url(\'' + encodeURI(p.thumbnail) + '\')"' : '';
-      var stats = [
-        ['Reach', p.reach], ['Views', p.views], ['Shares', p.shares], ['Saves', p.saved],
-        ['Follows', p.follows], ['Comments', p.comments], ['Likes', p.likes]
-      ];
+      var stats = [['Views', p.views], ['Shares', p.shares], ['Saves', p.saved], ['Follows', p.follows], ['Comments', p.comments], ['Likes', p.likes]];
       if (p.avgWatchMs) stats.push(['Avg watch', (p.avgWatchMs / 1000).toFixed(1) + 's']);
       return '<a class="post' + ((p.reach || 0) >= 1000 ? ' hit' : '') + '" href="' + esc(p.permalink) + '" target="_blank" rel="noopener">' +
         '<div class="thumb" ' + thumb + '>' + (p.thumbnail ? '' : esc(p.kind)) + '</div>' +
-        '<div><div class="top"><span class="chip' + (p.series === 'Other' ? ' other' : '') + '">' + esc(p.series) + '</span><span>' + esc(p.kind) + '</span><span>' + date + '</span></div>' +
+        '<div><div class="when"><span class="tag' + (p.series === 'Other' ? ' other' : '') + '">' + esc(p.series) + '</span><span>' + esc(p.kind) + ', ' + date + '</span></div>' +
         '<div class="line">' + esc(p.firstLine) + '</div>' +
-        '<div class="stats">' + stats.map(function (s) {
-          return '<span><span class="k">' + s[0] + '</span> <b>' + (typeof s[1] === 'string' ? s[1] : fmt(s[1])) + '</b></span>';
-        }).join('') + '</div></div></a>';
+        '<div class="stats">' + stats.map(function (s) { return '<span>' + s[0] + ' <b>' + (typeof s[1] === 'string' ? s[1] : fmt(s[1])) + '</b></span>'; }).join('') + '</div></div>' +
+        '<div class="reach"><div class="v">' + fmt(p.reach) + '</div><div class="k">reach</div></div></a>';
     }).join('');
-  }
-
-  function renderGoal(d) {
-    var goal = d.followerGoal || 10000, now = d.profile.followers || 0;
-    var pct = Math.min(100, (now / goal) * 100);
-    var h = (d.followerHistory || []).slice();
-    var note = 'Daily snapshots start once Supabase is connected.', chart = '';
-    if (h.length >= 2) {
-      var first = h[0], last = h[h.length - 1];
-      var weeks = Math.max(1, (new Date(last.date) - new Date(first.date)) / (7 * 864e5));
-      var perWeek = (last.followers - first.followers) / weeks;
-      var left = goal - now;
-      note = '+' + fmt(last.followers - first.followers) + ' since ' + new Date(first.date).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' }) +
-        ' · about ' + perWeek.toFixed(1) + ' a week. ' +
-        (perWeek > 0 ? 'At this pace: ' + fmt(Math.ceil(left / perWeek)) + ' weeks to ' + fmt(goal) + '.' : 'Flat so far.');
-      var w = 300, ht = 90, min = Math.min.apply(null, h.map(function (p) { return p.followers; })), max = Math.max.apply(null, h.map(function (p) { return p.followers; }));
-      var span = Math.max(1, max - min), t0 = new Date(first.date).getTime(), t1 = Math.max(t0 + 1, new Date(last.date).getTime());
-      var pts = h.map(function (p) {
-        var x = ((new Date(p.date).getTime() - t0) / (t1 - t0)) * (w - 8) + 4;
-        var y = ht - 8 - ((p.followers - min) / span) * (ht - 16);
-        return x.toFixed(1) + ',' + y.toFixed(1);
-      });
-      chart = '<svg viewBox="0 0 ' + w + ' ' + ht + '" preserveAspectRatio="none" role="img" aria-label="Follower history">' +
-        '<polyline points="' + pts.join(' ') + '" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>' +
-        '<circle cx="' + pts[pts.length - 1].split(',')[0] + '" cy="' + pts[pts.length - 1].split(',')[1] + '" r="4" fill="var(--orange)"/></svg>';
-    }
-    $('goal').innerHTML = '<div><div class="big">Road to <b>' + fmt(goal) + '</b></div>' +
-      '<div class="progress"><span style="width:' + pct.toFixed(1) + '%"></span></div>' +
-      '<div class="note"><b style="color:var(--ink)">' + fmt(now) + '</b> now · ' + pct.toFixed(1) + '% · ' + fmt(goal - now) + ' to go<br>' + note + '</div></div>' +
-      '<div>' + chart + '</div>';
   }
 
   function render(d) {
     $('handle').textContent = '@' + (d.profile.username || '');
-    $('followers').textContent = fmt(d.profile.followers);
-    $('updated').textContent = 'Updated ' + new Date(d.generatedAt).toLocaleString('en-ZA', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
-    $('banner').innerHTML = d.mock ? '<div class="banner info">Sample data. Set MOCK to 0 and add your Meta token in Vercel to see live numbers.</div>' : '';
-    renderGoal(d);
-    renderTiles(d);
+    $('updated').textContent = 'Updated ' + new Date(d.generatedAt).toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' });
+    $('banner').innerHTML = d.mock ? '<div class="notice">You\'re looking at sample data. Set MOCK to 0 in Vercel to see your live numbers.</div>' : '';
+    renderHero(d);
+    renderSplits(d);
     renderTrend(d.followerTrend);
     renderSeries(d.series);
     renderPosts(d.posts || []);
-    window.__pm = window.__pm || {};
     window.__pm.dashboard = d;
     if (window.__pm.onDashboard) window.__pm.onDashboard();
   }
@@ -386,29 +449,25 @@
         $('app').classList.remove('hidden');
         if (res.status !== 200) {
           $('updated').textContent = 'Not updated';
-          $('banner').innerHTML = '<div class="banner warn"><b>Couldn\'t load your data.</b> ' + esc(res.body.error || '') + (res.body.hint ? '<br>' + esc(res.body.hint) : '') + '</div>';
+          $('banner').innerHTML = '<div class="notice warn"><b>Your Instagram numbers didn\'t load.</b> ' + esc(res.body.error || '') + (res.body.hint ? ' ' + esc(res.body.hint) : '') + '</div>';
           return;
         }
         render(res.body);
       })
       .catch(function () {
         $('app').classList.remove('hidden');
-        $('banner').innerHTML = '<div class="banner warn">Network error. Try Refresh.</div>';
+        $('banner').innerHTML = '<div class="notice warn">No connection. Check your signal and tap refresh.</div>';
       });
   }
 
-  $('gate').addEventListener('submit', function (e) {
-    e.preventDefault();
-    store.set($('pw').value);
-    load();
-  });
+  $('gate').addEventListener('submit', function (e) { e.preventDefault(); store.set($('pw').value); load(); });
   $('refresh').addEventListener('click', load);
   $('logout').addEventListener('click', function () { store.clear(); showGate(''); });
   load();
 })();
 </script>
 <script>
-// ---------------------------------------------------------------- Plan tab
+// Plan tab: the content calendar
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var pm = window.__pm;
@@ -417,20 +476,20 @@
 
   function todaySAST() { return new Date(Date.now() + 2 * 3600e3).toISOString().slice(0, 10); }
   function addDays(iso, n) { var d = new Date(iso + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
-  function mondayOf(iso) { var d = new Date(iso + 'T00:00:00Z'); var wd = (d.getUTCDay() + 6) % 7; return addDays(iso, -wd); }
+  function mondayOf(iso) { var d = new Date(iso + 'T00:00:00Z'); return addDays(iso, -((d.getUTCDay() + 6) % 7)); }
   function dayName(iso, opts) { return new Date(iso + 'T12:00:00Z').toLocaleDateString('en-ZA', Object.assign({ timeZone: 'UTC' }, opts)); }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
   function fmt(n) { return n == null ? '—' : Number(n).toLocaleString('en-ZA'); }
-  function toast(msg) { var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(function () { t.remove(); }, 1800); }
+  function toast(msg) { var t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg; document.body.appendChild(t); setTimeout(function () { t.remove(); }, 1800); }
 
-  // Tiny, safe markdown: headings, bold, lists, checkboxes, paragraphs. Escapes everything first.
+  // Small, safe markdown: headings, bold, lists, checkboxes, paragraphs. Escapes first.
   function md(src) {
     if (!src) return '';
-    var lines = esc(src).split('\n'), out = [], list = null;
+    var out = [], list = null;
     function close() { if (list) { out.push('</' + list + '>'); list = null; } }
-    lines.forEach(function (l) {
+    function inline(s) { return s.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>'); }
+    esc(src).split('\n').forEach(function (l) {
       var t = l.trim();
-      var inline = function (s) { return s.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/- \[ \] /, '☐ ').replace(/- \[x\] /i, '☑ '); };
       if (!t) { close(); return; }
       var h = t.match(/^#{1,4}\s+(.*)$/);
       if (h) { close(); out.push('<h5>' + inline(h[1]) + '</h5>'); return; }
@@ -461,8 +520,8 @@
     });
   }
 
-  // Match a planned item to a live Instagram post: same SAST date, then the
-  // best overlap between the opening line and the caption's first line.
+  // Match a planned item to a live post: same SAST day, then the best word
+  // overlap between the opening line and the caption's first line.
   function words(s) { return (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function (w) { return w.length > 3; }); }
   function liveFor(item) {
     var d = pm.dashboard; if (!d || !d.posts || !item.post_date) return null;
@@ -474,93 +533,91 @@
     var scored = same.map(function (p) { var w = words(p.firstLine); return { p: p, s: want.filter(function (x) { return w.indexOf(x) >= 0; }).length }; })
       .sort(function (a, b) { return b.s - a.s; });
     if (scored[0].s > 0) return scored[0].p;
-    var sameDayPlanned = state.items.filter(function (i) { return i.post_date === item.post_date && i.format !== 'Story'; }).length;
-    return same.length === 1 && sameDayPlanned === 1 ? same[0] : null;
+    var planned = state.items.filter(function (i) { return i.post_date === item.post_date && i.format !== 'Story'; }).length;
+    return same.length === 1 && planned === 1 ? same[0] : null;
   }
 
   function stageSelect(item) {
-    return '<select class="stage stage-' + esc(item.stage) + '" data-id="' + item.id + '" aria-label="Stage">' +
+    return '<select class="stage" data-s="' + esc(item.stage) + '" data-id="' + item.id + '" aria-label="Stage for ' + esc(item.title) + '">' +
       state.stages.map(function (s) { return '<option' + (s === item.stage ? ' selected' : '') + '>' + s + '</option>'; }).join('') + '</select>';
   }
 
   function itemHTML(item) {
     var live = liveFor(item), open = !!state.open[item.id], editing = state.editing === item.id;
-    var h = '<div class="item' + (item.stage === 'Posted' || live ? ' posted' : '') + '" data-id="' + item.id + '">' +
+    var meta = [item.slot, item.format].filter(Boolean).map(esc).join(', ');
+    var h = '<article class="item' + (item.stage === 'Posted' || live ? ' posted' : '') + '" data-id="' + item.id + '">' +
       '<div class="head"><div>' +
-      '<div class="meta">' + (item.slot ? '<span>' + esc(item.slot) + '</span>' : '') +
-      (item.series ? '<span class="chip">' + esc(item.series) + '</span>' : '') +
-      (item.format ? '<span>' + esc(item.format) + '</span>' : '') + '</div>' +
+      '<div class="meta">' + (item.series ? '<span class="tag">' + esc(item.series) + '</span>' : '') + (meta ? '<span>' + meta + '</span>' : '') + '</div>' +
       '<div class="title">' + esc(item.title) + '</div>' +
       (item.hook ? '<div class="hook">“' + esc(item.hook) + '”</div>' : '') +
       '</div>' + stageSelect(item) + '</div>';
     if (live) {
-      h += '<div class="live"><a href="' + esc(live.permalink) + '" target="_blank" rel="noopener">Live ↗</a>' +
-        '<span>Reach <b>' + fmt(live.reach) + '</b></span><span>Views <b>' + fmt(live.views) + '</b></span>' +
-        '<span>Shares <b>' + fmt(live.shares) + '</b></span><span>Saves <b>' + fmt(live.saved) + '</b></span>' +
-        '<span>Follows <b>' + fmt(live.follows) + '</b></span></div>';
+      h += '<div class="live"><a href="' + esc(live.permalink) + '" target="_blank" rel="noopener">View post</a>' +
+        '<span><b>' + fmt(live.reach) + '</b> reach</span><span><b>' + fmt(live.shares) + '</b> shares</span>' +
+        '<span><b>' + fmt(live.saved) + '</b> saves</span><span><b>' + fmt(live.follows) + '</b> follows</span></div>';
     }
     var has = item.script || item.caption || item.notes;
-    if (!editing) h += '<button type="button" class="toggle" data-act="toggle">' + (open ? 'Hide' : (has ? 'Open script & caption' : 'Add script & caption')) + '</button>';
+    if (!editing) h += '<button type="button" class="toggle" data-act="toggle" aria-expanded="' + open + '">' + (open ? 'Hide script' : (has ? 'Show script and caption' : 'Write script and caption')) + '</button>';
     if (editing) {
       h += '<div class="body">' +
-        '<label>Title</label><input data-f="title" value="' + esc(item.title) + '" maxlength="200">' +
-        '<label>Date</label><input data-f="post_date" type="date" value="' + esc(item.post_date || '') + '">' +
-        '<label>Opening line</label><input data-f="hook" value="' + esc(item.hook || '') + '" maxlength="500">' +
-        '<label>Script</label><textarea data-f="script">' + esc(item.script || '') + '</textarea>' +
-        '<label>Caption</label><textarea data-f="caption">' + esc(item.caption || '') + '</textarea>' +
-        '<label>Notes</label><textarea data-f="notes" style="min-height:60px">' + esc(item.notes || '') + '</textarea>' +
-        '<div class="btnrow"><button type="button" class="ghost sm" data-act="cancel">Cancel</button><button type="button" class="sm" data-act="save">Save</button></div></div>';
+        '<label>Title</label><input class="field" data-f="title" value="' + esc(item.title) + '" maxlength="200">' +
+        '<label>Date</label><input class="field" data-f="post_date" type="date" value="' + esc(item.post_date || '') + '">' +
+        '<label>Opening line</label><input class="field" data-f="hook" value="' + esc(item.hook || '') + '" maxlength="500">' +
+        '<label>Script</label><textarea class="field" data-f="script">' + esc(item.script || '') + '</textarea>' +
+        '<label>Caption</label><textarea class="field" data-f="caption">' + esc(item.caption || '') + '</textarea>' +
+        '<label>Notes</label><textarea class="field" data-f="notes" style="min-height:70px">' + esc(item.notes || '') + '</textarea>' +
+        '<div class="btnrow"><button type="button" class="quiet sm" data-act="cancel">Cancel</button><button type="button" class="sm" data-act="save">Save changes</button></div></div>';
     } else if (open) {
       h += '<div class="body">' +
         (item.script ? '<h4>Script</h4><div class="md">' + md(item.script) + '</div>' : '') +
         (item.caption ? '<h4>Caption</h4><div class="caption">' + esc(item.caption) + '</div>' : '') +
         (item.notes ? '<h4>Notes</h4><div class="md">' + md(item.notes) + '</div>' : '') +
         '<div class="btnrow">' + (item.caption ? '<button type="button" class="sm" data-act="copy">Copy caption</button>' : '') +
-        '<button type="button" class="ghost sm" data-act="edit">Edit</button></div></div>';
+        '<button type="button" class="quiet sm" data-act="edit">Edit</button></div></div>';
     }
-    return h + '</div>';
+    return h + '</article>';
   }
 
   function render() {
-    var ws = state.weekStart, we = addDays(ws, 6), today = todaySAST();
-    var isThis = ws === mondayOf(today);
-    $('weekLabel').textContent = isThis ? 'This week' : (ws === addDays(mondayOf(today), 7) ? 'Next week' : (ws === addDays(mondayOf(today), -7) ? 'Last week' : 'Week of ' + dayName(ws, { day: 'numeric', month: 'short' })));
-    $('weekSub').textContent = dayName(ws, { day: 'numeric', month: 'short' }) + ' – ' + dayName(we, { day: 'numeric', month: 'short' });
+    var ws = state.weekStart, we = addDays(ws, 6), today = todaySAST(), mon = mondayOf(today);
+    $('weekLabel').textContent = ws === mon ? 'This week' : ws === addDays(mon, 7) ? 'Next week' : ws === addDays(mon, -7) ? 'Last week' : 'Week of ' + dayName(ws, { day: 'numeric', month: 'short' });
+    $('weekSub').textContent = dayName(ws, { day: 'numeric', month: 'long' }) + ' to ' + dayName(we, { day: 'numeric', month: 'long' });
     var html = '';
     for (var i = 0; i < 7; i++) {
-      var day = addDays(ws, i);
-      var items = state.items.filter(function (it) { return it.post_date === day && it.stage !== 'Parked'; });
-      html += '<div class="day' + (day === today ? ' today' : '') + '"><h3>' + dayName(day, { weekday: 'long', day: 'numeric', month: 'short' }) + (day === today ? ' · today' : '') + '</h3>' +
-        (items.length ? items.map(itemHTML).join('') : '<div class="empty">Nothing planned.</div>') + '</div>';
+      var d = addDays(ws, i);
+      var items = state.items.filter(function (it) { return it.post_date === d && it.stage !== 'Parked'; });
+      html += '<div class="day' + (d === today ? ' today' : '') + '">' +
+        '<div class="date"><div class="d">' + dayName(d, { day: 'numeric' }) + '</div><div class="w">' + (d === today ? 'Today' : dayName(d, { weekday: 'short' })) + '</div></div>' +
+        (items.length ? '<div class="items">' + items.map(itemHTML).join('') + '</div>' : '<div class="rest">Rest day. Nothing planned.</div>') + '</div>';
     }
     $('planDays').innerHTML = html;
     var parked = state.items.filter(function (it) { return it.stage === 'Parked' || !it.post_date; });
-    $('parkedCount').textContent = '(' + parked.length + ')';
-    $('parkedList').innerHTML = parked.map(itemHTML).join('') || '<div class="empty">Nothing parked.</div>';
+    $('parkedCount').textContent = parked.length;
+    $('parkedList').innerHTML = parked.map(itemHTML).join('') || '<div class="rest">Nothing parked.</div>';
   }
 
   function load() {
-    $('planMsg').innerHTML = state.loaded ? '' : '<div class="banner info">Loading your plan…</div>';
+    $('planMsg').innerHTML = state.loaded ? '' : '<div class="notice">Loading your plan…</div>';
     return api('GET', '/api/content').then(function (b) {
       state.items = b.items || []; state.stages = b.stages || []; state.loaded = true;
       $('planMsg').innerHTML = ''; render();
     }).catch(function (e) {
-      if (e.message !== 'Locked') $('planMsg').innerHTML = '<div class="banner warn"><b>Couldn\'t load the plan.</b> ' + esc(e.message) + '</div>';
+      if (e.message !== 'Locked') $('planMsg').innerHTML = '<div class="notice warn"><b>Your plan didn\'t load.</b> ' + esc(e.message) + '</div>';
     });
   }
 
   function find(id) { return state.items.filter(function (i) { return i.id === id; })[0]; }
   function replace(item) { state.items = state.items.map(function (i) { return i.id === item.id ? item : i; }); }
-
   function patch(id, fields, msg) {
     return api('PATCH', '/api/content?id=' + encodeURIComponent(id), fields).then(function (b) {
       replace(b.item); render(); if (msg) toast(msg);
-    }).catch(function (e) { if (e.message !== 'Locked') { toast('Not saved: ' + e.message); render(); } });
+    }).catch(function (e) { if (e.message !== 'Locked') { toast('Not saved. ' + e.message); render(); } });
   }
 
   document.addEventListener('change', function (e) {
     var sel = e.target.closest('select.stage'); if (!sel) return;
-    patch(sel.getAttribute('data-id'), { stage: sel.value }, 'Stage: ' + sel.value);
+    sel.setAttribute('data-s', sel.value);
+    patch(sel.getAttribute('data-id'), { stage: sel.value }, 'Moved to ' + sel.value);
   });
 
   document.addEventListener('click', function (e) {
@@ -570,16 +627,15 @@
     if (act === 'toggle') { state.open[id] = !state.open[id]; if (!item.script && !item.caption && !item.notes) state.editing = id; render(); }
     if (act === 'edit') { state.editing = id; render(); }
     if (act === 'cancel') { state.editing = null; render(); }
-    if (act === 'copy') {
-      var done = function () { toast('Caption copied'); };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(item.caption).then(done, function () { toast('Copy failed'); });
+    if (act === 'copy' && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(item.caption).then(function () { toast('Caption copied'); }, function () { toast('Couldn\'t copy. Select the caption and copy it by hand.'); });
     }
     if (act === 'save') {
       var fields = {};
       card.querySelectorAll('[data-f]').forEach(function (el) { fields[el.getAttribute('data-f')] = el.value; });
-      if (!fields.title.trim()) { toast('Title can\'t be empty'); return; }
+      if (!fields.title.trim()) { toast('Add a title before saving'); return; }
       state.editing = null; state.open[id] = true;
-      patch(id, fields, 'Saved');
+      patch(id, fields, 'Changes saved');
     }
   });
 
@@ -597,11 +653,14 @@
       $('ideaForm').reset(); $('ideaForm').classList.add('hidden');
       if (b.item.post_date) state.weekStart = mondayOf(b.item.post_date); else $('parkedWrap').open = true;
       render(); toast('Idea added');
-    }).catch(function (err) { if (err.message !== 'Locked') toast('Not added: ' + err.message); });
+    }).catch(function (err) { if (err.message !== 'Locked') toast('Idea not added. ' + err.message); });
   });
 
   function show(tab) {
-    document.querySelectorAll('.tab').forEach(function (t) { t.classList.toggle('active', t.getAttribute('data-tab') === tab); });
+    document.querySelectorAll('.tab').forEach(function (t) {
+      var on = t.getAttribute('data-tab') === tab;
+      t.classList.toggle('active', on); t.setAttribute('aria-selected', on);
+    });
     $('viewPlan').classList.toggle('hidden', tab !== 'plan');
     $('viewScore').classList.toggle('hidden', tab !== 'score');
     try { localStorage.setItem(TAB_KEY, tab); } catch (e) {}
