@@ -56,13 +56,13 @@
   .brand small { display: block; font-family: var(--text); font-weight: 500; font-size: 12px; letter-spacing: 0; color: var(--muted); margin-top: 4px; }
   .topbar .actions { display: flex; gap: 8px; }
   .bottombar {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: 1fr 1fr;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: 1fr 1fr 1fr;
     height: calc(var(--bar-h) + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom);
     background: var(--surface); border-top: 1px solid var(--line);
   }
   .bottombar .tab { background: none; border-radius: 0; color: var(--muted); font: 700 20px/1 var(--display); letter-spacing: .03em; position: relative; }
   .bottombar .tab.active { color: var(--ink); }
-  .bottombar .tab.active::before { content: ""; position: absolute; top: 0; left: 30%; right: 30%; height: 3px; border-radius: 0 0 3px 3px; background: var(--bib); }
+  .bottombar .tab.active::before { content: ""; position: absolute; top: 0; left: 24%; right: 24%; height: 3px; border-radius: 0 0 3px 3px; background: var(--bib); }
 
   /* ---------- Shell: desktop ---------- */
   @media (min-width: 1024px) {
@@ -280,6 +280,46 @@
     .drawer { animation: slidein .22s cubic-bezier(.2,.7,.2,1); }
     @keyframes slidein { from { transform: translateX(24px); opacity: .4; } to { transform: none; opacity: 1; } }
   }
+  /* Today */
+  .today-head { padding: 4px 0 18px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+  .dayname { font: 800 clamp(48px, 13vw, 96px)/.9 var(--display); letter-spacing: .005em; }
+  .today-line { margin: 10px 0 0; color: var(--muted); font-size: 15px; max-width: 62ch; }
+  .today-line b { color: var(--ink); }
+  .today-grid { display: grid; gap: 0; }
+  @media (min-width: 1024px) { .today-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; } .today-grid h2.first-desk { margin-top: 28px; } }
+  .today-now { display: grid; gap: 12px; }
+  .today-now .item { padding: 16px; }
+  .today-now .item .title { font: 800 28px/1.05 var(--display); letter-spacing: .01em; margin: 8px 0 6px; }
+  .next-up { padding: 16px; border-radius: 14px; background: var(--raised); border: 1px solid var(--line); font-size: 15px; }
+  .next-up b { display: block; font: 800 24px/1.1 var(--display); margin-top: 4px; }
+  .flagrow { display: grid; grid-template-columns: 6px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+  .flagrow:first-child { border-top: 0; }
+  .flagrow .bar { align-self: stretch; border-radius: 3px; background: var(--line); }
+  .flagrow.hot .bar { background: var(--bib); }
+  .flagrow.warm .bar { background: #c8952e; }
+  .flagrow .what { font-weight: 600; font-size: 14px; }
+  .flagrow .why { font-size: 13px; color: var(--muted); }
+  .flagrow.hot .why { color: var(--bib); }
+  .flagrow button { white-space: nowrap; }
+  .filmrow { padding: 10px 0; border-top: 1px solid var(--line); }
+  .filmrow:first-child { border-top: 0; }
+  .filmrow .when { font-size: 12px; color: var(--muted); }
+  .filmrow .t { font-weight: 600; }
+  .filmrow .h { font-size: 14px; color: var(--muted); }
+  .last { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: center; padding: 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: inherit; }
+  .last .v { font: 800 44px/1 var(--display); font-variant-numeric: tabular-nums; }
+  .last .v.hit { color: var(--bib); }
+  .last .t { font-weight: 600; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .last .s { font-size: 13px; color: var(--muted); }
+  .late-note { margin-top: 8px; font-size: 12px; font-weight: 600; color: var(--bib); }
+  .late-note.warm { color: #b7791f; }
+  .card .late-note { margin-top: 0; }
+  .item.late, .card.late { box-shadow: inset 3px 0 0 var(--bib); }
+  .item.late.warm, .card.late.warm { box-shadow: inset 3px 0 0 #c8952e; }
+  .card.selected.late { box-shadow: 0 0 0 2px var(--bib); }
+  .md .check { display: flex; gap: 8px; align-items: flex-start; list-style: none; margin-left: -20px; cursor: pointer; }
+  .md .check input { margin-top: 4px; width: 16px; height: 16px; accent-color: var(--teal); flex: none; }
+  .md .check.done span { color: var(--muted); text-decoration: line-through; }
   .toast { position: fixed; left: 50%; bottom: calc(var(--bar-h) + 16px + env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: 14px; font-weight: 600; z-index: 40; }
   @media (min-width: 1024px) { .toast { bottom: 24px; } }
 </style>
@@ -297,8 +337,9 @@
   <aside class="side">
     <div class="brand">Playmaker<small class="handle">@</small></div>
     <nav aria-label="Sections">
-      <button type="button" class="tab active" data-tab="score">Scorecard</button>
+      <button type="button" class="tab" data-tab="today">Today</button>
       <button type="button" class="tab" data-tab="plan">Plan</button>
+      <button type="button" class="tab" data-tab="score">Scorecard</button>
     </nav>
     <div class="foot">
       <span class="stamp">Loading…</span>
@@ -320,7 +361,29 @@
 
     <div id="banner"></div>
 
-    <section id="viewScore">
+    <section id="viewToday" class="hidden">
+      <div class="today-head">
+        <div class="dayname" id="todayName">Today</div>
+        <p class="today-line" id="todayLine"></p>
+      </div>
+      <div id="todayMsg"></div>
+      <div class="today-grid">
+        <div>
+          <h2 class="first-desk">Posting today</h2>
+          <div id="todayNow"></div>
+        </div>
+        <div>
+          <h2 class="first-desk">Needs attention</h2>
+          <div id="todayFlags"></div>
+          <h2>To film this week</h2>
+          <div id="todayFilm"></div>
+          <h2>Last post</h2>
+          <div id="todayLast"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="viewScore" class="hidden">
       <div class="hero" aria-label="Followers and the road to your goal">
         <div class="count">
           <span class="big" id="followers">—</span>
@@ -386,8 +449,9 @@
   </main>
 
   <nav class="bottombar" aria-label="Sections">
-    <button type="button" class="tab active" data-tab="score">Scorecard</button>
+    <button type="button" class="tab" data-tab="today">Today</button>
     <button type="button" class="tab" data-tab="plan">Plan</button>
+    <button type="button" class="tab" data-tab="score">Scorecard</button>
   </nav>
 </div>
 
@@ -609,6 +673,7 @@
         $('gate').classList.add('hidden');
         $('app').classList.remove('hidden');
         $('banner').innerHTML = '<div class="notice warn">No connection. Check your signal and tap refresh.</div>';
+        if (window.__pm.onDashboard) window.__pm.onDashboard();
       });
   }
 
@@ -632,26 +697,40 @@
   function addDays(iso, n) { var d = new Date(iso + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
   function mondayOf(iso) { var d = new Date(iso + 'T00:00:00Z'); return addDays(iso, -((d.getUTCDay() + 6) % 7)); }
   function dayName(iso, opts) { return new Date(iso + 'T12:00:00Z').toLocaleDateString('en-ZA', Object.assign({ timeZone: 'UTC' }, opts)); }
+  function longDate(iso) { return dayName(iso, { weekday: 'long' }) + ' ' + parseInt(iso.slice(8, 10), 10) + ' ' + dayName(iso, { month: 'long' }); }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
   function fmt(n) { return n == null ? '—' : Number(n).toLocaleString('en-ZA'); }
   function toast(msg) { var t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg; document.body.appendChild(t); setTimeout(function () { t.remove(); }, 1800); }
 
-  // Small, safe markdown: headings, bold, lists, checkboxes, paragraphs. Escapes first.
-  function md(src) {
+  // Small, safe markdown: headings, bold, lists, paragraphs. Escapes first.
+  // "- [ ] task" lines become real checkboxes when an item id is given; ticking
+  // one rewrites that line in the script and saves it.
+  var CHECK = /^\s*[-•]\s+\[( |x|X)\]\s+/;
+  function md(src, itemId) {
     if (!src) return '';
-    var out = [], list = null;
+    var out = [], list = null, n = 0;
     function close() { if (list) { out.push('</' + list + '>'); list = null; } }
     function inline(s) { return s.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>'); }
-    esc(src).split('\n').forEach(function (l) {
-      var t = l.trim();
+    src.split('\n').forEach(function (raw) {
+      var t = esc(raw.trim());
       if (!t) { close(); return; }
+      var cb = raw.match(CHECK);
+      if (cb) {
+        var done = cb[1] !== ' ', label = inline(esc(raw.replace(CHECK, '').trim()));
+        if (list !== 'ul') { close(); out.push('<ul>'); list = 'ul'; }
+        out.push(itemId
+          ? '<li class="check' + (done ? ' done' : '') + '"><input type="checkbox" data-check="' + n + '" data-item="' + itemId + '"' + (done ? ' checked' : '') + ' aria-label="' + esc(raw.replace(CHECK, '').trim()) + '"><span>' + label + '</span></li>'
+          : '<li>' + (done ? '☑ ' : '☐ ') + label + '</li>');
+        n++;
+        return;
+      }
       var h = t.match(/^#{1,4}\s+(.*)$/);
       if (h) { close(); out.push('<h5>' + inline(h[1]) + '</h5>'); return; }
       var ul = t.match(/^[-•]\s+(.*)$/), ol = t.match(/^\d+\.\s+(.*)$/);
       if (ul || ol) {
         var kind = ul ? 'ul' : 'ol';
         if (list !== kind) { close(); out.push('<' + kind + '>'); list = kind; }
-        out.push('<li>' + inline((ul || ol)[1].replace(/^\[ \] /, '☐ ').replace(/^\[x\] /i, '☑ ')) + '</li>');
+        out.push('<li>' + inline((ul || ol)[1]) + '</li>');
         return;
       }
       close(); out.push('<p>' + inline(t) + '</p>');
@@ -659,6 +738,32 @@
     close();
     return out.join('');
   }
+  function toggleCheck(src, index, on) {
+    var n = 0;
+    return src.split('\n').map(function (line) {
+      if (!CHECK.test(line)) return line;
+      var me = n++ === index;
+      return me ? line.replace(/\[( |x|X)\]/, on ? '[x]' : '[ ]') : line;
+    }).join('\n');
+  }
+
+  // Readiness: how far along a post should be, given how many days until it goes out.
+  var ORDER = { Idea: 0, Scripted: 1, Filmed: 2, Edited: 3, Scheduled: 4, Posted: 5 };
+  var NEXT = { 0: 'Script it', 1: 'Film it', 2: 'Edit it', 3: 'Schedule it' };
+  function daysOut(item) { return Math.round((new Date(item.post_date + 'T00:00:00Z') - new Date(todaySAST() + 'T00:00:00Z')) / 864e5); }
+  function isStory(item) { return item.format === 'Story' || item.slot === 'Daily'; }
+  function readiness(item) {
+    if (!item.post_date || item.stage === 'Parked' || item.stage === 'Posted' || liveFor(item)) return null;
+    var d = daysOut(item), have = ORDER[item.stage] || 0;
+    if (d > 7) return null;
+    if (d < 0) return { level: 'hot', short: 'Overdue', msg: 'Was due ' + dayName(item.post_date, { weekday: 'long' }) + '. Mark it posted or move it.' };
+    var need = isStory(item) ? (d <= 1 ? 1 : 0) : d >= 5 ? 0 : d >= 3 ? 1 : d === 2 ? 2 : 3;
+    if (have >= need) return null;
+    var when = d === 0 ? 'today' : d === 1 ? 'tomorrow' : 'in ' + d + ' days';
+    var hot = d <= 1 || need - have >= 2;
+    return { level: hot ? 'hot' : 'warm', short: NEXT[have] + (d <= 1 ? ' now' : ''), msg: 'Goes out ' + when + ', still ' + item.stage + '. ' + NEXT[have] + (d <= 1 ? ' today.' : '.') };
+  }
+  function lateNote(r) { return r ? '<div class="late-note' + (r.level === 'warm' ? ' warm' : '') + '">' + esc(r.short) + '</div>' : ''; }
 
   function api(method, path, body) {
     return fetch(path, {
@@ -700,12 +805,14 @@
   function itemHTML(item, inPanel) {
     var live = liveFor(item), open = inPanel || !!state.open[item.id], editing = state.editing === item.id;
     var meta = [item.slot, item.format].filter(Boolean).map(esc).join(', ');
-    var h = '<article class="item' + (!inPanel && (item.stage === 'Posted' || live) ? ' posted' : '') + '" data-id="' + item.id + '">' +
+    var r = readiness(item);
+    var h = '<article class="item' + (!inPanel && (item.stage === 'Posted' || live) ? ' posted' : '') + (!inPanel && r ? ' late' + (r.level === 'warm' ? ' warm' : '') : '') + '" data-id="' + item.id + '">' +
       '<div class="head"><div style="min-width:0">' +
       '<div class="meta">' + (item.series ? '<span class="tag">' + esc(item.series) + '</span>' : '') + (meta ? '<span>' + meta + '</span>' : '') +
-      (inPanel && item.post_date ? '<span>' + dayName(item.post_date, { weekday: 'long', day: 'numeric', month: 'long' }) + '</span>' : '') + '</div>' +
+      (inPanel && item.post_date ? '<span>' + longDate(item.post_date) + '</span>' : '') + '</div>' +
       '<div class="title">' + esc(item.title) + '</div>' +
       (item.hook ? '<div class="hook">“' + esc(item.hook) + '”</div>' : '') +
+      (r ? '<div class="late-note' + (r.level === 'warm' ? ' warm' : '') + '">' + esc(r.msg) + '</div>' : '') +
       '</div>' + stageSelect(item) + '</div>';
     if (live) {
       h += '<div class="live"><a href="' + esc(live.permalink) + '" target="_blank" rel="noopener">View post</a>' +
@@ -725,7 +832,7 @@
         '<div class="btnrow"><button type="button" class="quiet sm" data-act="cancel">Cancel</button><button type="button" class="sm" data-act="save">Save changes</button></div></div>';
     } else if (open) {
       h += '<div class="body">' +
-        (item.script ? '<h4>Script</h4><div class="md">' + md(item.script) + '</div>' : '') +
+        (item.script ? '<h4>Script</h4><div class="md">' + md(item.script, item.id) + '</div>' : '') +
         (item.caption ? '<h4>Caption</h4><div class="caption">' + esc(item.caption) + '</div>' : '') +
         (item.notes ? '<h4>Notes</h4><div class="md">' + md(item.notes) + '</div>' : '') +
         (!has ? '<p class="rest">No script or caption yet.</p>' : '') +
@@ -737,14 +844,14 @@
 
   // Compact card for the desktop board.
   function cardHTML(item) {
-    var live = liveFor(item);
-    return '<div class="card' + (item.stage === 'Posted' || live ? ' posted' : '') + (state.drawer === item.id ? ' selected' : '') + '">' +
+    var live = liveFor(item), r = readiness(item);
+    return '<div class="card' + (item.stage === 'Posted' || live ? ' posted' : '') + (r ? ' late' + (r.level === 'warm' ? ' warm' : '') : '') + (state.drawer === item.id ? ' selected' : '') + '">' +
       '<button type="button" class="open" data-open="' + item.id + '">' +
       (item.series ? '<span><span class="tag">' + esc(item.series) + '</span></span>' : '') +
       '<span class="slot">' + esc([item.slot, item.format].filter(Boolean).join(', ')) + '</span>' +
       '<span class="t">' + esc(item.title) + '</span>' +
       (live ? '<span class="lv"><b>' + fmt(live.reach) + '</b> reach</span>' : '') +
-      '</button>' + stageSelect(item) + '</div>';
+      '</button>' + lateNote(r) + stageSelect(item) + '</div>';
   }
 
   function weekHeader() {
@@ -779,6 +886,54 @@
       desk.matches ? '<div class="cards">' + parked.map(cardHTML).join('') + '</div>' :
       '<div class="items">' + parked.map(function (it) { return itemHTML(it, false); }).join('') + '</div>';
     renderDrawer();
+    renderToday();
+  }
+
+  // ---------- Today ----------
+  function renderToday() {
+    var today = todaySAST();
+    $('todayName').textContent = longDate(today);
+    if (!state.loaded) return;
+    var active = state.items.filter(function (it) { return it.post_date && it.stage !== 'Parked'; });
+    var now = active.filter(function (it) { return it.post_date === today; });
+    var upcoming = active.filter(function (it) { return it.post_date > today; }).sort(function (a, b) { return a.post_date < b.post_date ? -1 : 1; });
+    var flags = active.map(function (it) { return { it: it, r: readiness(it) }; }).filter(function (x) { return x.r; })
+      .sort(function (a, b) { return (a.r.level === 'hot' ? 0 : 1) - (b.r.level === 'hot' ? 0 : 1) || (a.it.post_date < b.it.post_date ? -1 : 1); });
+    var weekEnd = addDays(today, 7);
+    var toFilm = active.filter(function (it) { return it.post_date >= today && it.post_date <= weekEnd && it.stage === 'Scripted' && !isStory(it); });
+
+    // One-line summary of the day
+    var feed = now.filter(function (it) { return !isStory(it); });
+    var line = feed.length ? '<b>' + feed.length + (feed.length === 1 ? ' post goes out today.' : ' posts go out today.') + '</b> ' : '<b>No feed post today.</b> ';
+    line += flags.length ? flags.length + (flags.length === 1 ? ' thing needs' : ' things need') + ' attention this week.' : 'Everything this week is on track.';
+    $('todayLine').innerHTML = line;
+
+    $('todayNow').innerHTML = now.length
+      ? '<div class="today-now">' + now.map(function (it) { return itemHTML(it, true); }).join('') + '</div>'
+      : (upcoming[0] ? '<div class="next-up">Nothing posts today. Next up, ' + esc(dayName(upcoming[0].post_date, { weekday: 'long' })) + (upcoming[0].slot && /\d/.test(upcoming[0].slot) ? ' at ' + esc(upcoming[0].slot.replace(/^\w+\s/, '')) : '') + ':<b>' + esc(upcoming[0].title) + '</b><button type="button" class="sm" style="margin-top:12px" data-open-plan="' + upcoming[0].id + '">Open it</button></div>'
+        : '<div class="next-up">Nothing planned yet. Add an idea from the Plan tab.</div>');
+
+    $('todayFlags').innerHTML = flags.length ? flags.slice(0, 8).map(function (x) {
+      return '<div class="flagrow ' + x.r.level + '"><span class="bar"></span><div style="min-width:0"><div class="what">' + esc(x.it.title) + '</div><div class="why">' + esc(x.r.msg) + '</div></div>' +
+        '<button type="button" class="quiet sm" data-open-plan="' + x.it.id + '">Open</button></div>';
+    }).join('') : '<p class="rest">You\'re on track. Nothing behind schedule in the next 7 days.</p>';
+
+    $('todayFilm').innerHTML = toFilm.length ? toFilm.map(function (it) {
+      return '<div class="filmrow"><div class="when">' + esc(dayName(it.post_date, { weekday: 'long' })) + (it.format ? ', ' + esc(it.format) : '') + '</div><div class="t">' + esc(it.title) + '</div>' +
+        (it.hook ? '<div class="h">“' + esc(it.hook) + '”</div>' : '') + '</div>';
+    }).join('') : '<p class="rest">Nothing scripted and waiting to film.</p>';
+
+    var d = pm.dashboard, posts = (d && d.posts) || [];
+    if (!posts.length) { $('todayLast').innerHTML = '<p class="rest">Your latest post shows here once Instagram data loads.</p>'; return; }
+    var last = posts[0], recent = posts.slice(1, 11).filter(function (p) { return p.reach != null; });
+    var avg = recent.length ? recent.reduce(function (s, p) { return s + p.reach; }, 0) / recent.length : 0;
+    var diff = avg && last.reach != null ? Math.round(((last.reach - avg) / avg) * 100) : null;
+    var age = Math.max(0, Math.round((Date.now() - new Date(last.timestamp).getTime()) / 3600e3));
+    $('todayLast').innerHTML = '<a class="last" href="' + esc(last.permalink) + '" target="_blank" rel="noopener">' +
+      '<div class="v' + ((last.reach || 0) >= 1000 ? ' hit' : '') + '">' + fmt(last.reach) + '</div>' +
+      '<div style="min-width:0"><div class="t">' + esc(last.firstLine) + '</div><div class="s">Reach after ' + (age < 48 ? age + ' hours' : Math.round(age / 24) + ' days') +
+      (diff != null ? ', <span class="' + (diff >= 0 ? 'up' : 'down') + '">' + (diff >= 0 ? '+' : '') + diff + '%</span> on your recent average of ' + fmt(Math.round(avg)) : '') +
+      '. ' + fmt(last.shares) + ' shares, ' + fmt(last.saved) + ' saves.</div></div></a>';
   }
 
   function renderDrawer() {
@@ -795,12 +950,17 @@
   }
 
   function load() {
-    $('planMsg').innerHTML = state.loaded ? '' : '<div class="notice">Loading your plan…</div>';
+    state.loading = true;
+    var wait = state.loaded ? '' : '<div class="notice">Loading your plan…</div>';
+    $('planMsg').innerHTML = wait; $('todayMsg').innerHTML = wait;
     return api('GET', '/api/content').then(function (b) {
-      state.items = b.items || []; state.stages = b.stages || []; state.loaded = true;
-      $('planMsg').innerHTML = ''; render();
+      state.items = b.items || []; state.stages = b.stages || []; state.loaded = true; state.loading = false;
+      $('planMsg').innerHTML = ''; $('todayMsg').innerHTML = ''; render();
     }).catch(function (e) {
-      if (e.message !== 'Locked') $('planMsg').innerHTML = '<div class="notice warn"><b>Your plan didn\'t load.</b> ' + esc(e.message) + '</div>';
+      state.loading = false;
+      if (e.message === 'Locked') return;
+      var msg = '<div class="notice warn"><b>Your plan didn\'t load.</b> ' + esc(e.message) + '</div>';
+      $('planMsg').innerHTML = msg; $('todayMsg').innerHTML = msg;
     });
   }
 
@@ -813,6 +973,14 @@
   }
 
   document.addEventListener('change', function (e) {
+    var box = e.target.closest('input[data-check]');
+    if (box) {
+      var it = find(box.getAttribute('data-item')); if (!it || !it.script) return;
+      var next = toggleCheck(it.script, parseInt(box.getAttribute('data-check'), 10), box.checked);
+      it.script = next; render();
+      patch(it.id, { script: next }, box.checked ? 'Ticked' : 'Unticked');
+      return;
+    }
     var sel = e.target.closest('select.stage'); if (!sel) return;
     sel.setAttribute('data-s', sel.value);
     patch(sel.getAttribute('data-id'), { stage: sel.value }, 'Moved to ' + sel.value);
@@ -822,6 +990,20 @@
     if (e.target.closest('[data-close]') || e.target.id === 'scrim') { closeDrawer(); return; }
     var opener = e.target.closest('[data-open]');
     if (opener) { openDrawer(opener.getAttribute('data-open')); return; }
+    var jump = e.target.closest('[data-open-plan]');
+    if (jump) {
+      var target = find(jump.getAttribute('data-open-plan'));
+      if (!target) return;
+      if (target.post_date) state.weekStart = mondayOf(target.post_date);
+      show('plan');
+      if (desk.matches) openDrawer(target.id);
+      else {
+        state.open[target.id] = true; render();
+        var el = document.querySelector('#planDays .item[data-id="' + target.id + '"]');
+        if (el) el.scrollIntoView({ block: 'start' });
+      }
+      return;
+    }
     var btn = e.target.closest('[data-act]'); if (!btn) return;
     var card = btn.closest('.item'); if (!card) return;
     var id = card.getAttribute('data-id'), item = find(id), act = btn.getAttribute('data-act');
@@ -864,17 +1046,24 @@
       t.classList.toggle('active', on);
       if (on) t.setAttribute('aria-current', 'page'); else t.removeAttribute('aria-current');
     });
+    $('viewToday').classList.toggle('hidden', tab !== 'today');
     $('viewPlan').classList.toggle('hidden', tab !== 'plan');
     $('viewScore').classList.toggle('hidden', tab !== 'score');
     try { localStorage.setItem(TAB_KEY, tab); } catch (e) {}
-    if (tab === 'plan' && !state.loaded) load();
+    if (tab !== 'score' && !state.loaded && !state.loading) load();
     window.scrollTo(0, 0);
   }
   all('.tab').forEach(function (t) { t.addEventListener('click', function () { show(t.getAttribute('data-tab')); }); });
   var restored = false;
   pm.onDashboard = function () {
+    if (!restored) {
+      restored = true;
+      var saved = 'today';
+      try { saved = localStorage.getItem(TAB_KEY) || 'today'; } catch (e) {}
+      show(['today', 'plan', 'score'].indexOf(saved) >= 0 ? saved : 'today');
+    }
     if (state.loaded) render();
-    if (!restored) { restored = true; var saved = 'score'; try { saved = localStorage.getItem(TAB_KEY) || 'score'; } catch (e) {} if (saved === 'plan') show('plan'); }
+    else if (!state.loading) load();
   };
   pm.onRefresh = function () { if (state.loaded) load(); };
   var onSize = function () { if (state.loaded) render(); };
