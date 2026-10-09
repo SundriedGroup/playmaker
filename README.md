@@ -29,7 +29,7 @@ For daily history in Supabase (the "Road to 10k" chart):
 | Name | Value |
 |---|---|
 | `SUPABASE_URL` | `https://dxhqiwgbzvujirgvuzrt.supabase.co` (the Playmaker project) |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase → Project Settings → API Keys → the **secret / service_role** key. Server only; never put it in the page. |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase → Project Settings → API Keys → a **secret key** (`sb_secret_…`), or the legacy **service_role** key. Either works. Server only; never put it in the page. |
 | `CRON_SECRET` | Any long random string. Vercel sends it with the daily snapshot call so no one else can trigger it. |
 
 Optional: `META_GRAPH_VERSION` (default `v23.0`), `POST_LIMIT` (default `15`, max `50`), `FOLLOWER_GOAL` (default `10000`).
