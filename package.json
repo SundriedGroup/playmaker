@@ -1,0 +1,6 @@
+{
+  "name": "playmaker",
+  "private": true,
+  "description": "Live Instagram scorecard for @garethmarshall",
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Playmaker</title>
+<style>
+  :root {
+    --bg: #f4f1ec;
+    --panel: #ffffff;
+    --ink: #171310;
+    --muted: #6b6560;
+    --line: #e4ded6;
+    --teal: #1e6a6c;
+    --teal-soft: #d6ebe7;
+    --orange: #e85d2f;
+    --orange-soft: #fbe3d9;
+    --good: #1e6a6c;
+    --bad: #b5402a;
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1615;
+      --panel: #152120;
+      --ink: #eef2f0;
+      --muted: #9aa7a4;
+      --line: #263735;
+      --teal: #6fc0b2;
+      --teal-soft: #1d3633;
+      --orange: #f0794f;
+      --orange-soft: #3a241c;
+      --good: #6fc0b2;
+      --bad: #f08a6e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 48px; }
+  header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+  .handle { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .followers { font-size: 40px; font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
+  .followers small { font-size: 15px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+  .meta { color: var(--muted); font-size: 13px; text-align: right; }
+  button {
+    font: inherit; font-weight: 600; border: 0; border-radius: 999px; padding: 9px 16px;
+    background: var(--teal); color: #fff; cursor: pointer;
+  }
+  @media (prefers-color-scheme: dark) { button { color: #0e1615; } }
+  button.ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+  .banner { border-radius: var(--radius); padding: 12px 14px; margin-bottom: 16px; font-size: 14px; }
+  .banner.warn { background: var(--orange-soft); }
+  .banner.info { background: var(--teal-soft); }
+  h2 { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 28px 0 10px; font-weight: 700; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .tile { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+  .tile .label { font-size: 12px; color: var(--muted); font-weight: 600; }
+  .tile .value { font-size: 28px; font-weight: 800; letter-spacing: -.02em; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .tile .delta { font-size: 12px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .up { color: var(--good); } .down { color: var(--bad); } .flat { color: var(--muted); }
+  .tile.target { border-color: var(--orange); }
+  .grid2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 10px; }
+  @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+  .panel h3 { margin: 0 0 10px; font-size: 14px; }
+  .chart svg { width: 100%; height: 120px; display: block; }
+  .chart .axis { font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; margin-top: 4px; }
+  .series-row { display: grid; grid-template-columns: 120px 1fr 64px; align-items: center; gap: 8px; margin: 8px 0; font-size: 13px; }
+  .bar { height: 10px; border-radius: 6px; background: var(--teal-soft); overflow: hidden; }
+  .bar span { display: block; height: 100%; background: var(--teal); border-radius: 6px; }
+  .series-row .num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+  .posts { display: grid; gap: 10px; }
+  .post { display: grid; grid-template-columns: 72px 1fr; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; text-decoration: none; color: inherit; }
+  .post.hit { border-color: var(--orange); }
+  .thumb { width: 72px; height: 90px; border-radius: 10px; background: var(--teal-soft) center/cover no-repeat; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--teal); font-weight: 700; }
+  .post .top { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+  .chip { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--teal-soft); color: var(--teal); }
+  .chip.other { background: var(--line); color: var(--muted); }
+  .post .line { font-weight: 650; margin: 4px 0 8px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .stats { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; font-variant-numeric: tabular-nums; }
+  .stats b { font-weight: 800; }
+  .stats .k { color: var(--muted); }
+  .gate { max-width: 360px; margin: 18vh auto 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .gate h1 { font-size: 20px; margin: 0 0 6px; }
+  .gate p { color: var(--muted); margin: 0 0 14px; font-size: 14px; }
+  .gate input { width: 100%; font: inherit; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); margin-bottom: 10px; }
+  .gate .err { color: var(--bad); font-size: 13px; min-height: 18px; }
+  .hidden { display: none !important; }
+  footer { margin-top: 28px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <form id="gate" class="gate hidden" autocomplete="on">
+    <h1>Playmaker</h1>
+    <p>Enter the dashboard password.</p>
+    <input id="pw" type="password" autocomplete="current-password" placeholder="Password" required>
+    <div class="err" id="gateErr"></div>
+    <button type="submit">Open</button>
+  </form>
+
+  <main id="app" class="hidden">
+    <header>
+      <div>
+        <div class="handle" id="handle">@—</div>
+        <div class="followers"><span id="followers">—</span> <small>followers</small></div>
+      </div>
+      <div class="meta">
+        <div id="updated">Loading…</div>
+        <div style="margin-top:8px; display:flex; gap:8px; justify-content:flex-end;">
+          <button class="ghost" id="logout" type="button">Lock</button>
+          <button id="refresh" type="button">Refresh</button>
+        </div>
+      </div>
+    </header>
+
+    <div id="banner"></div>
+
+    <h2>This week vs last week</h2>
+    <div class="tiles" id="tiles"></div>
+
+    <div class="grid2" style="margin-top:10px;">
+      <div class="panel chart">
+        <h3>New followers per day, last 30 days</h3>
+        <div id="trend"></div>
+      </div>
+      <div class="panel">
+        <h3>Average reach by series</h3>
+        <div id="series"></div>
+      </div>
+    </div>
+
+    <h2>Latest posts</h2>
+    <div class="posts" id="posts"></div>
+
+    <footer>Orange border = 1,000+ reach. Data from the Meta Graph API; Meta's own figures can lag by a few hours.</footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  var KEY = 'ig-dashboard-key';
+  var $ = function (id) { return document.getElementById(id); };
+  var store = {
+    get: function () { try { return localStorage.getItem(KEY) || ''; } catch (e) { return memKey; } },
+    set: function (v) { memKey = v; try { localStorage.setItem(KEY, v); } catch (e) {} },
+    clear: function () { memKey = ''; try { localStorage.removeItem(KEY); } catch (e) {} }
+  };
+  var memKey = '';
+
+  function fmt(n) {
+    if (n === null || n === undefined) return '—';
+    return Number(n).toLocaleString('en-ZA');
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; });
+  }
+  function delta(now, prev) {
+    if (!prev && !now) return '<div class="delta flat">no posts either week</div>';
+    if (!prev) return '<div class="delta up">new this week</div>';
+    var pct = Math.round(((now - prev) / prev) * 100);
+    var cls = pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat';
+    var sign = pct > 0 ? '+' : '';
+    return '<div class="delta ' + cls + '">' + sign + pct + '% vs last week (' + fmt(prev) + ')</div>';
+  }
+  function showGate(msg) {
+    $('app').classList.add('hidden');
+    $('gate').classList.remove('hidden');
+    $('gateErr').textContent = msg || '';
+    $('pw').focus();
+  }
+
+  function renderTiles(d) {
+    var t = d.thisWeek, l = d.lastWeek;
+    var tiles = [
+      ['Posts', t.posts, l.posts],
+      ['Reach', t.reach, l.reach],
+      ['Shares', t.shares, l.shares],
+      ['Saves', t.saves, l.saves],
+      ['Follows from posts', t.follows, l.follows]
+    ];
+    var html = tiles.map(function (x) {
+      return '<div class="tile"><div class="label">' + x[0] + '</div><div class="value">' + fmt(x[1]) + '</div>' + delta(x[1], x[2]) + '</div>';
+    }).join('');
+    var hit = t.over1000 > 0;
+    html += '<div class="tile target"><div class="label">Target: one post over 1,000 reach</div><div class="value">' +
+      (hit ? '✓ ' + t.over1000 : '0') + '</div><div class="delta ' + (hit ? 'up' : 'flat') + '">' +
+      (t.best ? 'Best: ' + esc(t.best.caption).slice(0, 40) + ' (' + fmt(t.best.reach) + ')' : 'No posts yet this week') + '</div></div>';
+    $('tiles').innerHTML = html;
+  }
+
+  function renderTrend(points) {
+    if (!points || !points.length) {
+      $('trend').innerHTML = '<p style="color:var(--muted);font-size:13px;margin:0">Meta didn\'t return follower data. It needs 100+ followers and the insights permission.</p>';
+      return;
+    }
+    var w = 300, h = 110, n = points.length, gap = 2;
+    var max = Math.max.apply(null, points.map(function (p) { return p.value || 0; })) || 1;
+    var bw = (w - gap * (n - 1)) / n;
+    var bars = points.map(function (p, i) {
+      var v = p.value || 0, bh = Math.max(v ? 3 : 1, (v / max) * (h - 14));
+      var x = i * (bw + gap), y = h - bh;
+      return '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="2" fill="' + (v === max ? 'var(--orange)' : 'var(--teal)') + '" opacity="' + (v ? 1 : .25) + '"><title>' + new Date(p.date).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' }) + ': ' + v + '</title></rect>';
+    }).join('');
+    var total = points.reduce(function (s, p) { return s + (p.value || 0); }, 0);
+    var first = new Date(points[0].date).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' });
+    var last = new Date(points[n - 1].date).toLocaleDateString('en-ZA', { day: 'numeric', month: 'short' });
+    $('trend').innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none" role="img" aria-label="New followers per day">' + bars + '</svg>' +
+      '<div class="axis"><span>' + first + '</span><span><b style="color:var(--ink)">' + fmt(total) + '</b> in 30 days · best day ' + max + '</span><span>' + last + '</span></div>';
+  }
+
+  function renderSeries(series) {
+    if (!series || !series.length) { $('series').innerHTML = ''; return; }
+    var max = Math.max.apply(null, series.map(function (s) { return s.avgReach; })) || 1;
+    $('series').innerHTML = series.map(function (s) {
+      return '<div class="series-row"><span>' + esc(s.series) + ' <span style="color:var(--muted)">(' + s.posts + ')</span></span>' +
+        '<div class="bar"><span style="width:' + Math.round((s.avgReach / max) * 100) + '%"></span></div>' +
+        '<span class="num">' + fmt(s.avgReach) + '</span></div>';
+    }).join('');
+  }
+
+  function renderPosts(posts) {
+    $('posts').innerHTML = posts.map(function (p) {
+      var date = new Date(p.timestamp).toLocaleString('en-ZA', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+      var thumb = p.thumbnail ? 'style="background-image:url(\'' + encodeURI(p.thumbnail) + '\')"' : '';
+      var stats = [
+        ['Reach', p.reach], ['Views', p.views], ['Shares', p.shares], ['Saves', p.saved],
+        ['Follows', p.follows], ['Comments', p.comments], ['Likes', p.likes]
+      ];
+      if (p.avgWatchMs) stats.push(['Avg watch', (p.avgWatchMs / 1000).toFixed(1) + 's']);
+      return '<a class="post' + ((p.reach || 0) >= 1000 ? ' hit' : '') + '" href="' + esc(p.permalink) + '" target="_blank" rel="noopener">' +
+        '<div class="thumb" ' + thumb + '>' + (p.thumbnail ? '' : esc(p.kind)) + '</div>' +
+        '<div><div class="top"><span class="chip' + (p.series === 'Other' ? ' other' : '') + '">' + esc(p.series) + '</span><span>' + esc(p.kind) + '</span><span>' + date + '</span></div>' +
+        '<div class="line">' + esc(p.firstLine) + '</div>' +
+        '<div class="stats">' + stats.map(function (s) {
+          return '<span><span class="k">' + s[0] + '</span> <b>' + (typeof s[1] === 'string' ? s[1] : fmt(s[1])) + '</b></span>';
+        }).join('') + '</div></div></a>';
+    }).join('');
+  }
+
+  function render(d) {
+    $('handle').textContent = '@' + (d.profile.username || '');
+    $('followers').textContent = fmt(d.profile.followers);
+    $('updated').textContent = 'Updated ' + new Date(d.generatedAt).toLocaleString('en-ZA', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+    $('banner').innerHTML = d.mock ? '<div class="banner info">Sample data. Set MOCK to 0 and add your Meta token in Vercel to see live numbers.</div>' : '';
+    renderTiles(d);
+    renderTrend(d.followerTrend);
+    renderSeries(d.series);
+    renderPosts(d.posts || []);
+  }
+
+  function load() {
+    var key = store.get();
+    $('updated').textContent = 'Loading…';
+    fetch('/api/dashboard', { headers: { 'x-dashboard-key': key } })
+      .then(function (r) { return r.json().then(function (b) { return { status: r.status, body: b }; }); })
+      .then(function (res) {
+        if (res.status === 401) { store.clear(); showGate(key ? 'Wrong password.' : ''); return; }
+        $('gate').classList.add('hidden');
+        $('app').classList.remove('hidden');
+        if (res.status !== 200) {
+          $('updated').textContent = 'Not updated';
+          $('banner').innerHTML = '<div class="banner warn"><b>Couldn\'t load your data.</b> ' + esc(res.body.error || '') + (res.body.hint ? '<br>' + esc(res.body.hint) : '') + '</div>';
+          return;
+        }
+        render(res.body);
+      })
+      .catch(function () {
+        $('app').classList.remove('hidden');
+        $('banner').innerHTML = '<div class="banner warn">Network error. Try Refresh.</div>';
+      });
+  }
+
+  $('gate').addEventListener('submit', function (e) {
+    e.preventDefault();
+    store.set($('pw').value);
+    load();
+  });
+  $('refresh').addEventListener('click', load);
+  $('logout').addEventListener('click', function () { store.clear(); showGate(''); });
+  load();
+})();
+</script>
+</body>
+</html>
