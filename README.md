@@ -1,7 +1,7 @@
 # Playmaker
 
-
 Live Instagram scorecard for @garethmarshall.
+
 One password-protected page with live numbers from the Meta Graph API:
 
 - Followers, and new followers per day for the last 30 days
