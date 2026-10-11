@@ -89,3 +89,11 @@ The 3-second view rate and skip rate shown in the Instagram app aren't exposed t
 ```
 MOCK=1 DASHBOARD_PASSWORD=test npx vercel dev
 ```
+
+## Plan inbox
+
+Claude can add or update Plan rows without database access by committing them to `inbox/plan.json`. They are applied the next time the Plan or Today tab loads:
+
+- `insert` adds a row once (its `key` is stored in `notion_id`, so it's never added twice).
+- `update` changes a row only if you haven't edited it since the change was written. Your edits always win. Stage only moves forward.
+- Changes older than 21 days are ignored, so the file can simply be replaced each time.

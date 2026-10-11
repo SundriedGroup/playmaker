@@ -5,6 +5,8 @@
 // Requires the header "x-dashboard-key" to match DASHBOARD_PASSWORD.
 const { checkPassword } = require('../lib/auth');
 const { listContent, updateContent, createContent, STAGES } = require('../lib/content');
+const { applyInbox } = require('../lib/inbox');
+const { supabase } = require('../lib/store');
 
 async function readBody(req) {
   if (req.body && typeof req.body === 'object') return req.body; // Vercel parses JSON for us
@@ -27,7 +29,11 @@ module.exports = async function handler(req, res) {
   if (denied) return send(res, denied === 'Wrong password.' ? 401 : 500, { error: denied });
 
   try {
-    if (req.method === 'GET') return send(res, 200, { stages: STAGES, items: await listContent() });
+    if (req.method === 'GET') {
+      const sb = supabase();
+      if (sb) await applyInbox(sb).catch((err) => console.error(`inbox: ${err.message}`));
+      return send(res, 200, { stages: STAGES, items: await listContent() });
+    }
 
     if (req.method === 'POST') {
       const body = await readBody(req);
