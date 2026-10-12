@@ -174,14 +174,14 @@
     "fields": {
       "post_date": "2026-11-04",
       "slot": "Wed 10:00",
-      "title": "Morning Mission #3: Where my morning starts (Coastal)",
+      "title": "Morning Mission #3: First cup somewhere new",
       "series": "Morning Mission",
       "format": "Reel",
       "lane": "Morning Missions",
       "stage": "Idea",
-      "hook": "Every good morning starts somewhere…",
-      "script": "Built from the Fri 16 roastery visit with Craig: beans, the roaster, your first cup back home at sunrise.\n\n- [ ] Paid partnership label if gifted\n- [ ] Collab invite to @ccroastersza",
-      "notes": "Film at the roastery on Fri 16 Oct."
+      "hook": "Same coffee. New view. Every morning this week…",
+      "script": "## The idea\nOne week, a different sunrise spot every morning for your first cup: the lighthouse, the pier, the promenade, a beach you never stop at. Five mornings make five shots and a natural arc.\n\n## Format\nReel (5 spots × 4 seconds) or a one-line photo carousel.\n\n## Shoot list (week of 26 Oct)\n- [ ] Mon: lighthouse\n- [ ] Tue: pier\n- [ ] Wed: promenade\n- [ ] Thu: a beach you never stop at\n- [ ] Fri: your pick, plus a line to camera\n\n## Before posting\n- [ ] Coastal bag in frame, never the subject\n- [ ] Paid partnership label if the coffee was gifted",
+      "notes": "Replaces the roastery idea (that visit is off)."
     }
   },
   {
@@ -233,6 +233,20 @@
       "hook": "",
       "script": "Open slot: pick from the audience poll (two options in Stories the week before).",
       "notes": "Let followers choose the mission."
+    }
+  },
+  {
+    "key": "2026-10-12c-mm3-swap",
+    "created": "2026-10-12T18:21:06Z",
+    "op": "update",
+    "where": {
+      "notion_id": "eq.2026-10-12b-mm3"
+    },
+    "fields": {
+      "title": "Morning Mission #3: First cup somewhere new",
+      "hook": "Same coffee. New view. Every morning this week…",
+      "script": "## The idea\nOne week, a different sunrise spot every morning for your first cup: the lighthouse, the pier, the promenade, a beach you never stop at. Five mornings make five shots and a natural arc.\n\n## Format\nReel (5 spots × 4 seconds) or a one-line photo carousel.\n\n## Shoot list (week of 26 Oct)\n- [ ] Mon: lighthouse\n- [ ] Tue: pier\n- [ ] Wed: promenade\n- [ ] Thu: a beach you never stop at\n- [ ] Fri: your pick, plus a line to camera\n\n## Before posting\n- [ ] Coastal bag in frame, never the subject\n- [ ] Paid partnership label if the coffee was gifted",
+      "notes": "Replaces the roastery idea (that visit is off)."
     }
   }
 ]
