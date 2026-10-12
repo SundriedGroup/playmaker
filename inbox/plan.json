@@ -97,7 +97,7 @@
     "created": "2026-10-12T17:39:14Z",
     "op": "insert",
     "fields": {
-      "post_date": "2026-10-21",
+      "post_date": "2026-10-28",
       "slot": "Wed 10:00",
       "title": "Morning Mission #2: Still showing up at 6",
       "series": "Morning Mission",
@@ -107,6 +107,132 @@
       "hook": "Can't run. Still showing up at 6.",
       "script": "## The idea\nSunrise walk at the time you'd normally run. \"Can't run. Still showing up at 6.\"\n\n## Beats\n- The alarm, the same time as a run day\n- Walking the Umhlanga promenade, the lighthouse at first light\n- First cup on the way back\n- To camera: \"The run will come back. The habit can't go anywhere.\"\n\n## Shoot list\n- [ ] Alarm / shoes on\n- [ ] Promenade wide, lighthouse\n- [ ] Walking, close\n- [ ] First cup\n- [ ] Line to camera\n",
       "notes": "Walking only. Check with your physio first."
+    }
+  },
+  {
+    "key": "2026-10-12b-mm2-move",
+    "created": "2026-10-12T18:06:25Z",
+    "op": "update",
+    "where": {
+      "notion_id": "eq.2026-10-12-morning-mission-2"
+    },
+    "fields": {
+      "post_date": "2026-10-28"
+    }
+  },
+  {
+    "key": "2026-10-12b-intro-post",
+    "created": "2026-10-12T18:06:25Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-21",
+      "slot": "Wed 10:00",
+      "title": "A proper introduction (pin it)",
+      "series": "Intro",
+      "format": "Carousel",
+      "lane": "Morning Missions",
+      "stage": "Idea",
+      "hook": "A proper introduction feels overdue…",
+      "script": "## The idea\nNew faces are arriving (Boxer Stories, Ep. 2). Tell them who you are and what they're following. Pin it.\n\n## Slides (one line each, on your own photos)\n1. You at sunrise: \"A proper introduction feels overdue…\"\n2. \"I'm Gareth. Umhlanga. Dad. I make brands for a living.\"\n3. \"My day begins long before the sun rises.\"\n4. \"Right now: a pinched nerve and a 6-week comeback.\"\n5. \"Here: Morning Missions, The Comeback, and the Move Club.\"\n6. \"More life. Less excuses. Say hi below 👋\"\n\n## Caption\nShort. Ask people where they're following from.\n\n## After posting\n- [ ] Pin it, with Comeback week 1 and a Coastal post\n- [ ] Reply to every comment that day",
+      "notes": "Neil Wash's intro post pulled ~9× his normal comments."
+    }
+  },
+  {
+    "key": "2026-10-12b-deadly-dozen",
+    "created": "2026-10-12T18:06:25Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-24",
+      "slot": "Weekend",
+      "title": "Deadly Dozen Durban: from the sideline (Stories)",
+      "series": "Live the brand",
+      "format": "Story",
+      "lane": "Live the brand",
+      "stage": "Idea",
+      "hook": "Last time this race broke me. This time I'm on the other side.",
+      "script": "## The idea\nThe race you pulled out of, now watched from the sideline, with Rexona as sponsor. The strongest story of the month: keep clips for Monday's Ep. 3.\n\n## Stories\n1. Early, to camera: \"Last time this race broke me. This time I'm on the other side.\"\n2. The Rexona set-up and the crew before the start\n3. The obstacles, people suffering and sending it\n4. Finish line, Move Club members\n5. To camera: \"I'll be back on this start line.\"\n\n## Optional evening post\nOne photo, one line (Neil-style receipt): \"Some days you race. Some days you're the reason someone finishes.\"\n\n## Before posting\n- [ ] Rexona sign-off on sponsor content\n- [ ] Ask before filming people\n- [ ] Rehab rules: no jumping in",
+      "notes": "Rexona is a sponsor. Bank clips for Mon 26 Ep. 3."
+    }
+  },
+  {
+    "key": "2026-10-12b-ep3",
+    "created": "2026-10-12T18:06:25Z",
+    "op": "update",
+    "where": {
+      "post_date": "eq.2026-10-26",
+      "series": "eq.More Life"
+    },
+    "fields": {
+      "hook": "Last time this race broke me. This time I watched.",
+      "notes": "Ep. 3 = Deadly Dozen Durban from the sideline. The race that broke you, from the other side. End on: I'll be back on that start line."
+    }
+  },
+  {
+    "key": "2026-10-12b-mm3",
+    "created": "2026-10-12T18:06:25Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-04",
+      "slot": "Wed 10:00",
+      "title": "Morning Mission #3: Where my morning starts (Coastal)",
+      "series": "Morning Mission",
+      "format": "Reel",
+      "lane": "Morning Missions",
+      "stage": "Idea",
+      "hook": "Every good morning starts somewhere…",
+      "script": "Built from the Fri 16 roastery visit with Craig: beans, the roaster, your first cup back home at sunrise.\n\n- [ ] Paid partnership label if gifted\n- [ ] Collab invite to @ccroastersza",
+      "notes": "Film at the roastery on Fri 16 Oct."
+    }
+  },
+  {
+    "key": "2026-10-12b-mm4",
+    "created": "2026-10-12T18:06:25Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-11",
+      "slot": "Wed 10:00",
+      "title": "Morning Mission #4: A week with no phone before 7",
+      "series": "Morning Mission",
+      "format": "Carousel",
+      "lane": "Morning Missions",
+      "stage": "Idea",
+      "hook": "No phone before 7. For a week…",
+      "script": "Do it the week of 2 Nov. One photo a day with one honest line. Last slide: what changed.",
+      "notes": "One-line photo carousel format."
+    }
+  },
+  {
+    "key": "2026-10-12b-half-day",
+    "created": "2026-10-12T18:06:25Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-15",
+      "slot": "Weekend",
+      "title": "Today was meant to be my half marathon (Stories + one photo)",
+      "series": "The Comeback",
+      "format": "Story",
+      "lane": "The Comeback",
+      "stage": "Idea",
+      "hook": "Today was meant to be 21km.",
+      "script": "A sunrise walk at race-start time instead. One photo, one line: \"Today was meant to be 21km. It'll keep.\"",
+      "notes": "15 Nov was the half you'd entered."
+    }
+  },
+  {
+    "key": "2026-10-12b-mm5",
+    "created": "2026-10-12T18:06:25Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-18",
+      "slot": "Wed 10:00",
+      "title": "Morning Mission #5",
+      "series": "Morning Mission",
+      "format": "Reel",
+      "lane": "Morning Missions",
+      "stage": "Idea",
+      "hook": "",
+      "script": "Open slot: pick from the audience poll (two options in Stories the week before).",
+      "notes": "Let followers choose the mission."
     }
   }
 ]
