@@ -17,7 +17,7 @@
       "post_date": "2026-10-18",
       "slot": "Weekend",
       "title": "Boxer 5km: supporting the Rexona Move Club (Stories)",
-      "series": "The Rehab",
+      "series": "Live the brand",
       "format": "Story",
       "lane": "Live the brand",
       "stage": "Scripted",
@@ -36,6 +36,77 @@
       "script": "## Format\nMicro vlog, about 40 seconds. Built mostly from Sunday's Boxer 5km footage. Vertical.\n\n## Script\n**0:00–0:03: To camera, close.**\n\"I wasn't racing on Sunday. I wasn't spectating either.\"\nOn screen: *Boxer 5km. Not racing.*\n\n**0:03–0:12: Sideline footage, cuts every 1.5–2 seconds: the crew at the start, the gun, you cheering.**\nVoiceover: \"Pinched nerve. Six weeks of rehab. So I showed up for the Rexona Move Club instead.\"\n\n**0:12–0:22: The team finishing, high fives, medals.**\nVoiceover: \"Watching them finish hit different. Every one of them showed up.\"\n\n**0:22–0:30: Rehab check-in: a stretch or a physio exercise at home.**\nVoiceover: \"Keep your squad close. Sometimes you're the one in their corner.\"\nOn screen: *Rehab: week 1 done.*\n\n**0:30–0:38: To camera again.**\n\"I'll be back on that start line. Until then, I'm in your corner.\"\nOn screen: *More life. Less excuses.*\n\n## Edit\n- [ ] Open on your face at frame one\n- [ ] Burned-in captions for every spoken line\n- [ ] Music low under the voice\n- [ ] Cover frame: you to camera, \"I wasn't racing on Sunday.\"\n\n## Before posting\n- [ ] Collab invite to @rexona_sa (if Rexona approves)\n- [ ] Tag the members on screen\n- [ ] Health detail stays at \"pinched nerve\"\n- [ ] Post at 10:00 and reply to comments in the first hour\n",
       "notes": "Built from Sunday's Boxer 5km footage. Lesson: keep your squad close. Sometimes you're the one in their corner.",
       "stage": "Scripted"
+    }
+  },
+  {
+    "key": "2026-10-12-boxer-lane",
+    "created": "2026-10-12T17:39:14Z",
+    "op": "update",
+    "where": {
+      "notion_id": "eq.2026-10-11-boxer-5km"
+    },
+    "fields": {
+      "series": "Live the brand",
+      "lane": "Live the brand"
+    }
+  },
+  {
+    "key": "2026-10-12-park-business-athlete",
+    "created": "2026-10-12T17:39:14Z",
+    "op": "update",
+    "where": {
+      "series": "eq.Business Athlete",
+      "post_date": "gte.2026-10-13",
+      "stage": "in.(Idea,Scripted)"
+    },
+    "fields": {
+      "stage": "Parked"
+    }
+  },
+  {
+    "key": "2026-10-12-rehab-is-the-comeback",
+    "created": "2026-10-12T17:39:14Z",
+    "op": "update",
+    "where": {
+      "series": "eq.The Rehab"
+    },
+    "fields": {
+      "series": "The Comeback",
+      "lane": "The Comeback"
+    }
+  },
+  {
+    "key": "2026-10-12-morning-mission-1",
+    "created": "2026-10-12T17:39:14Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-14",
+      "slot": "Wed 10:00",
+      "title": "Morning Mission #1: Protect your morning",
+      "series": "Morning Mission",
+      "format": "Reel",
+      "lane": "Morning Missions",
+      "stage": "Scripted",
+      "hook": "My day begins long before the sun rises.",
+      "script": "## The idea\nProtect your morning. The one part of the day that's yours, before the inbox gets a say.\n\n## Format\nReel, 25–30 seconds. Film it Tuesday or Wednesday at sunrise (around 05:15). Walking only: rehab rules apply.\n\n## Script\n**0:00–0:03: Dark sky, the beach path, wide.**\nOn screen: *My day begins long before the sun rises.*\n\n**0:03–0:08: Feet on the sand, walking. Close.**\nOn screen: *05:15. Before the inbox.*\n\n**0:08–0:15: Flask pour on the beach, the Coastal bag in frame. Steam against the light.**\nOn screen: *First cup. No phone.*\n\n**0:15–0:21: Sitting, notebook on your knee, writing three things. Sun breaking behind.**\nOn screen: *Three things. That's it.*\n\n**0:21–0:28: To camera, sun behind you.**\n\"Protect your morning. It's the one part of the day that's yours.\"\nOn screen: *More life. Less excuses.*\n\n## Caption\nMy day begins long before the sun rises. No phone, first cup, three things on paper. Then the world can have me. What's your non-negotiable morning? ☕🌅\n@ccroastersza (paid partnership label if gifted)\n\n## Carousel version (if you'd rather post photos)\n1. Sunrise, wide: \"Protect your morning.\"\n2. Beach path in the dark: \"05:15. Before the inbox.\"\n3. Flask pour: \"First cup. No phone.\"\n4. Notebook: \"Three things. That's it.\"\n5. You, sun behind: \"What's yours?\"\n\n## Shoot list\n- [ ] Beach path, still dark (wide)\n- [ ] Feet on sand (close)\n- [ ] Flask pour with steam, Coastal bag in frame\n- [ ] Notebook, three things, sun behind\n- [ ] Line to camera (3 takes)\n- [ ] 3–4 still photos for the carousel version\n",
+      "notes": "Film Tue or Wed at sunrise. Replaces Business Athlete #1 (parked)."
+    }
+  },
+  {
+    "key": "2026-10-12-morning-mission-2",
+    "created": "2026-10-12T17:39:14Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-21",
+      "slot": "Wed 10:00",
+      "title": "Morning Mission #2: Still showing up at 6",
+      "series": "Morning Mission",
+      "format": "Reel",
+      "lane": "Morning Missions",
+      "stage": "Idea",
+      "hook": "Can't run. Still showing up at 6.",
+      "script": "## The idea\nSunrise walk at the time you'd normally run. \"Can't run. Still showing up at 6.\"\n\n## Beats\n- The alarm, the same time as a run day\n- Walking the Umhlanga promenade, the lighthouse at first light\n- First cup on the way back\n- To camera: \"The run will come back. The habit can't go anywhere.\"\n\n## Shoot list\n- [ ] Alarm / shoes on\n- [ ] Promenade wide, lighthouse\n- [ ] Walking, close\n- [ ] First cup\n- [ ] Line to camera\n",
+      "notes": "Walking only. Check with your physio first."
     }
   }
 ]
