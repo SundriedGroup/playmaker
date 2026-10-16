@@ -1,62 +1,10 @@
 [
   {
-    "key": "2026-10-11-ep1-script",
-    "created": "2026-10-11T12:16:03Z",
-    "op": "update",
-    "id": "8b2e9f6a-51e3-4b5b-a4ee-8e1fafb50b24",
-    "fields": {
-      "script": "## Format\nMicro vlog, about 40 seconds. Vertical, 4K 30fps. Lock exposure and focus on your face. Face a window. Don't show inbox contents, Rexona documents or readable work screens.\n\n## Script\n**0:00–0:03 — To camera, close, coffee in hand, morning light. Start talking straight away.**\n\"Monday. Honest truth? Work feels overwhelming right now.\"\nOn screen: *Monday. Honest truth?*\n\n**0:03–0:09 — Last week: the lying-down photo, then 1 second of Deadly Dozen footage.**\nVoiceover: \"Last week my body pulled the handbrake. A week out of the office.\"\nOn screen: *Last week.*\n\n**0:09–0:17 — Catch-up, quick cuts every 1.5–2 seconds: laptop opening, phone buzzing, calendar from a distance (not readable), walking into the office.**\nVoiceover: \"So this week is catch-up. Inbox. Meetings. Everything that waited.\"\n\n**0:17–0:28 — Your method: kettle, grind, pour with the Coastal bag in frame. Then the notebook, overhead, writing three things by hand.**\nVoiceover: \"So I'm keeping it simple. First cup. Three things on paper. One at a time.\"\nOn screen: *1. 2. 3.* appearing as you write. Write your real three, e.g. \"Clear the urgent. Team catch-up. Rehab session.\"\n\n**0:28–0:33 — The tease: out the door, keys, car or office lift.**\nVoiceover: \"There's fun stuff on the horizon.\"\nOn screen: *More soon.*\n\n**0:33–0:40 — To camera again, different spot (car or desk), small smile.**\n\"Time to get after it.\"\nOn screen: *More life. Less excuses.*\n\n## Shoot list\n- [ ] Tonight: notebook overhead, writing three things\n- [ ] Tonight: laptop opening, phone buzzing, calendar from a distance\n- [ ] Morning: opening line to camera (3 takes)\n- [ ] Morning: kettle, grind, pour with the Coastal bag\n- [ ] Morning: out the door, keys, car or lift\n- [ ] Morning: closing line to camera (3 takes)\n- [ ] Have ready: lying-down photo and Deadly Dozen clip\n\n## Edit\n- [ ] Open on your face at frame one, no intro\n- [ ] Burned-in captions for every spoken line\n- [ ] Music low under the voice (about 15%)\n- [ ] Cover frame: you to camera, \"Monday. Honest truth?\"\n- [ ] No confidential work details visible\n\n## Before posting\n- [ ] Keep it at \"overwhelming\", not \"burnt out\"\n- [ ] Post at 10:00 and reply to comments in the first hour\n",
-      "stage": "Scripted"
-    }
-  },
-  {
-    "key": "2026-10-11-boxer-5km",
-    "created": "2026-10-11T12:16:03Z",
-    "op": "insert",
-    "fields": {
-      "post_date": "2026-10-18",
-      "slot": "Weekend",
-      "title": "Boxer 5km: supporting the Rexona Move Club (Stories)",
-      "series": "Live the brand",
-      "format": "Story",
-      "lane": "Live the brand",
-      "stage": "Scripted",
-      "hook": "First race I'm watching instead of running. Still here.",
-      "script": "## The idea\nFirst race in months I'm watching, not running. Show up anyway, in the Move Club's corner. Honest, not sad.\n\n## Stories (in order)\n1. **Early, to camera, warm-up area.** \"First race I'm watching instead of running. Still here.\"\n2. **The crew before the start:** Move Club shirts, a team photo, quick hellos.\n3. **Start line:** the gun or countdown, 5 seconds.\n4. **Out on the course:** cheering from the side, 2–3 short clips.\n5. **Finish line:** team members finishing, high fives, medals.\n6. **To camera, after.** \"Different kind of hard, watching from the side. Proud of this crew.\"\n7. **Sign-off:** \"More life. Less excuses.\" Add a question sticker: \"How do you stay in it when you're sidelined?\"\n\n## Shoot list (also for Ep. 2)\n- [ ] Opening line to camera (2 takes)\n- [ ] Crew before the start\n- [ ] Start line\n- [ ] 2–3 cheering clips from the side\n- [ ] Finish-line moments\n- [ ] Closing line to camera (2 takes)\n- [ ] Keep a few clips unposted for Monday's Ep. 2\n\n## Before posting\n- [ ] Tag @rexona_sa and the members you film\n- [ ] Ask people before you post them\n- [ ] Rexona OK on brand content\n- [ ] No running, no jumping. Rehab rules apply.\n",
-      "notes": "Not running (pinched nerve). Film extra clips for Mon 19 Ep. 2."
-    }
-  },
-  {
-    "key": "2026-10-11-ep2-script",
-    "created": "2026-10-11T12:16:03Z",
-    "op": "update",
-    "id": "0febc442-03f4-4234-b84b-433ba312a989",
-    "fields": {
-      "hook": "I wasn't racing on Sunday. I wasn't spectating either.",
-      "script": "## Format\nMicro vlog, about 40 seconds. Built mostly from Sunday's Boxer 5km footage. Vertical.\n\n## Script\n**0:00–0:03: To camera, close.**\n\"I wasn't racing on Sunday. I wasn't spectating either.\"\nOn screen: *Boxer 5km. Not racing.*\n\n**0:03–0:12: Sideline footage, cuts every 1.5–2 seconds: the crew at the start, the gun, you cheering.**\nVoiceover: \"Pinched nerve. Six weeks of rehab. So I showed up for the Rexona Move Club instead.\"\n\n**0:12–0:22: The team finishing, high fives, medals.**\nVoiceover: \"Watching them finish hit different. Every one of them showed up.\"\n\n**0:22–0:30: Rehab check-in: a stretch or a physio exercise at home.**\nVoiceover: \"Keep your squad close. Sometimes you're the one in their corner.\"\nOn screen: *Rehab: week 1 done.*\n\n**0:30–0:38: To camera again.**\n\"I'll be back on that start line. Until then, I'm in your corner.\"\nOn screen: *More life. Less excuses.*\n\n## Edit\n- [ ] Open on your face at frame one\n- [ ] Burned-in captions for every spoken line\n- [ ] Music low under the voice\n- [ ] Cover frame: you to camera, \"I wasn't racing on Sunday.\"\n\n## Before posting\n- [ ] Collab invite to @rexona_sa (if Rexona approves)\n- [ ] Tag the members on screen\n- [ ] Health detail stays at \"pinched nerve\"\n- [ ] Post at 10:00 and reply to comments in the first hour\n",
-      "notes": "Built from Sunday's Boxer 5km footage. Lesson: keep your squad close. Sometimes you're the one in their corner.",
-      "stage": "Scripted"
-    }
-  },
-  {
-    "key": "2026-10-12-boxer-lane",
-    "created": "2026-10-12T17:39:14Z",
+    "key": "p2-park-future",
+    "created": "2026-10-16T13:14:47Z",
     "op": "update",
     "where": {
-      "notion_id": "eq.2026-10-11-boxer-5km"
-    },
-    "fields": {
-      "series": "Live the brand",
-      "lane": "Live the brand"
-    }
-  },
-  {
-    "key": "2026-10-12-park-business-athlete",
-    "created": "2026-10-12T17:39:14Z",
-    "op": "update",
-    "where": {
-      "series": "eq.Business Athlete",
-      "post_date": "gte.2026-10-13",
+      "post_date": "gte.2026-10-17",
       "stage": "in.(Idea,Scripted)"
     },
     "fields": {
@@ -64,189 +12,14 @@
     }
   },
   {
-    "key": "2026-10-12-rehab-is-the-comeback",
-    "created": "2026-10-12T17:39:14Z",
+    "key": "p2-park-r500",
+    "created": "2026-10-16T13:14:47Z",
     "op": "update",
     "where": {
-      "series": "eq.The Rehab"
+      "notion_id": "eq.bank-r500-saturday"
     },
     "fields": {
-      "series": "The Comeback",
-      "lane": "The Comeback"
-    }
-  },
-  {
-    "key": "2026-10-12-morning-mission-1",
-    "created": "2026-10-12T17:39:14Z",
-    "op": "insert",
-    "fields": {
-      "post_date": "2026-10-14",
-      "slot": "Wed 10:00",
-      "title": "Morning Mission #1: Protect your morning",
-      "series": "Morning Mission",
-      "format": "Reel",
-      "lane": "Morning Missions",
-      "stage": "Scripted",
-      "hook": "My day begins long before the sun rises.",
-      "script": "## The idea\nProtect your morning. The one part of the day that's yours, before the inbox gets a say.\n\n## Format\nReel, 25–30 seconds. Film it Tuesday or Wednesday at sunrise (around 05:15). Walking only: rehab rules apply.\n\n## Script\n**0:00–0:03: Dark sky, the beach path, wide.**\nOn screen: *My day begins long before the sun rises.*\n\n**0:03–0:08: Feet on the sand, walking. Close.**\nOn screen: *05:15. Before the inbox.*\n\n**0:08–0:15: Flask pour on the beach, the Coastal bag in frame. Steam against the light.**\nOn screen: *First cup. No phone.*\n\n**0:15–0:21: Sitting, notebook on your knee, writing three things. Sun breaking behind.**\nOn screen: *Three things. That's it.*\n\n**0:21–0:28: To camera, sun behind you.**\n\"Protect your morning. It's the one part of the day that's yours.\"\nOn screen: *More life. Less excuses.*\n\n## Caption\nMy day begins long before the sun rises. No phone, first cup, three things on paper. Then the world can have me. What's your non-negotiable morning? ☕🌅\n@ccroastersza (paid partnership label if gifted)\n\n## Carousel version (if you'd rather post photos)\n1. Sunrise, wide: \"Protect your morning.\"\n2. Beach path in the dark: \"05:15. Before the inbox.\"\n3. Flask pour: \"First cup. No phone.\"\n4. Notebook: \"Three things. That's it.\"\n5. You, sun behind: \"What's yours?\"\n\n## Shoot list\n- [ ] Beach path, still dark (wide)\n- [ ] Feet on sand (close)\n- [ ] Flask pour with steam, Coastal bag in frame\n- [ ] Notebook, three things, sun behind\n- [ ] Line to camera (3 takes)\n- [ ] 3–4 still photos for the carousel version\n",
-      "notes": "Film Tue or Wed at sunrise. Replaces Business Athlete #1 (parked)."
-    }
-  },
-  {
-    "key": "2026-10-12-morning-mission-2",
-    "created": "2026-10-12T17:39:14Z",
-    "op": "insert",
-    "fields": {
-      "post_date": "2026-10-28",
-      "slot": "Wed 10:00",
-      "title": "Morning Mission #2: Still showing up at 6",
-      "series": "Morning Mission",
-      "format": "Reel",
-      "lane": "Morning Missions",
-      "stage": "Idea",
-      "hook": "Can't run. Still showing up at 6.",
-      "script": "## The idea\nSunrise walk at the time you'd normally run. \"Can't run. Still showing up at 6.\"\n\n## Beats\n- The alarm, the same time as a run day\n- Walking the Umhlanga promenade, the lighthouse at first light\n- First cup on the way back\n- To camera: \"The run will come back. The habit can't go anywhere.\"\n\n## Shoot list\n- [ ] Alarm / shoes on\n- [ ] Promenade wide, lighthouse\n- [ ] Walking, close\n- [ ] First cup\n- [ ] Line to camera\n",
-      "notes": "Walking only. Check with your physio first."
-    }
-  },
-  {
-    "key": "2026-10-12b-mm2-move",
-    "created": "2026-10-12T18:06:25Z",
-    "op": "update",
-    "where": {
-      "notion_id": "eq.2026-10-12-morning-mission-2"
-    },
-    "fields": {
-      "post_date": "2026-10-28"
-    }
-  },
-  {
-    "key": "2026-10-12b-intro-post",
-    "created": "2026-10-12T18:06:25Z",
-    "op": "insert",
-    "fields": {
-      "post_date": "2026-10-21",
-      "slot": "Wed 10:00",
-      "title": "A proper introduction (pin it)",
-      "series": "Intro",
-      "format": "Carousel",
-      "lane": "Morning Missions",
-      "stage": "Idea",
-      "hook": "A proper introduction feels overdue…",
-      "script": "## The idea\nNew faces are arriving (Boxer Stories, Ep. 2). Tell them who you are and what they're following. Pin it.\n\n## Slides (one line each, on your own photos)\n1. You at sunrise: \"A proper introduction feels overdue…\"\n2. \"I'm Gareth. Umhlanga. Dad. I make brands for a living.\"\n3. \"My day begins long before the sun rises.\"\n4. \"Right now: a pinched nerve and a 6-week comeback.\"\n5. \"Here: Morning Missions, The Comeback, and the Move Club.\"\n6. \"More life. Less excuses. Say hi below 👋\"\n\n## Caption\nShort. Ask people where they're following from.\n\n## After posting\n- [ ] Pin it, with Comeback week 1 and a Coastal post\n- [ ] Reply to every comment that day",
-      "notes": "Neil Wash's intro post pulled ~9× his normal comments."
-    }
-  },
-  {
-    "key": "2026-10-12b-deadly-dozen",
-    "created": "2026-10-12T18:06:25Z",
-    "op": "insert",
-    "fields": {
-      "post_date": "2026-10-24",
-      "slot": "Weekend",
-      "title": "Deadly Dozen Durban: from the sideline (Stories)",
-      "series": "Live the brand",
-      "format": "Story",
-      "lane": "Live the brand",
-      "stage": "Idea",
-      "hook": "Last time this race broke me. This time I'm on the other side.",
-      "script": "## The idea\nThe race you pulled out of, now watched from the sideline, with Rexona as sponsor. The strongest story of the month: keep clips for Monday's Ep. 3.\n\n## Stories\n1. Early, to camera: \"Last time this race broke me. This time I'm on the other side.\"\n2. The Rexona set-up and the crew before the start\n3. The obstacles, people suffering and sending it\n4. Finish line, Move Club members\n5. To camera: \"I'll be back on this start line.\"\n\n## Optional evening post\nOne photo, one line (Neil-style receipt): \"Some days you race. Some days you're the reason someone finishes.\"\n\n## Before posting\n- [ ] Rexona sign-off on sponsor content\n- [ ] Ask before filming people\n- [ ] Rehab rules: no jumping in",
-      "notes": "Rexona is a sponsor. Bank clips for Mon 26 Ep. 3."
-    }
-  },
-  {
-    "key": "2026-10-12b-ep3",
-    "created": "2026-10-12T18:06:25Z",
-    "op": "update",
-    "where": {
-      "post_date": "eq.2026-10-26",
-      "series": "eq.More Life"
-    },
-    "fields": {
-      "hook": "Last time this race broke me. This time I watched.",
-      "notes": "Ep. 3 = Deadly Dozen Durban from the sideline. The race that broke you, from the other side. End on: I'll be back on that start line."
-    }
-  },
-  {
-    "key": "2026-10-12b-mm3",
-    "created": "2026-10-12T18:06:25Z",
-    "op": "insert",
-    "fields": {
-      "post_date": "2026-11-04",
-      "slot": "Wed 10:00",
-      "title": "Morning Mission #3: First cup somewhere new",
-      "series": "Morning Mission",
-      "format": "Reel",
-      "lane": "Morning Missions",
-      "stage": "Idea",
-      "hook": "Same coffee. New view. Every morning this week…",
-      "script": "## The idea\nOne week, a different sunrise spot every morning for your first cup: the lighthouse, the pier, the promenade, a beach you never stop at. Five mornings make five shots and a natural arc.\n\n## Format\nReel (5 spots × 4 seconds) or a one-line photo carousel.\n\n## Shoot list (week of 26 Oct)\n- [ ] Mon: lighthouse\n- [ ] Tue: pier\n- [ ] Wed: promenade\n- [ ] Thu: a beach you never stop at\n- [ ] Fri: your pick, plus a line to camera\n\n## Before posting\n- [ ] Coastal bag in frame, never the subject\n- [ ] Paid partnership label if the coffee was gifted",
-      "notes": "Replaces the roastery idea (that visit is off)."
-    }
-  },
-  {
-    "key": "2026-10-12b-mm4",
-    "created": "2026-10-12T18:06:25Z",
-    "op": "insert",
-    "fields": {
-      "post_date": "2026-11-11",
-      "slot": "Wed 10:00",
-      "title": "Morning Mission #4: A week with no phone before 7",
-      "series": "Morning Mission",
-      "format": "Carousel",
-      "lane": "Morning Missions",
-      "stage": "Idea",
-      "hook": "No phone before 7. For a week…",
-      "script": "Do it the week of 2 Nov. One photo a day with one honest line. Last slide: what changed.",
-      "notes": "One-line photo carousel format."
-    }
-  },
-  {
-    "key": "2026-10-12b-half-day",
-    "created": "2026-10-12T18:06:25Z",
-    "op": "insert",
-    "fields": {
-      "post_date": "2026-11-15",
-      "slot": "Weekend",
-      "title": "Today was meant to be my half marathon (Stories + one photo)",
-      "series": "The Comeback",
-      "format": "Story",
-      "lane": "The Comeback",
-      "stage": "Idea",
-      "hook": "Today was meant to be 21km.",
-      "script": "A sunrise walk at race-start time instead. One photo, one line: \"Today was meant to be 21km. It'll keep.\"",
-      "notes": "15 Nov was the half you'd entered."
-    }
-  },
-  {
-    "key": "2026-10-12b-mm5",
-    "created": "2026-10-12T18:06:25Z",
-    "op": "insert",
-    "fields": {
-      "post_date": "2026-11-18",
-      "slot": "Wed 10:00",
-      "title": "Morning Mission #5",
-      "series": "Morning Mission",
-      "format": "Reel",
-      "lane": "Morning Missions",
-      "stage": "Idea",
-      "hook": "",
-      "script": "Open slot: pick from the audience poll (two options in Stories the week before).",
-      "notes": "Let followers choose the mission."
-    }
-  },
-  {
-    "key": "2026-10-12c-mm3-swap",
-    "created": "2026-10-12T18:21:06Z",
-    "op": "update",
-    "where": {
-      "notion_id": "eq.2026-10-12b-mm3"
-    },
-    "fields": {
-      "title": "Morning Mission #3: First cup somewhere new",
-      "hook": "Same coffee. New view. Every morning this week…",
-      "script": "## The idea\nOne week, a different sunrise spot every morning for your first cup: the lighthouse, the pier, the promenade, a beach you never stop at. Five mornings make five shots and a natural arc.\n\n## Format\nReel (5 spots × 4 seconds) or a one-line photo carousel.\n\n## Shoot list (week of 26 Oct)\n- [ ] Mon: lighthouse\n- [ ] Tue: pier\n- [ ] Wed: promenade\n- [ ] Thu: a beach you never stop at\n- [ ] Fri: your pick, plus a line to camera\n\n## Before posting\n- [ ] Coastal bag in frame, never the subject\n- [ ] Paid partnership label if the coffee was gifted",
-      "notes": "Replaces the roastery idea (that visit is off)."
+      "stage": "Parked"
     }
   },
   {
@@ -682,22 +455,6 @@
     }
   },
   {
-    "key": "bank-r500-saturday",
-    "created": "2026-10-16T13:06:50Z",
-    "op": "insert",
-    "fields": {
-      "title": "Bank: The R500 Saturday in Umhlanga",
-      "series": "More Life",
-      "lane": "Live the brand",
-      "format": "Reel",
-      "hook": "How far does R500 go on a Saturday in Umhlanga?",
-      "script": "Coffee, breakfast, beach, a family activity, the braai shop, with a running total on screen.",
-      "notes": "Rosie's 'what I spend in a day' (40k views on a recent one).",
-      "stage": "Idea",
-      "slot": "Bank"
-    }
-  },
-  {
     "key": "bank-move-club-session",
     "created": "2026-10-16T13:06:50Z",
     "op": "insert",
@@ -711,6 +468,431 @@
       "notes": "Community plus living the brand, and it uses the new gym.",
       "stage": "Idea",
       "slot": "Bank"
+    }
+  },
+  {
+    "key": "p2-sat17",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-17",
+      "slot": "Weekend",
+      "title": "Sunrise walk, coffee, braai (Stories + capture)",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Story",
+      "hook": "",
+      "script": "## Stories through the day\n- Sunrise beach walk, first cup, breakfast, braai at dusk\n\n## Capture for later (the important bit)\n- [ ] Sunrise wide + feet on sand + the pour → Wed 28 Morning Mission\n- [ ] 3–4 stills for Wed 21 intro post\n- [ ] 2 min of home rehab exercises → Thu 22 Comeback\n- [ ] Braai fire at dusk → Sunday dump",
+      "notes": "",
+      "stage": "Scripted"
+    }
+  },
+  {
+    "key": "p2-sun18-stories",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-18",
+      "slot": "Weekend",
+      "title": "Boxer 5km from the sideline (Stories)",
+      "series": "Live the brand",
+      "lane": "Live the brand",
+      "format": "Story",
+      "hook": "First race I'm watching instead of running. Still here.",
+      "script": "- [ ] To camera at the start\n- [ ] Move Club crew, start, finish\n- [ ] 'Different kind of hard, watching from the side.'\n- [ ] Tag @rexona_sa + people (ask first)",
+      "notes": "",
+      "stage": "Scripted"
+    }
+  },
+  {
+    "key": "p2-sun18-dump",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-18",
+      "slot": "Sun 18:00",
+      "title": "More Life, Week 42",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Carousel",
+      "hook": "Week 42. Couldn't run. Still showed up…",
+      "script": "## How\n- 8–10 photos from the week, in order\n- One short line per photo in the caption (emoji bullets)\n- First slide: your best photo with \"Week 42\" on it\n- Post Sunday at 18:00, straight from your camera roll. No editing.\n\n## This week\n🌅 sunrise walk · ☕ first cup · 🏃 Boxer 5km from the sideline · 🔥 braai to close it out",
+      "notes": "",
+      "stage": "Scripted"
+    }
+  },
+  {
+    "key": "p2-wed21-intro",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-21",
+      "slot": "Wed 10:00",
+      "title": "A proper introduction (pin it)",
+      "series": "Intro",
+      "lane": "Morning Missions",
+      "format": "Carousel",
+      "hook": "A proper introduction feels overdue…",
+      "script": "1. \"A proper introduction feels overdue…\"\n2. \"I'm Gareth. Umhlanga. Dad. I tell stories for a living.\"\n3. \"My day begins long before the sun rises.\"\n4. \"Right now: a pinched nerve and a 6-week comeback.\"\n5. \"Here: sunrise missions, the comeback, and the Move Club.\"\n6. \"More life. Less excuses. Say hi 👋\"\n\n- [ ] Pin it\n- [ ] Reply to every comment",
+      "notes": "",
+      "stage": "Scripted"
+    }
+  },
+  {
+    "key": "p2-thu22",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-22",
+      "slot": "Thu 10:00",
+      "title": "The Comeback, Week 2: Rehab exercises that look easy (they're not)",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Reel",
+      "hook": "These look easy. They are not…",
+      "script": "3–4 exercises from Saturday's clips, honest captions ('looks like nothing / feels like a marathon').\n- [ ] Physio OK on sharing the exercises",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-fri23",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-23",
+      "slot": "Fri (optional)",
+      "title": "Line: The sideline teaches you things the start line can't.",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Photo, one line",
+      "hook": "The sideline teaches you things the start line can't.",
+      "script": "A Boxer sideline photo, the line on it.",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-sat24",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-24",
+      "slot": "Weekend",
+      "title": "Deadly Dozen Durban from the sideline (Stories)",
+      "series": "Live the brand",
+      "lane": "Live the brand",
+      "format": "Story",
+      "hook": "Last time this race broke me. This time I'm on the other side.",
+      "script": "- [ ] To camera early\n- [ ] Rexona set-up, obstacles, finish, Move Club\n- [ ] 'I'll be back on this start line.'\n- [ ] Rexona sign-off (sponsor)\n- [ ] Shoot lots of stills for Sunday",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-sun25",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-25",
+      "slot": "Sun 18:00",
+      "title": "More Life, Week 43: Deadly Dozen from the other side",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Carousel",
+      "hook": "Last time this race broke me. This time I watched…",
+      "script": "## How\n- 8–10 photos from the week, in order\n- One short line per photo in the caption (emoji bullets)\n- First slide: your best photo with \"Week 43\" on it\n- Post Sunday at 18:00, straight from your camera roll. No editing.\n\n## Last slide\n'I'll be back on this start line.'",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-wed28",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-28",
+      "slot": "Wed 10:00",
+      "title": "Morning Mission: Still showing up at 6",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel",
+      "hook": "Can't run. Still showing up at 6.",
+      "script": "Built from Saturday 17's sunrise clips. Alarm → promenade → lighthouse → first cup. To camera: 'The run will come back. The habit can't go anywhere.'",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-thu29",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-29",
+      "slot": "Thu 10:00",
+      "title": "The Comeback, Week 3: Things nobody tells you about being injured",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Carousel",
+      "hook": "Things nobody tells you about being injured…",
+      "script": "One line per slide: you miss the routine more than the running · watching races is harder than running them · rest is training too · you find out who your crew is.",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-fri30",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-10-30",
+      "slot": "Fri (optional)",
+      "title": "Line: Rest is part of the training.",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Photo, one line",
+      "hook": "Rest is part of the training.",
+      "script": "A quiet photo: coffee, feet up, the beach.",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-sun-nov1",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-01",
+      "slot": "Sun 18:00",
+      "title": "More Life, Week 44: October in 10 photos",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Carousel",
+      "hook": "October. The month I couldn't run…",
+      "script": "## How\n- 8–10 photos from the week, in order\n- One short line per photo in the caption (emoji bullets)\n- First slide: your best photo with \"Week 44\" on it\n- Post Sunday at 18:00, straight from your camera roll. No editing.\n\n## Monthly version\n10 photos from October, one honest lesson at the end.\n\n## Shoot this week for Wed 4 Nov\n- [ ] Coffee somewhere new each morning (5 spots)",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-wed4",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-04",
+      "slot": "Wed 10:00",
+      "title": "Morning Mission: Coffee with a view, ranked",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel",
+      "hook": "Ranking the best coffee views in Umhlanga…",
+      "script": "5 spots shot last week, counted down from 5 to 1. Tag each spot. Coastal in the cup, never the subject.\n- [ ] Paid partnership label if gifted",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-thu5",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-05",
+      "slot": "Thu 10:00",
+      "title": "The Comeback, Week 4: Rehab, but the kids joined in",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Reel",
+      "hook": "Tried to do my rehab. Got coached instead…",
+      "script": "Home session with the kids copying or timing you. Faces only if you're comfortable.",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-fri6",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-06",
+      "slot": "Fri (optional)",
+      "title": "Braai roulette: the kids pick what goes on the fire",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Reel",
+      "hook": "Let the kids pick what goes on the braai…",
+      "script": "Spin, point or a hat. Cook whatever comes up. Verdicts at the end. Shoot it on a weekend, post Friday.",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-sun8",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-08",
+      "slot": "Sun 18:00",
+      "title": "More Life, Week 45",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Carousel",
+      "hook": "Week 45…",
+      "script": "## How\n- 8–10 photos from the week, in order\n- One short line per photo in the caption (emoji bullets)\n- First slide: your best photo with \"Week 45\" on it\n- Post Sunday at 18:00, straight from your camera roll. No editing.\n\n## This week\nAlso: no phone before 7, all week (for Wed 18 Nov).",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-wed11",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-11",
+      "slot": "Wed 10:00",
+      "title": "Morning Mission: Sunrise score",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel",
+      "hook": "Rating every sunrise this week out of 10…",
+      "script": "Five mornings (shoot the week of 2 Nov), 4 seconds each, a score and a one-line verdict. Ask people to score the last one.",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-thu12",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-12",
+      "slot": "Thu 10:00",
+      "title": "The Comeback, Week 5: The countdown",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Reel",
+      "hook": "X weeks to my first run back…",
+      "script": "If your physio has given a date, start the countdown here: same frame every week, number dropping. If not: 'Everything I did instead of running'.",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-sun15",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-15",
+      "slot": "Sun 18:00",
+      "title": "More Life, Week 46: Today was meant to be 21km",
+      "series": "More Life",
+      "lane": "The Comeback",
+      "format": "Carousel",
+      "hook": "Today was meant to be 21km.",
+      "script": "## How\n- 8–10 photos from the week, in order\n- One short line per photo in the caption (emoji bullets)\n- First slide: your best photo with \"Week 46\" on it\n- Post Sunday at 18:00, straight from your camera roll. No editing.\n\n## The story\nA sunrise walk at the half marathon's start time. Last slide: 'It'll keep.'\n- [ ] Stories at race-start time",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-wed18",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-18",
+      "slot": "Wed 10:00",
+      "title": "Morning Mission: A week with no phone before 7",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Carousel",
+      "hook": "No phone before 7. For a week…",
+      "script": "One photo a day from the week of 2 Nov, one honest line each. Last slide: what changed, and whether you'll keep it.",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-thu19",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-19",
+      "slot": "Thu 10:00",
+      "title": "The Comeback, Week 6: The announcement",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Reel",
+      "hook": "Six weeks. Here's what's next…",
+      "script": "Name your comeback race and the date (physio permitting). The obvious story: back to the Deadly Dozen to finish what broke you.\n- [ ] Physio clearance first",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-sun22",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-22",
+      "slot": "Sun 18:00",
+      "title": "More Life, Week 47",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Carousel",
+      "hook": "Week 47…",
+      "script": "## How\n- 8–10 photos from the week, in order\n- One short line per photo in the caption (emoji bullets)\n- First slide: your best photo with \"Week 47\" on it\n- Post Sunday at 18:00, straight from your camera roll. No editing.\n",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-wed25",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-25",
+      "slot": "Wed 10:00",
+      "title": "Morning Mission: 05:15 vs 07:00",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel (split screen)",
+      "hook": "05:15 vs 07:00…",
+      "script": "Empty beach vs busy, quiet coffee vs rushed, a plan vs the inbox. End: 'Same day. Different start.'",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-thu26",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-26",
+      "slot": "Thu 10:00",
+      "title": "The Comeback: The first run back",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Reel",
+      "hook": "6 weeks. 1 run…",
+      "script": "Only if cleared. Alarm, laces, first steps on the promenade, a smile. Voiceover: the 'running changes how you see everything' piece from the idea bank.",
+      "notes": "",
+      "stage": "Idea"
+    }
+  },
+  {
+    "key": "p2-sun29",
+    "created": "2026-10-16T13:14:47Z",
+    "op": "insert",
+    "fields": {
+      "post_date": "2026-11-29",
+      "slot": "Sun 18:00",
+      "title": "More Life, Week 48: November in 10 photos",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Carousel",
+      "hook": "November. The month I got back…",
+      "script": "## How\n- 8–10 photos from the week, in order\n- One short line per photo in the caption (emoji bullets)\n- First slide: your best photo with \"Week 48\" on it\n- Post Sunday at 18:00, straight from your camera roll. No editing.\n",
+      "notes": "",
+      "stage": "Idea"
     }
   }
 ]
