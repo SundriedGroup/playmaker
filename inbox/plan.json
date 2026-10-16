@@ -248,5 +248,69 @@
       "script": "## The idea\nOne week, a different sunrise spot every morning for your first cup: the lighthouse, the pier, the promenade, a beach you never stop at. Five mornings make five shots and a natural arc.\n\n## Format\nReel (5 spots × 4 seconds) or a one-line photo carousel.\n\n## Shoot list (week of 26 Oct)\n- [ ] Mon: lighthouse\n- [ ] Tue: pier\n- [ ] Wed: promenade\n- [ ] Thu: a beach you never stop at\n- [ ] Fri: your pick, plus a line to camera\n\n## Before posting\n- [ ] Coastal bag in frame, never the subject\n- [ ] Paid partnership label if the coffee was gifted",
       "notes": "Replaces the roastery idea (that visit is off)."
     }
+  },
+  {
+    "key": "bank-rituals",
+    "created": "2026-10-16T12:20:04Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Rituals nobody claps for",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel or photo carousel",
+      "hook": "Rituals are the quiet things no one claps for.",
+      "script": "## Your words\nRituals are the quiet things no one claps for. But they're also the reason you can do big things.\n\nEvery morning, before the road or the office, I start with two things: a moment to reflect and intentionally plan the day, and coffee.\n\nSupported by the best in the business: @ccroastersza.\n\n## Shots\n- [ ] Dark kitchen, kettle on\n- [ ] Notebook: plan the day\n- [ ] The pour, steam, Coastal bag in frame\n- [ ] Out the door: road or office\n\n## Notes\n- Pairs with \"My day begins long before the sun rises.\"\n- Paid partnership label if the coffee is gifted",
+      "notes": "Can be shot any weekend morning.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-why-i-run",
+    "created": "2026-10-16T12:20:04Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Running changes how you see everything",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Reel (voiceover)",
+      "hook": "Most people think running changes their fitness…",
+      "script": "## Voiceover (your words)\nMost people think running changes their fitness. But really, it changes how you see everything.\n\nPeople ask me why I love running so much. The answer is simple. It's not just about the training. It's a way to experience the world: places you've never seen, or the same route you've run a thousand times in your home city. Every time, it's something new.\n\nIt's not the distance or the pace. It's being immersed in your surroundings in a way only you can experience.\n\nUmhlanga is busy. The chaos, the view. But when you're moving through it, the noise goes quiet. And it's beautiful. Just look around.\n\nIt's hard not to enjoy running here. I'm fortunate to call it home.\n\n## Post copy (your words)\nPerspective is either a passport or a prison…\n\nWhen I first started running, I wanted to get into better shape. I thought the biggest change would be my fitness. But it was my perspective and my mindset that changed most.\n\nA new route on the other side of the globe, or the same road I've run 1,000 times: every run offers something unique. A time to reflect and detach, and a chance to experience the world in a different way. A lot of my favourite memories have been on the road, on my own two feet.\n\nI love getting back home. It's one of the best cities to run in: the routes, the views, the people, the community. It doesn't get much better than this.\n\nRunning really is my favourite way to immerse myself in the city.\n\n## Shots\n- [ ] Umhlanga promenade at first light, wide\n- [ ] Moving through the busy bits (traffic, people), then the quiet sea view\n- [ ] Feet, breath, the lighthouse\n\n## Timing\nSave it for your first run back. Or post it during rehab as \"what I miss most\", filmed walking.",
+      "notes": "Your drafted 'why I run' piece.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-morning-mission-coastal",
+    "created": "2026-10-16T12:20:04Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Morning Mission × Coastal Coffee",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel",
+      "hook": "",
+      "script": "A Morning Mission with Coastal properly in it: a sunrise brew on the beach, a flask of Continental.\n\n- [ ] Agree what 'sponsored' means with Coastal (gifted or paid)\n- [ ] Paid partnership label\n- [ ] Collab invite to @ccroastersza",
+      "notes": "Needs a chat with Coastal first.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-run-tour-city",
+    "created": "2026-10-16T12:20:04Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Running, the best way to tour a city",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Reel",
+      "hook": "Honestly, the best way to tour a city…",
+      "script": "Next time you travel, film a run through the city: landmarks, coffee stop, local streets. Text on screen: the km markers.\n\n- [ ] Save for the first trip after rehab",
+      "notes": "Works with any city, including a Durban version for visitors.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
   }
 ]
