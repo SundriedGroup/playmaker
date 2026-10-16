@@ -392,5 +392,325 @@
       "stage": "Idea",
       "slot": "Bank"
     }
+  },
+  {
+    "key": "bank-sun-wk42",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: More Life, Week 42",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Carousel (Sunday)",
+      "hook": "Week 42. Couldn't run. Still showed up…",
+      "script": "Sunday 18:00, this weekend. Sunrise beach walk → first cup → breakfast → Boxer 5km sideline → braai. One line per photo.",
+      "notes": "Rosie posts most of her weekly dumps on Sunday, and Sunday is her best day.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-sun-instead-of-running",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Everything I did instead of running this week",
+      "series": "More Life",
+      "lane": "The Comeback",
+      "format": "Carousel (Sunday)",
+      "hook": "Everything I did this week instead of running…",
+      "script": "Funny, honest list: walked the promenade 4 times, drank too much coffee, watched other people run, did 300 clamshells. A photo for each.",
+      "notes": "Hercules' self-deprecating posts are his biggest.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-sun-deadly-dozen",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Deadly Dozen Durban, from the other side",
+      "series": "Live the brand",
+      "lane": "Live the brand",
+      "format": "Carousel (Sunday)",
+      "hook": "Last time this race broke me. This time I watched…",
+      "script": "Sun 25 Oct. Photos from Saturday's race: the set-up, the obstacles, the finish, the Move Club. Last slide: 'I'll be back on this start line.'",
+      "notes": "The race-day 'receipt' post: Neil's best ever.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-sun-month-dump",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: October in 10 photos",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Carousel (Sunday)",
+      "hook": "October. The month I couldn't run…",
+      "script": "Last Sunday of the month: 10 photos, one line each, plus one honest lesson.",
+      "notes": "Hercules posts a monthly reflection.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-wed-sunrise-score",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Sunrise score: rating Umhlanga sunrises out of 10",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel",
+      "hook": "Rating every sunrise this week out of 10…",
+      "script": "Five mornings, five 4-second clips, a score and a one-line verdict on each ('6/10, cloud tried its best'). Ask people to score the last one.",
+      "notes": "A light, funny, repeatable series.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-wed-coffee-ranked",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Coffee with a view, ranked",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel",
+      "hook": "Ranking the best coffee views in Umhlanga…",
+      "script": "5 spots, counted down from 5 to 1. Tag each café. Coastal in the cup.",
+      "notes": "Rankings get saved and shared, and you can tag local spots.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-wed-first-20-min",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: The first 20 minutes of my day",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel (POV, no talking)",
+      "hook": "The first 20 minutes of my day…",
+      "script": "POV: alarm, kettle, grind, pour, notebook, door. Natural sound only. One line on screen at the end: 'Protect your morning.'",
+      "notes": "Low effort. The morning does the work.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-wed-0515-vs-0700",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: What 05:15 gets you that 07:00 doesn't",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel (split screen)",
+      "hook": "05:15 vs 07:00…",
+      "script": "Split screen: an empty beach vs a busy one, quiet coffee vs a rushed one, a plan vs the inbox. End: 'Same day. Different start.'",
+      "notes": "A relatable comparison format.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-wed-no-phone-results",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: 30 days with no phone before 7: what changed",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Carousel",
+      "hook": "30 days. No phone before 7…",
+      "script": "Results post after the challenge. One line per slide: what got better, what was hard, whether you'll keep it.",
+      "notes": "Pays off Mission #4.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-thu-rehab-looks-easy",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Rehab exercises that look easy (they're not)",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Reel",
+      "hook": "These look easy. They are not…",
+      "script": "Three to four exercises with honest captions ('looks like nothing / feels like a marathon'). Check with your physio before sharing specifics.",
+      "notes": "Humour plus something useful, so people save it.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-thu-injury-truths",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Things nobody tells you about being injured",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Carousel",
+      "hook": "Things nobody tells you about being injured…",
+      "script": "One line per slide: you miss the routine more than the running; watching races is harder than running them; rest is training too; you find out who your crew is.",
+      "notes": "One-line carousel: Neil's and Hercules' cheapest format.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-thu-countdown",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: X weeks to my first run back",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Reel",
+      "hook": "3 weeks to my first run back…",
+      "script": "Turn the Thursday update into a countdown once your physio gives you a date. Same frame every week, with the number dropping.",
+      "notes": "Hercules: '7 weeks out from Moab 240'.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-thu-kids-rehab",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Rehab, but the kids joined in",
+      "series": "The Comeback",
+      "lane": "Live the brand",
+      "format": "Reel",
+      "hook": "Tried to do my rehab. Got coached instead…",
+      "script": "Your home rehab session with the kids copying, 'helping' or timing you. Faces only if you're comfortable; backs and hands work too.",
+      "notes": "Family plus humour: very shareable.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-thu-first-run-back",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: The first run back",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Reel",
+      "hook": "6 weeks. 1 run…",
+      "script": "The payoff. Alarm, laces, the first steps on the promenade, breath, a smile to camera. Pair it with the 'running changes how you see everything' voiceover.",
+      "notes": "The ending The Comeback builds to.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-fri-line-protect",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Friday line: Protect your morning.",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Photo, one line",
+      "hook": "Protect your morning.",
+      "script": "Sunrise photo, the line on the image. Caption: one sentence and a question.",
+      "notes": "Neil's one-line photos beat his other posts.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-fri-line-sideline",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Friday line: The sideline teaches you things the start line can't.",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Photo, one line",
+      "hook": "The sideline teaches you things the start line can't.",
+      "script": "A photo from the Boxer or Deadly Dozen sideline. One line.",
+      "notes": "Pairs with the race weekends.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-fri-line-rest",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Friday line: Rest is part of the training.",
+      "series": "The Comeback",
+      "lane": "The Comeback",
+      "format": "Photo, one line",
+      "hook": "Rest is part of the training.",
+      "script": "A quiet photo: coffee, feet up, the beach. One line.",
+      "notes": "Low effort, rehab-true.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-braai-roulette",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Braai roulette: the kids pick what goes on the fire",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Reel",
+      "hook": "Let the kids pick what goes on the braai…",
+      "script": "The kids spin, point or draw from a hat; you cook whatever comes up. Verdicts at the end. Very South African, very you.",
+      "notes": "Rosie's dinner roulette: 723k views.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-r500-saturday",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: The R500 Saturday in Umhlanga",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Reel",
+      "hook": "How far does R500 go on a Saturday in Umhlanga?",
+      "script": "Coffee, breakfast, beach, a family activity, the braai shop, with a running total on screen.",
+      "notes": "Rosie's 'what I spend in a day' (40k views on a recent one).",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-move-club-session",
+    "created": "2026-10-16T13:06:50Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Rexona Move Club: my rehab-friendly session",
+      "series": "Live the brand",
+      "lane": "Live the brand",
+      "format": "Reel",
+      "hook": "Can't run, so I brought the Move Club to my level…",
+      "script": "A low-impact session with the team at the new gym. Community, laughs, the space in use. Get Rexona sign-off.",
+      "notes": "Community plus living the brand, and it uses the new gym.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
   }
 ]
