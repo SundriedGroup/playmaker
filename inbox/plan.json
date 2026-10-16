@@ -312,5 +312,85 @@
       "stage": "Idea",
       "slot": "Bank"
     }
+  },
+  {
+    "key": "bank-weekly-dump",
+    "created": "2026-10-16T12:41:58Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Weekly dump (Monday on busy weeks)",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Carousel",
+      "hook": "Week 42. What a week…",
+      "script": "## The idea\nRosie Lewis's best format (about 960 likes typically, double her Reels). Swap it in for the Monday vlog whenever the week was too full to edit.\n\n## How\n- 8–10 photos from the week and weekend, in order\n- One short line per photo in the caption, emoji bullets:\n  🌅 sunrise beach walk, first cup\n  🏃 Boxer 5km from the sideline\n  🔥 braai to close the weekend\n- Number the weeks so it becomes a series\n\n## Time\n15 minutes, Sunday night.",
+      "notes": "From the creator scrape: the cheapest format with the biggest return.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-office-day-food",
+    "created": "2026-10-16T12:41:58Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: What I eat on an office day",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Reel",
+      "hook": "Everything I eat on an office day, as a dad trying to get fitter…",
+      "script": "## The idea\nRosie's \"what I eat at my 9–5\" got 257k views. Yours: the real office-day version, from the first cup to dinner.\n\n## Shots\n- [ ] First cup at 5am\n- [ ] Breakfast\n- [ ] Office lunch (no screens or documents in the background)\n- [ ] Snack\n- [ ] Dinner, or the braai\n\n## Rules\n- No calorie numbers, just real food\n- Keep work screens and documents out of frame",
+      "notes": "Relatable everyday format.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-corporate-vs-creator",
+    "created": "2026-10-16T12:41:58Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Corporate dad vs creator",
+      "series": "More Life",
+      "lane": "Live the brand",
+      "format": "Reel",
+      "hook": "Corporate by day. Creator before sunrise…",
+      "script": "## The idea\nSplit screen, or quick cuts back and forth: the same day as Head of Content and as a creator. Suit vs sweat, laptop vs camera, school run vs sunrise beach.\n\n## Beats\n- 05:00 creator: beach, camera, coffee\n- 08:00 corporate: office, lanyard, meetings (nothing readable)\n- 17:30 dad: school run, braai\n- To camera: \"Turns out it's the same job. Telling stories.\"\n\n## Before posting\n- [ ] No confidential work details\n- [ ] Rexona OK if any brand is visible",
+      "notes": "Rosie's 'corporate vs content'. Ties to Wednesday's behind-the-lens post.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-umhlanga-in-a-day",
+    "created": "2026-10-16T12:41:58Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: Umhlanga in a day",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel",
+      "hook": "If you've only got one day in Umhlanga…",
+      "script": "## The idea\nYour city as a guide: sunrise at the lighthouse, first cup, the best breakfast spot, the promenade, a sundowner. Works as a save-and-share post for visitors.\n\n## Shots\n- [ ] Lighthouse at sunrise\n- [ ] Coffee\n- [ ] Breakfast spot\n- [ ] Promenade walk\n- [ ] Sunset",
+      "notes": "Guides get saved and shared. Can tag local spots.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
+  },
+  {
+    "key": "bank-walk-for-breakfast",
+    "created": "2026-10-16T12:41:58Z",
+    "op": "insert",
+    "fields": {
+      "title": "Bank: 6am for the best breakfast in town",
+      "series": "Morning Mission",
+      "lane": "Morning Missions",
+      "format": "Reel",
+      "hook": "Up at 5:30 to beat the queue…",
+      "script": "## The idea\nRosie's \"running at 6am for Tokyo's viral pancakes\" got 180k views. Yours: walk now (run after rehab) at sunrise to the best breakfast spot in Durban or Umhlanga. Be first in the door.\n\n## Shots\n- [ ] Alarm\n- [ ] Sunrise route\n- [ ] Arriving first\n- [ ] The food, close\n- [ ] Verdict to camera",
+      "notes": "Walking version during rehab.",
+      "stage": "Idea",
+      "slot": "Bank"
+    }
   }
 ]
