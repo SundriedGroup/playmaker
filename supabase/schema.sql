@@ -33,3 +33,25 @@ create index if not exists post_snapshots_media_idx on public.post_snapshots (me
 -- server only, which bypasses RLS.
 alter table public.account_snapshots enable row level security;
 alter table public.post_snapshots enable row level security;
+
+-- TikTok: the login (one row) and a daily follower snapshot.
+create table if not exists public.tiktok_auth (
+  id int primary key check (id = 1),
+  open_id text,
+  access_token text not null,
+  refresh_token text not null,
+  scope text,
+  access_expires_at timestamptz not null,
+  refresh_expires_at timestamptz not null,
+  updated_at timestamptz not null default now()
+);
+alter table public.tiktok_auth enable row level security;
+
+create table if not exists public.tiktok_snapshots (
+  day date primary key,
+  followers int,
+  likes bigint,
+  videos int,
+  created_at timestamptz not null default now()
+);
+alter table public.tiktok_snapshots enable row level security;

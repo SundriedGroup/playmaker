@@ -117,6 +117,14 @@
     .score-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; }
     .score-grid h2.first-desk { margin-top: 0; }
   }
+  .tt { border-top: 1px solid var(--line); margin-top: 28px; padding-top: 4px; }
+  .tt-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 6px 0 18px; }
+  .tt-tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .tt-tile .v { font: 800 30px/1 var(--display); font-variant-numeric: tabular-nums; }
+  .tt-tile .k { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .tt-grid { display: grid; gap: 18px; }
+  @media (min-width: 1024px) { .tt-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 32px; } .tt-grid .posts { grid-template-columns: minmax(0, 1fr); } }
+  .tt-connect { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
   .splits { width: 100%; border-collapse: collapse; }
   .splits th { font: 500 12px/1 var(--text); color: var(--muted); text-align: right; padding: 0 0 8px; }
   .splits th:first-child { text-align: left; }
@@ -411,6 +419,11 @@
         </div>
       </div>
 
+      <section class="tt" aria-labelledby="ttTitle">
+        <h2 id="ttTitle">TikTok <span class="sub" id="ttSub"></span></h2>
+        <div id="tiktok"><p class="pace">Loading TikTok…</p></div>
+      </section>
+
       <div class="aud-head">
         <h2>Audience</h2>
         <div class="seg" role="radiogroup" aria-label="Which audience">
@@ -638,6 +651,70 @@
     });
   });
 
+
+  // TikTok: its own request, so a TikTok problem never hides your Instagram numbers.
+  function ttConnectBtn(label) {
+    return '<button type="button" class="sm" id="ttConnect">' + label + '</button>';
+  }
+  function renderTikTok(t) {
+    var box = $('tiktok');
+    $('ttSub').textContent = t && t.connected ? '@' + (t.profile.name || '') : '';
+    if (!t || t.configured === false) {
+      box.innerHTML = '<p class="pace">TikTok isn\'t set up yet. Add <b>TIKTOK_CLIENT_KEY</b> and <b>TIKTOK_CLIENT_SECRET</b> in Vercel, then connect here.</p>';
+      return;
+    }
+    if (!t.connected) {
+      box.innerHTML = '<div class="notice tt-connect' + (t.error ? ' warn' : '') + '"><span>' +
+        (t.error ? esc(t.error) : 'Connect your TikTok to see views, likes and followers next to Instagram.') + '</span>' +
+        ttConnectBtn(t.error ? 'Connect again' : 'Connect TikTok') + '</div>';
+      $('ttConnect').addEventListener('click', connectTikTok);
+      return;
+    }
+    var p = t.profile, w = t.thisWeek, l = t.lastWeek;
+    var h = t.history || [], growth = '';
+    if (h.length >= 2) growth = ' <span class="up">+' + fmt(h[h.length - 1].followers - h[0].followers) + ' since ' + day(h[0].date) + '</span>';
+    var rows = [['Views', w.views, l.views], ['Likes', w.likes, l.likes], ['Shares', w.shares, l.shares], ['Comments', w.comments, l.comments], ['Videos', w.videos, l.videos]];
+    var vids = (t.videos || []).slice(0, 8).map(function (v) {
+      var date = new Date(v.timestamp).toLocaleString('en-ZA', { weekday: 'short', day: 'numeric', month: 'short' });
+      var thumb = v.cover ? 'style="background-image:url(\'' + encodeURI(v.cover) + '\')"' : '';
+      return '<a class="post' + (v.views >= 1000 ? ' hit' : '') + '"' + (v.url ? ' href="' + esc(v.url) + '" target="_blank" rel="noopener"' : '') + '>' +
+        '<div class="thumb" ' + thumb + '>' + (v.cover ? '' : 'Video') + '</div>' +
+        '<div style="min-width:0"><div class="when"><span>' + date + '</span></div><div class="line">' + esc(v.title) + '</div>' +
+        '<div class="stats"><span>Likes <b>' + fmt(v.likes) + '</b></span><span>Shares <b>' + fmt(v.shares) + '</b></span><span>Comments <b>' + fmt(v.comments) + '</b></span></div></div>' +
+        '<div class="reach"><div class="v">' + fmt(v.views) + '</div><div class="k">views</div></div></a>';
+    }).join('');
+    box.innerHTML =
+      '<div class="tt-tiles">' +
+        '<div class="tt-tile"><div class="v">' + fmt(p.followers) + '</div><div class="k">followers' + growth + '</div></div>' +
+        '<div class="tt-tile"><div class="v">' + fmt(p.likes) + '</div><div class="k">total likes</div></div>' +
+        '<div class="tt-tile"><div class="v">' + fmt(p.videos) + '</div><div class="k">videos</div></div>' +
+      '</div>' +
+      '<div class="tt-grid"><div><table class="splits"><thead><tr><th scope="col">Videos posted</th><th scope="col">This week</th><th scope="col">Last week</th><th scope="col">Change</th></tr></thead><tbody>' +
+        rows.map(function (r) { return '<tr><td>' + r[0] + '</td><td class="now">' + fmt(r[1]) + '</td><td class="prev">' + fmt(r[2]) + '</td><td class="chg">' + change(r[1], r[2]) + '</td></tr>'; }).join('') +
+        '</tbody></table>' + (w.best ? '<p class="pace">Best this week: “' + esc(w.best.title).slice(0, 60) + '”, ' + fmt(w.best.views) + ' views.</p>' : '') + '</div>' +
+        '<div class="posts">' + (vids || '<p class="pace">No videos yet. Post your first and it shows up here.</p>') + '</div></div>';
+  }
+  function connectTikTok() {
+    fetch('/api/tiktok?action=connect', { headers: { 'x-dashboard-key': store.get() } })
+      .then(function (r) { return r.json(); })
+      .then(function (b) { if (b.url) window.location.href = b.url; else $('tiktok').insertAdjacentHTML('afterbegin', '<div class="notice warn">' + esc(b.error || 'Couldn\'t start connecting.') + '</div>'); });
+  }
+  function loadTikTok() {
+    fetch('/api/tiktok', { headers: { 'x-dashboard-key': store.get() } })
+      .then(function (r) { return r.json().then(function (b) { return { status: r.status, body: b }; }); })
+      .then(function (res) { if (res.status === 200) { window.__pm.tiktok = res.body; renderTikTok(res.body); } else renderTikTok({ configured: true, connected: false, error: res.body.error }); })
+      .catch(function () { $('tiktok').innerHTML = '<p class="pace">TikTok didn\'t load. Tap refresh to try again.</p>'; });
+  }
+  (function () {
+    var q = new URLSearchParams(location.search), st = q.get('tiktok');
+    if (!st) return;
+    var msg = st === 'connected' ? '<div class="notice"><b>TikTok connected.</b> Your numbers are on the Scorecard.</div>'
+      : '<div class="notice warn"><b>TikTok didn\'t connect.</b> ' + esc(q.get('msg') || '') + '</div>';
+    window.__pm.ttMsg = msg;
+    try { localStorage.setItem('playmaker-tab', 'score'); } catch (e) {}
+    history.replaceState(null, '', location.pathname);
+  })();
+
   function render(d) {
     all('.handle').forEach(function (el) { el.textContent = '@' + (d.profile.username || ''); });
     setStamp('Updated ' + new Date(d.generatedAt).toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' }));
@@ -649,6 +726,8 @@
     window.__pm.dashboard = d;
     renderAudience(d);
     renderPosts(d.posts || []);
+    if (window.__pm.ttMsg) { $('banner').innerHTML += window.__pm.ttMsg; window.__pm.ttMsg = ''; }
+    loadTikTok();
     if (window.__pm.onDashboard) window.__pm.onDashboard();
   }
 

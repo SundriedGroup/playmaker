@@ -3,6 +3,7 @@
 const crypto = require('crypto');
 const { getDashboard } = require('../lib/instagram');
 const { saveSnapshot } = require('../lib/store');
+const { getTikTok, saveTikTokSnapshot } = require('../lib/tiktok');
 
 function safeEqual(a, b) {
   const ha = crypto.createHash('sha256').update(String(a)).digest();
@@ -21,8 +22,11 @@ module.exports = async function handler(req, res) {
   try {
     const data = await getDashboard();
     const saved = await saveSnapshot(data);
+    // TikTok is optional: a TikTok problem never stops the Instagram snapshot.
+    let tiktok = null;
+    try { tiktok = await saveTikTokSnapshot(await getTikTok()); } catch (err) { tiktok = { error: err.message }; }
     res.statusCode = 200;
-    return res.end(JSON.stringify({ ok: true, ...saved }));
+    return res.end(JSON.stringify({ ok: true, ...saved, tiktok }));
   } catch (err) {
     res.statusCode = 500;
     return res.end(JSON.stringify({ ok: false, error: err.message }));

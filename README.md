@@ -97,3 +97,18 @@ Claude can add or update Plan rows without database access by committing them to
 - `insert` adds a row once (its `key` is stored in `notion_id`, so it's never added twice).
 - `update` changes a row only if you haven't edited it since the change was written. Your edits always win. Stage only moves forward.
 - Changes older than 21 days are ignored, so the file can simply be replaced each time.
+
+## TikTok
+
+Playmaker reads TikTok through TikTok's own Display API, so it's free and doesn't depend on Metricool.
+
+1. **Create the tables:** run the TikTok part of `supabase/schema.sql` (`tiktok_auth`, `tiktok_snapshots`) in the Supabase SQL editor.
+2. **Create a TikTok app** at developers.tiktok.com → Manage apps → Connect an app.
+   - Add the products **Login Kit** and **Display API**.
+   - Scopes: `user.info.basic`, `user.info.stats`, `video.list`.
+   - Login Kit redirect URI (Web): `https://<your Playmaker address>/api/tiktok-callback`
+   - Use **Sandbox** and add your own TikTok account as a target user, so you can connect without TikTok's app review.
+3. **Add to Vercel:** `TIKTOK_CLIENT_KEY`, `TIKTOK_CLIENT_SECRET` (from the app page), then redeploy.
+4. **Connect:** open the Scorecard and tap **Connect TikTok**.
+
+The login is stored in Supabase and refreshed automatically. The daily snapshot also saves TikTok followers.
