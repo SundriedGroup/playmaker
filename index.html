@@ -117,7 +117,10 @@
     .score-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; }
     .score-grid h2.first-desk { margin-top: 0; }
   }
-  .tt { border-top: 1px solid var(--line); margin-top: 28px; padding-top: 4px; }
+  .platform { display: inline-flex; gap: 4px; padding: 4px; border-radius: 12px; background: var(--raised); border: 1px solid var(--line); margin: 0 0 20px; }
+  .platform button { background: transparent; color: var(--muted); padding: 9px 16px; border-radius: 9px; font-size: 14px; }
+  .platform button[aria-checked="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(14, 42, 43, .12), inset 0 -2px 0 var(--bib); }
+  .platform .pf-n { font-weight: 500; color: var(--muted); margin-left: 4px; font-variant-numeric: tabular-nums; }
   .tt-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 6px 0 18px; }
   .tt-tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
   .tt-tile .v { font: 800 30px/1 var(--display); font-variant-numeric: tabular-nums; }
@@ -392,6 +395,11 @@
     </section>
 
     <section id="viewScore" class="hidden">
+      <div class="platform" role="radiogroup" aria-label="Platform">
+        <button type="button" role="radio" data-platform="ig" aria-checked="true">Instagram <span class="pf-n" id="pfIG"></span></button>
+        <button type="button" role="radio" data-platform="tt" aria-checked="false">TikTok <span class="pf-n" id="pfTT"></span></button>
+      </div>
+      <div id="scoreIG">
       <div class="hero" aria-label="Followers and the road to your goal">
         <div class="count">
           <span class="big" id="followers">—</span>
@@ -419,11 +427,6 @@
         </div>
       </div>
 
-      <section class="tt" aria-labelledby="ttTitle">
-        <h2 id="ttTitle">TikTok <span class="sub" id="ttSub"></span></h2>
-        <div id="tiktok"><p class="pace">Loading TikTok…</p></div>
-      </section>
-
       <div class="aud-head">
         <h2>Audience</h2>
         <div class="seg" role="radiogroup" aria-label="Which audience">
@@ -436,6 +439,12 @@
       <h2>Latest posts</h2>
       <div class="posts" id="posts"></div>
       <p class="footnote">Orange reach means 1,000 or more. Figures come from Meta and can lag the Instagram app by a few hours.</p>
+      </div>
+      <div id="scoreTT" class="hidden">
+        <h2 class="first-desk">TikTok <span class="sub" id="ttSub"></span></h2>
+        <div id="tiktok"><p class="pace">Loading TikTok…</p></div>
+        <p class="footnote">Figures come from TikTok and can lag the app by a few hours. Orange views means 1,000 or more.</p>
+      </div>
     </section>
 
     <section id="viewPlan" class="hidden">
@@ -652,12 +661,31 @@
   });
 
 
+
+  // Platform switch on the Scorecard: Instagram or TikTok, remembered per device.
+  var PF_KEY = 'playmaker-platform', platform = 'ig';
+  try { platform = localStorage.getItem(PF_KEY) === 'tt' ? 'tt' : 'ig'; } catch (e) {}
+  function showPlatform() {
+    all('.platform button').forEach(function (b) { b.setAttribute('aria-checked', String(b.getAttribute('data-platform') === platform)); });
+    $('scoreIG').classList.toggle('hidden', platform !== 'ig');
+    $('scoreTT').classList.toggle('hidden', platform !== 'tt');
+  }
+  all('.platform button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      platform = b.getAttribute('data-platform');
+      try { localStorage.setItem(PF_KEY, platform); } catch (e) {}
+      showPlatform();
+    });
+  });
+  showPlatform();
+
   // TikTok: its own request, so a TikTok problem never hides your Instagram numbers.
   function ttConnectBtn(label) {
     return '<button type="button" class="sm" id="ttConnect">' + label + '</button>';
   }
   function renderTikTok(t) {
     var box = $('tiktok');
+    $('pfTT').textContent = t && t.connected && t.profile.followers != null ? fmt(t.profile.followers) : '';
     $('ttSub').textContent = t && t.connected ? '@' + (t.profile.name || '') : '';
     if (!t || t.configured === false) {
       box.innerHTML = '<p class="pace">TikTok isn\'t set up yet. Add <b>TIKTOK_CLIENT_KEY</b> and <b>TIKTOK_CLIENT_SECRET</b> in Vercel, then connect here.</p>';
@@ -712,7 +740,8 @@
     var msg = st === 'connected' ? '<div class="notice"><b>TikTok connected.</b> Your numbers are on the Scorecard.</div>'
       : '<div class="notice warn"><b>TikTok didn\'t connect.</b> ' + esc(q.get('msg') || '') + '</div>';
     window.__pm.ttMsg = msg;
-    try { localStorage.setItem('playmaker-tab', 'score'); } catch (e) {}
+    try { localStorage.setItem('playmaker-tab', 'score'); localStorage.setItem('playmaker-platform', 'tt'); } catch (e) {}
+    platform = 'tt'; showPlatform();
     history.replaceState(null, '', location.pathname);
   })();
 
@@ -721,6 +750,7 @@
     setStamp('Updated ' + new Date(d.generatedAt).toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' }));
     $('banner').innerHTML = d.mock ? '<div class="notice">You\'re looking at sample data. Set MOCK to 0 in Vercel to see your live numbers.</div>' : '';
     renderHero(d);
+    $('pfIG').textContent = d.profile && d.profile.followers != null ? fmt(d.profile.followers) : '';
     renderSplits(d);
     renderTrend(d.followerTrend);
     renderSeries(d.series);
