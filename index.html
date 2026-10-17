@@ -666,7 +666,8 @@
     if (!t.connected) {
       box.innerHTML = '<div class="notice tt-connect' + (t.error ? ' warn' : '') + '"><span>' +
         (t.error ? esc(t.error) : 'Connect your TikTok to see views, likes and followers next to Instagram.') + '</span>' +
-        ttConnectBtn(t.error ? 'Connect again' : 'Connect TikTok') + '</div>';
+        ttConnectBtn(t.error ? 'Connect again' : 'Connect TikTok') + '</div>' +
+        (t.redirect ? '<p class="pace">Redirect URI Playmaker sends: <b style="word-break:break-all">' + esc(t.redirect) + '</b>. It must match the one in your TikTok app exactly.</p>' : '');
       $('ttConnect').addEventListener('click', connectTikTok);
       return;
     }

@@ -3,7 +3,7 @@
 //   GET ?action=connect  → { url } to start connecting your TikTok account
 // Requires the header "x-dashboard-key" to match DASHBOARD_PASSWORD.
 const { checkPassword } = require('../lib/auth');
-const { getTikTok, authorizeUrl, tiktokHistory, mockTikTok, config } = require('../lib/tiktok');
+const { getTikTok, authorizeUrl, tiktokHistory, mockTikTok, config, redirectUri } = require('../lib/tiktok');
 const { supabase } = require('../lib/store');
 
 function send(res, status, data) {
@@ -30,9 +30,11 @@ module.exports = async function handler(req, res) {
     if (data.connected) {
       const sb = supabase();
       data.history = sb ? await tiktokHistory(sb) : [];
+    } else {
+      data.redirect = redirectUri(req);
     }
     return send(res, 200, data);
   } catch (err) {
-    return send(res, 200, { connected: false, configured: true, reconnect: !!err.reconnect, error: err.message });
+    return send(res, 200, { connected: false, configured: true, reconnect: !!err.reconnect, error: err.message, redirect: redirectUri(req) });
   }
 };
